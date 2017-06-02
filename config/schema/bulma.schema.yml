@@ -1,0 +1,35 @@
+# Schema for the configuration files of the AT Core theme.
+
+bulma.settings:
+  type: theme_settings
+  label: 'Bulma settings'
+  mapping:
+    bulma_tabs:
+      type: mapping
+      label: 'Bulma tabs'
+      mapping:
+        bulma_tabs_position:
+          type: string
+          label: 'Tabs position'
+        bulma_tabs_size:
+          type: string
+          label: 'Tabs size'
+        bulma_tabs_style:
+          type: string
+          label: 'Tabs style'
+        bulma_tabs_fullwidth:
+          type: integer
+          label: 'Tabs fullwidth'
+    bulma_table:
+      type: mapping
+      label: 'Bulma table'
+      mapping:
+        bulma_tabs_bordered:
+          type: integer
+          label: 'Bordered'
+        bulma_tabs_striped:
+          type: integer
+          label: 'Striped'
+        bulma_tabs_narrow:
+          type: integer
+          label: 'Narrow'

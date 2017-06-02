@@ -1,0 +1,11 @@
+features:
+   comment_user_picture: true
+   favicon: true
+   logo: true
+   name: true
+   node_user_picture: true
+bulma_tabs:
+  bulma_tabs_position: 'default'
+  bulma_tabs_size: 'default'
+  bulma_tabs_style: 'default'
+  bulma_tabs_fullwidth: 0

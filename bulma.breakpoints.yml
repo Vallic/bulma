@@ -1,0 +1,36 @@
+bulma.all:
+  label: all
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+bulma.mobile:
+  label: mobile
+  mediaQuery: 'all and (max-width: 768px)'
+  weight: 1
+  multipliers:
+    - 1x
+bulma.tablet:
+  label: tablet
+  mediaQuery: 'all and (min-width: 769px) and (max-width: 999px)'
+  weight: 2
+  multipliers:
+    - 1x
+bulma.desktop:
+  label: desktop
+  mediaQuery: 'all and (min-width: 1000px) and (max-width: 1191px)'
+  weight: 3
+  multipliers:
+    - 1x
+bulma.widescreen:
+  label: widescreen
+  mediaQuery: 'all and (min-width: 1192px) and (max-width: 1383px)'
+  weight: 3
+  multipliers:
+    - 1x
+bulma.fullhd:
+  label: fullhd
+  mediaQuery: 'all and (min-width: 1384px)'
+  weight: 3
+  multipliers:
+    - 1x

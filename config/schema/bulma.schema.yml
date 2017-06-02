@@ -24,12 +24,12 @@ bulma.settings:
       type: mapping
       label: 'Bulma table'
       mapping:
-        bulma_tabs_bordered:
+        bulma_table_bordered:
           type: integer
           label: 'Bordered'
-        bulma_tabs_striped:
+        bulma_table_striped:
           type: integer
           label: 'Striped'
-        bulma_tabs_narrow:
+        bulma_table_narrow:
           type: integer
           label: 'Narrow'

@@ -11,13 +11,26 @@
  * themed in menu-local-task.html.twig.
  */
 #}
+{% set classes = [
+'tabs',
+is_centered ? 'is-centered',
+is_right ? 'is-right',
+is_small ? 'is-small',
+is_medium ? 'is-medium',
+is_large ? 'is-large',
+is_boxed ? 'is-boxed',
+is_toggle ? 'is-toggle',
+is_fullwidth ? 'is-fullwidth'
+] %}
 {% if primary %}
     <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
-    <div class="tabs">
-        <ul>{{ primary }}</ul>
+    <div{{ attributes.addClass(classes) }}>
+        <ul class="primary">{{ primary }}</ul>
     </div>
 {% endif %}
 {% if secondary %}
     <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
-    <ul class="tabs secondary">{{ secondary }}</ul>
+    <div{{ attributes.addClass(classes) }}>
+        <ul class="secondary">{{ secondary }}</ul>
+    </div>
 {% endif %}

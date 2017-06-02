@@ -29,7 +29,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Tabs positions'),
     '#description' => t('Position for tabs, default is left'),
     '#options' => [
-      'is-left' => t('Left'),
+      'default' => t('Left'),
       'is-centered' => t('Center'),
       'is-right' => t('Right'),
     ],
@@ -41,7 +41,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Tabs size'),
     '#description' => t('Size of the tabs'),
     '#options' => [
-      'normal' => t('Default'),
+      'default' => t('Default'),
       'is-small' => t('Small'),
       'is-medium' => t('Medium'),
       'is-large' => t('Large'),
@@ -79,24 +79,24 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     ]),
   ];
 
-  $form['bulma_table']['bulma_tabs_bordered'] = [
+  $form['bulma_table']['bulma_table_bordered'] = [
     '#type' => 'checkbox',
     '#title' => t('Bordered'),
     '#description' => t('Add borders to all the cells.'),
-    '#default_value' => theme_get_setting('bulma_tabs_bordered'),
+    '#default_value' => theme_get_setting('bulma_table_bordered'),
   ];
 
-  $form['bulma_table']['bulma_tabs_striped'] = [
+  $form['bulma_table']['bulma_table_striped'] = [
     '#type' => 'checkbox',
     '#title' => t('Striped'),
     '#description' => t('Add stripes to the table.'),
-    '#default_value' => theme_get_setting('bulma_tabs_striped'),
+    '#default_value' => theme_get_setting('bulma_table_striped'),
   ];
 
-  $form['bulma_table']['bulma_tabs_narrow'] = [
+  $form['bulma_table']['bulma_table_narrow'] = [
     '#type' => 'checkbox',
     '#title' => t('Narrow'),
     '#description' => t('Make the cells narrower.'),
-    '#default_value' => theme_get_setting('bulma_tabs_narrow'),
+    '#default_value' => theme_get_setting('bulma_table_narrow'),
   ];
 }

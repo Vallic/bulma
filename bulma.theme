@@ -5,6 +5,8 @@
  * The primary PHP file for the Drupal Bulma base theme.
  */
 
+use Drupal\bulma\Bulma;
+
 /**
  * Implements hook_preprocess_page().
  */
@@ -13,17 +15,58 @@ function bulma_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements theme_menu_local_tasks().
+ */
+function bulma_preprocess_menu_local_tasks(&$variables) {
+
+  // Load Bulma class from settings.
+  $bulma_tabs_class = Bulma::tabSettings();
+
+  if (!empty($bulma_tabs_class)) {
+    // Set variables.
+    foreach ($bulma_tabs_class as $key => $class) {
+      $variables[str_replace('is-', 'is_', $class)] = TRUE;
+    }
+
+  }
+
+}
+
+/**
  * Implements hook_preprocess_table().
  */
 function bulma_preprocess_table(&$variables) {
-  $variables['attributes']['class'][] = 'table';
+
+  // Load existing classes.
+  $existing_class = $variables['attributes']['class'];
+
+  // Load Bulma specific table classes from theme settings.
+  $bulma_table_class = Bulma::tableSettings();
+
+  // Merge classes.
+  if (!empty($bulma_table_class)) {
+    $variables['attributes']['class']  = array_merge($existing_class, $bulma_table_class);
+  }
+
 }
 
 /**
  * Implements hook_preprocess_views_view_table().
  */
 function bulma_preprocess_views_view_table(&$variables) {
+
+  // Define defaults for variables.
   $variables['bordered'] = FALSE;
   $variables['striped'] = FALSE;
   $variables['narrow'] = FALSE;
+  $variables['table'] = TRUE;
+
+  // Load Bulma specific table classes from theme settings.
+  $bulma_table_class = Bulma::tableSettings();
+
+  if (!empty($bulma_table_class)) {
+    foreach ($bulma_table_class as $key => $class) {
+      $variables[str_replace('is-', '', $class)] = TRUE;
+    }
+  }
 }

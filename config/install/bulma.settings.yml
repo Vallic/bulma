@@ -4,12 +4,21 @@ features:
    logo: true
    name: true
    node_user_picture: true
+bulma_button:
+   bulma_button_colorize: 1
+   bulma_button_size: '0'
+   bulma_button_outlined: 0
+   bulma_button_inverted: 0
+bulma_elements:
+   bulma_elements_labels_rounded: 0
+   bulma_elements_labels_color: '0'
+   bulma_elements_labels_size: '0'
 bulma_tabs:
-  bulma_tabs_position: 'default'
-  bulma_tabs_size: 'default'
-  bulma_tabs_style: 'default'
-  bulma_tabs_fullwidth: 0
+   bulma_tabs_position: '0'
+   bulma_tabs_size: '0'
+   bulma_tabs_style: '0'
+   bulma_tabs_fullwidth: 0
 bulma_table:
-  bulma_table_bordered: 0
-  bulma_table_striped: 0
-  bulma_table_narrow: 0
+   bulma_table_bordered: 0
+   bulma_table_striped: 0
+   bulma_table_narrow: 0

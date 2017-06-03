@@ -13,6 +13,104 @@ use Drupal\Core\Url;
  */
 function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form_state, $form_id = NULL) {
 
+  // Bulma buttons settings.
+  $form['bulma_button'] = [
+    '#type' => 'details',
+    '#title' => t('Bulma Button'),
+    '#description' => t('Contains settings for buttons, see <a href="@docs">documentation</a>', [
+      '@docs' => Url::fromUri('http://bulma.io/documentation/elements/button/',
+        ['attributes' => ['target' => '_blank']])
+        ->toString(),
+    ]),
+  ];
+
+  $form['bulma_button']['bulma_button_colorize'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Colorize buttons'),
+    '#description' => t('Colorize buttons by type -  Primary / Info /  Success /  Warning / Danger'),
+    '#default_value' => theme_get_setting('bulma_button_colorize'),
+  ];
+
+  $form['bulma_button']['bulma_button_size'] = [
+    '#type' => 'select',
+    '#title' => t('Button size'),
+    '#description' => t('Size of the buttons'),
+    '#options' => [
+      '0' => t('Default'),
+      'is-small' => t('Small'),
+      'is-medium' => t('Medium'),
+      'is-large' => t('Large'),
+    ],
+    '#default_value' => theme_get_setting('bulma_button_size'),
+  ];
+
+  $form['bulma_button']['bulma_button_outlined'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Outlined buttons'),
+    '#description' => t('Colorize buttons by type'),
+    '#default_value' => theme_get_setting('bulma_button_outlined'),
+  ];
+
+  $form['bulma_button']['bulma_button_inverted'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Inverted buttons'),
+    '#description' => t('The text color becomes the background color, and vice-versa'),
+    '#default_value' => theme_get_setting('bulma_button_inverted'),
+  ];
+
+  $form['bulma_button']['notice_button'] = [
+    '#markup' => t('You can combine Outlined and Inverted buttons - the invert color becomes the text and border colors'),
+  ];
+
+  // Bulma buttons settings.
+  $form['bulma_elements'] = [
+    '#type' => 'details',
+    '#title' => t('Bulma Form Elements'),
+    '#description' => t('Contains settings for form elements, see <a href="@docs">documentation</a>', [
+      '@docs' => Url::fromUri('http://bulma.io/documentation/elements/form/',
+        ['attributes' => ['target' => '_blank']])
+        ->toString(),
+    ]),
+  ];
+
+  $form['bulma_elements']['bulma_elements_labels_rounded'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Rounded labels'),
+    '#description' => t('Rounder labels'),
+    '#default_value' => theme_get_setting('bulma_elements_labels_rounded'),
+  ];
+
+  $form['bulma_elements']['bulma_elements_labels_color'] = [
+    '#type' => 'select',
+    '#title' => t('Labels style'),
+    '#description' => t('Color/style of the labels'),
+    '#options' => [
+      '0' => t('Default'),
+      'is-black' => t('Black'),
+      'is-dark' => t('Dark'),
+      'is-light' => t('Light'),
+      'is-white' => t('White'),
+      'is-primary' => t('Primary'),
+      'is-info' => t('Info'),
+      'is-success' => t('Success'),
+      'is-warning' => t('Warning'),
+      'is-danger' => t('Danger'),
+    ],
+    '#default_value' => theme_get_setting('bulma_elements_labels_color'),
+  ];
+
+  $form['bulma_elements']['bulma_elements_labels_size'] = [
+    '#type' => 'select',
+    '#title' => t('Labels size'),
+    '#description' => t('Size of the labels'),
+    '#options' => [
+      '0' => t('Default'),
+      'is-medium' => t('Medium'),
+      'is-large' => t('Large'),
+    ],
+    '#default_value' => theme_get_setting('bulma_elements_labels_size'),
+  ];
+
   // Bulma tabs settings.
   $form['bulma_tabs'] = [
     '#type' => 'details',
@@ -29,7 +127,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Tabs positions'),
     '#description' => t('Position for tabs, default is left'),
     '#options' => [
-      'default' => t('Left'),
+      '0' => t('Left'),
       'is-centered' => t('Center'),
       'is-right' => t('Right'),
     ],
@@ -41,7 +139,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Tabs size'),
     '#description' => t('Size of the tabs'),
     '#options' => [
-      'default' => t('Default'),
+      '0' => t('Default'),
       'is-small' => t('Small'),
       'is-medium' => t('Medium'),
       'is-large' => t('Large'),
@@ -54,7 +152,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Tabs style'),
     '#description' => t('Look & feel of the tabs.'),
     '#options' => [
-      'default' => t('Default'),
+      '0' => t('Default'),
       'is-boxed' => t('Classic with borders'),
       'is-toggle' => t('Mutually exclusive'),
     ],

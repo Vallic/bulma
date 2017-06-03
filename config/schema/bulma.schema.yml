@@ -1,9 +1,38 @@
-# Schema for the configuration files of the AT Core theme.
+# Schema for the configuration files of the Bulma theme.
 
 bulma.settings:
   type: theme_settings
   label: 'Bulma settings'
   mapping:
+    bulma_button:
+      type: mapping
+      label: 'Bulma buttons'
+      mapping:
+        bulma_button_colorize:
+          type: integer
+          label: 'Colorize button'
+        bulma_button_size:
+          type: string
+          label: 'Button size'
+        bulma_button_outlined:
+          type: integer
+          label: 'Outlined button'
+        bulma_button_inverted:
+          type: integer
+          label: 'Inverted button'
+    bulma_elements:
+      type: mapping
+      label: 'Bulma form elements'
+      mapping:
+        bulma_elements_labels_rounded:
+          type: integer
+          label: 'Rounded labels'
+        bulma_elements_labels_color:
+          type: string
+          label: 'Labels style'
+        bulma_elements_labels_size:
+          type: string
+          label: 'Labels size'
     bulma_tabs:
       type: mapping
       label: 'Bulma tabs'

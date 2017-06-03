@@ -6,9 +6,14 @@
  */
 
 use Drupal\bulma\Bulma;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Render\Element\RenderElement;
+use Drupal\Core\Template\Attribute;
+use Drupal\Component\Render\MarkupInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
- * Implements hook_preprocess_page().
+ * Implements template_preprocess_page().
  */
 function bulma_preprocess_page(&$variables) {
 
@@ -20,12 +25,12 @@ function bulma_preprocess_page(&$variables) {
 function bulma_preprocess_menu_local_tasks(&$variables) {
 
   // Load Bulma class from settings.
-  $bulma_tabs_class = Bulma::tabSettings();
+  $bulma_tabs_class = Bulma::multiSettings('tabs');
 
   if (!empty($bulma_tabs_class)) {
     // Set variables.
     foreach ($bulma_tabs_class as $key => $class) {
-      $variables[str_replace('is-', 'is_', $class)] = TRUE;
+      $variables[str_replace('is-', '', $key)] = $class;
     }
 
   }
@@ -33,7 +38,7 @@ function bulma_preprocess_menu_local_tasks(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_table().
+ * Implements template_preprocess_table().
  */
 function bulma_preprocess_table(&$variables) {
 
@@ -41,7 +46,7 @@ function bulma_preprocess_table(&$variables) {
   $existing_class = $variables['attributes']['class'];
 
   // Load Bulma specific table classes from theme settings.
-  $bulma_table_class = Bulma::tableSettings();
+  $bulma_table_class = Bulma::multiSettings('table');
 
   // Merge classes.
   if (!empty($bulma_table_class)) {
@@ -51,7 +56,77 @@ function bulma_preprocess_table(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_views_view_table().
+ * Implements template_preprocess_form_element_label().
+ */
+function bulma_preprocess_form_element_label(&$variables) {
+
+  // Check additional theme labels settings.
+  $bulma_labels = Bulma::multiSettings('label');
+
+  if (!empty($bulma_labels)) {
+    foreach ($bulma_labels as $key => $value) {
+      $variables[$key]= $value;
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_input().
+ */
+function bulma_preprocess_input(&$variables) {
+  // We need to wrap some elements, some not.
+  switch ($variables['element']['#type']) {
+
+    // Skip hidden and radio/checkbox, they need different wrapping.
+    case 'hidden':
+    case 'radio':
+    case 'checkbox':
+      $variables['bulma_type'] = FALSE;
+      break;
+
+    // Separate type, options to colorize buttons.
+    case 'submit':
+      $variables['bulma_type'] = TRUE;
+
+      // Get all button settings
+      $bulma_button = Bulma::multiSettings('button');
+
+      if (!empty($bulma_button)) {
+        foreach ($bulma_button as $key => $class) {
+
+          // If buttons should be colorized by task/action.
+          if ($key == 'colorize') {
+            // Get string to check.
+            $name = $variables['element']['#value']->getUntranslatedString();
+
+            // Get class.
+            $color = Bulma::cssClassFromString($name, 'is-primary');
+
+            // Assign color.
+            $variables['attributes']['class'][] = $color;
+          }
+
+          else {
+            $variables['attributes']['class'][] = $class;
+          }
+        }
+      }
+
+      break;
+
+    // Living on the edge ¯\_(ツ)_/¯.
+    // In most cases this will work, but for some specific field types maybe not.
+    // Submit issue on project page if your field is not happy with this class.
+    default:
+      $variables['bulma_type'] = TRUE;
+      $variables['attributes']['class'][] = 'input';
+
+  }
+
+}
+
+/**
+ * Implements template_preprocess_views_view_table().
  */
 function bulma_preprocess_views_view_table(&$variables) {
 
@@ -62,7 +137,7 @@ function bulma_preprocess_views_view_table(&$variables) {
   $variables['table'] = TRUE;
 
   // Load Bulma specific table classes from theme settings.
-  $bulma_table_class = Bulma::tableSettings();
+  $bulma_table_class = Bulma::multiSettings('table');
 
   if (!empty($bulma_table_class)) {
     foreach ($bulma_table_class as $key => $class) {

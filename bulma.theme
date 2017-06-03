@@ -55,6 +55,71 @@ function bulma_preprocess_table(&$variables) {
 
 }
 
+function bulma_preprocess_form_element(&$variables) {
+  $element = &$variables['element'];
+
+  // This function is invoked as theme wrapper, but the rendered form element
+  // may not necessarily have been processed by
+  // \Drupal::formBuilder()->doBuildForm().
+  $element += [
+    '#title_display' => 'before',
+    '#wrapper_attributes' => [],
+    '#label_attributes' => [],
+  ];
+  $variables['attributes'] = $element['#wrapper_attributes'];
+
+  // Add element #id for #type 'item'.
+  if (isset($element['#markup']) && !empty($element['#id'])) {
+    $variables['attributes']['id'] = $element['#id'];
+  }
+
+  // Pass elements #type and #name to template.
+  if (!empty($element['#type'])) {
+    $variables['type'] = $element['#type'];
+  }
+  if (!empty($element['#name'])) {
+    $variables['name'] = $element['#name'];
+  }
+
+  $variables['bulma_type'] = $element['#type'];
+
+  // Pass elements disabled status to template.
+  $variables['disabled'] = !empty($element['#attributes']['disabled']) ? $element['#attributes']['disabled'] : NULL;
+
+  // Suppress error messages.
+  $variables['errors'] = NULL;
+
+  // If #title is not set, we don't display any label.
+  if (!isset($element['#title'])) {
+    $element['#title_display'] = 'none';
+  }
+
+  $variables['title_display'] = $element['#title_display'];
+
+  $variables['prefix'] = isset($element['#field_prefix']) ? $element['#field_prefix'] : NULL;
+  $variables['suffix'] = isset($element['#field_suffix']) ? $element['#field_suffix'] : NULL;
+
+  $variables['description'] = NULL;
+  if (!empty($element['#description'])) {
+    $variables['description_display'] = $element['#description_display'];
+    $description_attributes = [];
+    if (!empty($element['#id'])) {
+      $description_attributes['id'] = $element['#id'] . '--description';
+    }
+    $variables['description']['attributes'] = new Attribute($description_attributes);
+    $variables['description']['content'] = $element['#description'];
+  }
+
+  // Add label_display and label variables to template.
+  $variables['label_display'] = $element['#title_display'];
+  $variables['label'] = ['#theme' => 'form_element_label'];
+  $variables['label'] += array_intersect_key($element, array_flip(['#id', '#required', '#title', '#title_display']));
+  $variables['label']['#attributes'] = $element['#label_attributes'];
+
+  $variables['children'] = $element['#children'];
+
+}
+
 /**
  * Implements template_preprocess_form_element_label().
  */
@@ -74,11 +139,18 @@ function bulma_preprocess_form_element_label(&$variables) {
  * Implements template_preprocess_input().
  */
 function bulma_preprocess_input(&$variables) {
+
   // We need to wrap some elements, some not.
   switch ($variables['element']['#type']) {
 
-    // Skip hidden and radio/checkbox, they need different wrapping.
+    // Skip hidden field from all preprocess.
+    case 'token':
     case 'hidden':
+      $variables['bulma_type'] = FALSE;
+      $variables['bulma_form'] = FALSE;
+      break;
+
+    // Skip radio/checkbox, they need different wrapping.
     case 'radio':
     case 'checkbox':
       $variables['bulma_type'] = FALSE;

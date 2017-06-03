@@ -98,6 +98,23 @@ class Bulma {
     return $classes;
   }
 
+
+  /**
+   * Check if horizontal form is enabled.
+   *
+   * @return bool
+   *   True or false for horizontal form setting.
+   */
+  public static function horizontalForm() {
+    $horizontal_form = theme_get_setting('bulma_elements_labels_inline');
+
+    if ($horizontal_form === 1) {
+      return TRUE;
+    }
+
+    return FALSE;
+  }
+
   /**
    * Matches a Bulma class based on a string value.
    * Borrowed from Bootstrap project drupal.org/project/bootstrap.

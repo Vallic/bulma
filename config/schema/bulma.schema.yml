@@ -24,6 +24,9 @@ bulma.settings:
       type: mapping
       label: 'Bulma form elements'
       mapping:
+        bulma_elements_labels_inline:
+          type: integer
+          label: 'Horizontal form'
         bulma_elements_labels_rounded:
           type: integer
           label: 'Rounded labels'

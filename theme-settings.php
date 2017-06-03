@@ -73,6 +73,14 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     ]),
   ];
 
+  $form['bulma_elements']['bulma_elements_labels_inline'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Horizontal form'),
+    '#description' => t('Not working currently, lot of precise adjustments needs to be done to implement this'),
+    '#default_value' => theme_get_setting('bulma_elements_labels_inline'),
+    '#disabled' => TRUE,
+  ];
+
   $form['bulma_elements']['bulma_elements_labels_rounded'] = [
     '#type' => 'checkbox',
     '#title' => t('Rounded labels'),

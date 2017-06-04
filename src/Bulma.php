@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\bulma\Bulma.
- */
-
 namespace Drupal\bulma;
 
 use Drupal\Component\Utility\Unicode;
@@ -98,7 +93,6 @@ class Bulma {
     return $classes;
   }
 
-
   /**
    * Check if horizontal form is enabled.
    *
@@ -117,6 +111,7 @@ class Bulma {
 
   /**
    * Matches a Bulma class based on a string value.
+   *
    * Borrowed from Bootstrap project drupal.org/project/bootstrap.
    *
    * @param string|array $value

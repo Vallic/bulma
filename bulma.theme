@@ -11,6 +11,7 @@ use Drupal\Core\Render\Element\RenderElement;
 use Drupal\Core\Template\Attribute;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements template_preprocess_page().
@@ -40,7 +41,7 @@ function bulma_preprocess_menu_local_tasks(&$variables) {
 /**
  * Implements hook_form_alter().
  */
-function bulma_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function bulma_form_alter(&$form, $form_state, $form_id) {
 
   // Check for actions buttons, group them.
   if (isset($form['actions'])) {
@@ -63,11 +64,14 @@ function bulma_preprocess_table(&$variables) {
 
   // Merge classes.
   if (!empty($bulma_table_class)) {
-    $variables['attributes']['class']  = array_merge($existing_class, $bulma_table_class);
+    $variables['attributes']['class'] = array_merge($existing_class, $bulma_table_class);
   }
 
 }
 
+/**
+ * Implements template_preprocess_form_element().
+ */
 function bulma_preprocess_form_element(&$variables) {
   $element = &$variables['element'];
 
@@ -124,7 +128,12 @@ function bulma_preprocess_form_element(&$variables) {
   // Add label_display and label variables to template.
   $variables['label_display'] = $element['#title_display'];
   $variables['label'] = ['#theme' => 'form_element_label'];
-  $variables['label'] += array_intersect_key($element, array_flip(['#id', '#required', '#title', '#title_display']));
+  $variables['label'] += array_intersect_key($element, array_flip([
+    '#id',
+    '#required',
+    '#title',
+    '#title_display',
+  ]));
   $variables['label']['#attributes'] = $element['#label_attributes'];
 
   $variables['children'] = $element['#children'];
@@ -141,7 +150,7 @@ function bulma_preprocess_form_element_label(&$variables) {
 
   if (!empty($bulma_labels)) {
     foreach ($bulma_labels as $key => $value) {
-      $variables[$key]= $value;
+      $variables[$key] = $value;
     }
   }
 }
@@ -171,7 +180,7 @@ function bulma_preprocess_input(&$variables) {
     case 'submit':
       $variables['bulma_type'] = TRUE;
 
-      // Get all button settings
+      // Get all button settings.
       $bulma_button = Bulma::multiSettings('button');
 
       if (!empty($bulma_button)) {
@@ -198,7 +207,7 @@ function bulma_preprocess_input(&$variables) {
       break;
 
     // Living on the edge ¯\_(ツ)_/¯.
-    // In most cases this will work, but for some specific field types maybe not.
+    // In most cases this will work, but for some field types maybe not.
     // Submit issue on project page if your field is not happy with this class.
     default:
       $variables['bulma_type'] = TRUE;

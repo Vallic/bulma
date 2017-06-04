@@ -198,6 +198,13 @@ function bulma_preprocess_input(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_page_title().
+ */
+function bulma_preprocess_page_title(&$variables) {
+  $variables['title_attributes']['class'] = 'title';
+}
+
+/**
  * Implements template_preprocess_views_view_table().
  */
 function bulma_preprocess_views_view_table(&$variables) {

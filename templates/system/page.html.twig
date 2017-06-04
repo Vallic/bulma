@@ -45,46 +45,75 @@
  * @ingroup themeable
  */
 #}
-<div class="container">
+<section class="hero is-medium has-text-centered">
+    <div class="hero-head">
+        <div class="container">
 
-  <header role="banner">
-    {{ page.header }}
-  </header>
+            <nav class="nav">
+                <div class="nav-left">
 
-  {{ page.primary_menu }}
-  {{ page.secondary_menu }}
+                </div>
+                <div class="nav-center">
 
-  {{ page.breadcrumb }}
+                </div>
+                <span id="nav-toggle" class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+                <div id="nav-menu" class="nav-right nav-menu">
+                    {{ page.primary_menu }}
+                </div>
+            </nav>
 
-  {{ page.highlighted }}
+        </div>
+    </div>
+    <div class="hero-body">
+        <header role="banner">
+            {{ page.header }}
+        </header>
+    </div>
+</section>
+<section class="hero is-primary">
+    {{ page.highlighted }}
+</section>
 
-  {{ page.help }}
+<section class="section">
 
-  <main role="main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+    <div class="container">
+        {{ page.secondary_menu }}
 
-    <div class="main-content">
-      {{ page.content }}
-    </div>{# /.layout-content #}
+        {{ page.breadcrumb }}
 
-    {% if page.sidebar_first %}
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
+        {{ page.help }}
+    </div>
+
+    <main role="main" class="container">
+        <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+        <div class="main-content">
+            {{ page.content }}
+        </div>{# /.layout-content #}
+
+        {% if page.sidebar_first %}
+            <aside class="layout-sidebar-first" role="complementary">
+                {{ page.sidebar_first }}
+            </aside>
+        {% endif %}
+
+        {% if page.sidebar_second %}
+            <aside class="layout-sidebar-second" role="complementary">
+                {{ page.sidebar_second }}
+            </aside>
+        {% endif %}
+
+    </main>
+</section>
+
+    {% if page.footer %}
+        <footer role="contentinfo" class="footer">
+            <div class="container">
+                {{ page.footer }}
+            </div>
+        </footer>
     {% endif %}
-
-    {% if page.sidebar_second %}
-      <aside class="layout-sidebar-second" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% endif %}
-
-  </main>
-
-  {% if page.footer %}
-    <footer role="contentinfo">
-      {{ page.footer }}
-    </footer>
-  {% endif %}
-
-</div>{# /.layout-container #}

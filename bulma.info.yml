@@ -5,18 +5,13 @@ package: Core
 core: 8.x
 
 regions:
-  top_nav: 'Top navigation'
-  branding_nav: 'Nav bar branding'
-  primary_nav: 'Nav bar primary navigation'
-  mobile_nav: 'Mobile navigation'
-  header: 'Top Bar'
+  header: 'Header'
   highlighted: 'Highlighted'
   help: 'Help'
   content: 'Content'
-  footer_first: 'Footer first'
-  footer_second: 'Footer second'
-  footer_third: 'Footer third'
-  copy: 'Footer copyright'
+  sidebar_first: 'Sidebar First'
+  sidebar_second: 'Sidebar Second'
+  footer: 'Footer'
   # The page_top and page_bottom regions are hidden, which means they will not
   # show up on the block layout page. But they are required in order for the
   # html.html.twig to work properly, so do not delete them.

@@ -38,6 +38,19 @@ function bulma_preprocess_menu_local_tasks(&$variables) {
 }
 
 /**
+ * Implements hook_form_alter().
+ */
+function bulma_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  // Check for actions buttons, group them.
+  if (isset($form['actions'])) {
+    $form['actions']['#attributes']['class'][] = 'field';
+    $form['actions']['#attributes']['class'][] = 'is-grouped';
+  }
+
+}
+
+/**
  * Implements template_preprocess_table().
  */
 function bulma_preprocess_table(&$variables) {
@@ -80,8 +93,6 @@ function bulma_preprocess_form_element(&$variables) {
   if (!empty($element['#name'])) {
     $variables['name'] = $element['#name'];
   }
-
-  $variables['bulma_type'] = $element['#type'];
 
   // Pass elements disabled status to template.
   $variables['disabled'] = !empty($element['#attributes']['disabled']) ? $element['#attributes']['disabled'] : NULL;

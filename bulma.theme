@@ -18,31 +18,35 @@ function bulma_preprocess_page(&$variables) {
 }
 
 /**
- * Implements hook_page_attachments_alter
- *
- * Add custom meta tags to the header.
+ * Implements hook_page_attachments_alter().
  */
 function bulma_page_attachments_alter(&$page) {
 
   // Force IE to use Chrome Frame if installed.
-  $page['#attached']['html_head'][] = array(array(
-    '#type' => 'html_tag',
-    '#tag' => 'meta',
-    '#attributes' => array(
-      'http-equiv' => 'X-UA-Compatible',
-      'content' => 'IE=edge,chrome=1',
-    ),
-  ), 'chrome_frame');
+  $page['#attached']['html_head'][] = [
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => [
+        'http-equiv' => 'X-UA-Compatible',
+        'content' => 'IE=edge,chrome=1',
+      ],
+    ],
+    'chrome_frame',
+  ];
 
   // Remove image toolbar in IE.
-  $page['#attached']['html_head'][] = array(array(
-    '#type' => 'html_tag',
-    '#tag' => 'meta',
-    '#attributes' => array(
-      'http-equiv' => 'ImageToolbar',
-      'content' => 'false',
-    ),
-  ), 'ie_image_toolbar');
+  $page['#attached']['html_head'][] = [
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => [
+        'http-equiv' => 'ImageToolbar',
+        'content' => 'false',
+      ],
+    ],
+    'ie_image_toolbar',
+  ];
 }
 
 /**
@@ -109,6 +113,18 @@ function bulma_preprocess_table(&$variables) {
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function bulma_theme_suggestions_input_alter(array &$suggestions, array $variables) {
+
+  // Add theme suggestions for wrapping buttons.
+  // Moved from _preprocess_input for future horizontal form implementation.
+  if (!in_array($variables['element']['#type'], ['hidden', 'token', 'radio', 'checkbox'])) {
+    $suggestions[] = 'input__' . 'bulma';
+  }
+}
+
+/**
  * Implements template_preprocess_form_element().
  */
 function bulma_preprocess_form_element(&$variables) {
@@ -141,58 +157,31 @@ function bulma_preprocess_form_element_label(&$variables) {
  */
 function bulma_preprocess_input(&$variables) {
 
-  // We need to wrap some elements, some not.
-  switch ($variables['element']['#type']) {
+  // Colorize buttons.
+  if ($variables['element']['#type'] == 'submit') {
+    // Get all button settings.
+    $bulma_button = Bulma::multiSettings('button');
 
-    // Skip hidden field from all preprocess.
-    case 'token':
-    case 'hidden':
-      $variables['bulma_type'] = FALSE;
-      break;
+    if (!empty($bulma_button)) {
+      foreach ($bulma_button as $key => $class) {
 
-    // Skip radio/checkbox, they need different wrapping.
-    case 'radio':
-    case 'checkbox':
-      $variables['bulma_type'] = FALSE;
-      break;
+        // If buttons should be colorized by task/action.
+        if ($key == 'colorize') {
+          // Get string to check.
+          $name = $variables['element']['#value']->getUntranslatedString();
 
-    // Separate type, options to colorize buttons.
-    case 'submit':
-      $variables['bulma_type'] = TRUE;
+          // Get class.
+          $color = Bulma::cssClassFromString($name, 'is-primary');
 
-      // Get all button settings.
-      $bulma_button = Bulma::multiSettings('button');
+          // Assign color.
+          $variables['attributes']['class'][] = $color;
+        }
 
-      if (!empty($bulma_button)) {
-        foreach ($bulma_button as $key => $class) {
-
-          // If buttons should be colorized by task/action.
-          if ($key == 'colorize') {
-            // Get string to check.
-            $name = $variables['element']['#value']->getUntranslatedString();
-
-            // Get class.
-            $color = Bulma::cssClassFromString($name, 'is-primary');
-
-            // Assign color.
-            $variables['attributes']['class'][] = $color;
-          }
-
-          else {
-            $variables['attributes']['class'][] = $class;
-          }
+        else {
+          $variables['attributes']['class'][] = $class;
         }
       }
-
-      break;
-
-    // Living on the edge ¯\_(ツ)_/¯.
-    // In most cases this will work, but for some field types maybe not.
-    // Submit issue on project page if your field is not happy with this class.
-    default:
-      $variables['bulma_type'] = TRUE;
-      $variables['attributes']['class'][] = 'input';
-
+    }
   }
 
 }

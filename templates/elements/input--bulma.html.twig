@@ -12,10 +12,11 @@
  * @ingroup themeable
  */
 #}
-{% if bulma_type %}
+  {%
+  set classes = [
+  'input',
+  ]
+  %}
 <div class="control">
-{% endif %}
-<input{{ attributes }} />{{ children }}
-{% if bulma_type %}
+    <input{{ attributes.addClass(classes) }} />{{ children }}
 </div>
-{% endif %}

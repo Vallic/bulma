@@ -2,7 +2,7 @@
 BULMA_SUBTHEME_NAME is a subtheme of base theme Bulma for Drupal. 
 It has Bulma CSS framework, Sass, and Font Awesome built-in.
 
-##Features
+## Features
 1. Components and plugins from Bulma.
 2. Sass and Font Awesome built-in.
 

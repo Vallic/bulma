@@ -11,8 +11,10 @@ font-awesome:
 
 global-scripts:
   css:
+    base:
+      assets/bulma/css/bulma.css: {}
     theme:
-      css/bulma/bulma.css: {}
+      assets/bulma.style.css: {}
   dependencies:
     - core/jquery
     - core/jquery.once

@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAIE,oCAAsB;EACpB,OAAO,EAAE,IAAI;EAEb,yDAAqB;IACnB,aAAa,EAAE,IAAI;EAKnB,wDAAa;IACX,MAAM,EAAE,CAAC",
+"sources": ["bulma.style.scss"],
 "names": [],
 "file": "bulma.style.css"
 }

@@ -69,13 +69,6 @@ function bulma_preprocess_table(&$variables) {
 
 }
 
-function bulma_preprocess_form_element__wrapped(&$variables) {
-  $variables['label']['#theme'] = 'form_element_label__open';
-  $variables['label_open'] = $variables['label'];
-  unset($variables['label']);
-  $variables['title'] = $variables['element']['#title'];
-}
-
 /**
  * Implements template_preprocess_form_element().
  */

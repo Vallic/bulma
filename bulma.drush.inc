@@ -188,6 +188,7 @@ function bulma_get_files_to_make_replacements($kit = 'default') {
     'config/install/' . $kit . '.settings.yml',
     'config/schema/' . $kit . '.schema.yml',
     'assets/' . $kit . '.style.scss',
+    'assets/js/' . $kit . '.js',
     $kit . '.info.yml',
     $kit . '.libraries.yml',
     $kit . '.theme',

@@ -94,19 +94,27 @@ class Bulma {
   }
 
   /**
-   * Check if horizontal form is enabled.
+   * Retrieve single settings as bool or string value.
    *
-   * @return bool
+   * @param string $setting
+   *   Theme setting to check.
+   *
+   * @return mixed
    *   True or false for horizontal form setting.
    */
-  public static function horizontalForm() {
-    $horizontal_form = theme_get_setting('bulma_elements_labels_inline');
+  public static function singleSetting($setting) {
+    $theme_setting = theme_get_setting($setting);
 
-    if ($horizontal_form === 1) {
-      return TRUE;
+    if (is_numeric($theme_setting)) {
+      if ($theme_setting === 1) {
+        return TRUE;
+      }
+
+      return FALSE;
     }
 
-    return FALSE;
+    // Strings, etc.
+    return $theme_setting;
   }
 
   /**

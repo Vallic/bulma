@@ -4,6 +4,8 @@ features:
    logo: true
    name: true
    node_user_picture: true
+bulma_general:
+   bulma_general_block: 1
 bulma_button:
    bulma_button_colorize: 1
    bulma_button_size: '0'
@@ -17,7 +19,7 @@ bulma_elements:
 bulma_tabs:
    bulma_tabs_position: '0'
    bulma_tabs_size: '0'
-   bulma_tabs_style: '0'
+   bulma_tabs_style: 'is-boxed'
    bulma_tabs_fullwidth: 0
 bulma_table:
    bulma_table_bordered: 0

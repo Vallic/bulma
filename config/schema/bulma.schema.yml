@@ -4,6 +4,13 @@ bulma.settings:
   type: theme_settings
   label: 'Bulma settings'
   mapping:
+    bulma_general:
+      type: mapping
+      label: 'Bulma general settings'
+      mapping:
+        bulma_general_block:
+          type: integer
+          label: 'Bulma block style'
     bulma_button:
       type: mapping
       label: 'Bulma buttons'

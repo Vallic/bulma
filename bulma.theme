@@ -6,18 +6,15 @@
  */
 
 use Drupal\bulma\Bulma;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Render\Element\RenderElement;
-use Drupal\Core\Template\Attribute;
-use Drupal\Component\Render\MarkupInterface;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements template_preprocess_page().
  */
 function bulma_preprocess_page(&$variables) {
 
+  // Site slogan as separate variable.
+  $site_config = \Drupal::config('system.site');
+  $variables['site_slogan'] = $site_config->get('slogan');
 }
 
 /**
@@ -47,6 +44,20 @@ function bulma_form_alter(&$form, $form_state, $form_id) {
   if (isset($form['actions'])) {
     $form['actions']['#attributes']['class'][] = 'field';
     $form['actions']['#attributes']['class'][] = 'is-grouped';
+  }
+
+}
+
+/**
+ * Implements template_preprocess_block().
+ */
+function bulma_preprocess_block(&$variables) {
+
+  // Block as panel style.
+  if (Bulma::singleSetting('bulma_general_block')) {
+    if ($variables['configuration']['label_display']) {
+      $variables['block_panel_style'] = TRUE;
+    }
   }
 
 }
@@ -180,7 +191,7 @@ function bulma_preprocess_views_view_table(&$variables) {
   $bulma_table_class = Bulma::multiSettings('table');
 
   if (!empty($bulma_table_class)) {
-    foreach ($bulma_table_class as $key => $class) {
+    foreach ($bulma_table_class as $class) {
       $variables[str_replace('is-', '', $class)] = TRUE;
     }
   }

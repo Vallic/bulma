@@ -13,6 +13,20 @@ use Drupal\Core\Url;
  */
 function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form_state, $form_id = NULL) {
 
+  // Bulma general settings.
+  $form['bulma_general'] = [
+    '#type' => 'details',
+    '#title' => t('Bulma general settings'),
+    '#description' => t('Contains general settings, blocks, etc..'),
+  ];
+
+  $form['bulma_general']['bulma_general_block'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Block panel style'),
+    '#description' => t('Applied only on blocks with title or label visible / enabled. Reason to skip branding,menus etc. similar blocks'),
+    '#default_value' => theme_get_setting('bulma_general_block'),
+  ];
+
   // Bulma buttons settings.
   $form['bulma_button'] = [
     '#type' => 'details',
@@ -62,7 +76,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#markup' => t('You can combine Outlined and Inverted buttons - the invert color becomes the text and border colors'),
   ];
 
-  // Bulma buttons settings.
+  // Bulma elements settings.
   $form['bulma_elements'] = [
     '#type' => 'details',
     '#title' => t('Bulma Form Elements'),

@@ -18,6 +18,34 @@ function bulma_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements hook_page_attachments_alter
+ *
+ * Add custom meta tags to the header.
+ */
+function bulma_page_attachments_alter(&$page) {
+
+  // Force IE to use Chrome Frame if installed.
+  $page['#attached']['html_head'][] = array(array(
+    '#type' => 'html_tag',
+    '#tag' => 'meta',
+    '#attributes' => array(
+      'http-equiv' => 'X-UA-Compatible',
+      'content' => 'IE=edge,chrome=1',
+    ),
+  ), 'chrome_frame');
+
+  // Remove image toolbar in IE.
+  $page['#attached']['html_head'][] = array(array(
+    '#type' => 'html_tag',
+    '#tag' => 'meta',
+    '#attributes' => array(
+      'http-equiv' => 'ImageToolbar',
+      'content' => 'false',
+    ),
+  ), 'ie_image_toolbar');
+}
+
+/**
  * Implements theme_menu_local_tasks().
  */
 function bulma_preprocess_menu_local_tasks(&$variables) {

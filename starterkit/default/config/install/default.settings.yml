@@ -1,0 +1,27 @@
+features:
+   comment_user_picture: true
+   favicon: true
+   logo: true
+   name: true
+   node_user_picture: true
+bulma_general:
+   bulma_general_block: 1
+bulma_button:
+   bulma_button_colorize: 1
+   bulma_button_size: '0'
+   bulma_button_outlined: 0
+   bulma_button_inverted: 0
+bulma_elements:
+   bulma_elements_labels_inline: 0
+   bulma_elements_labels_rounded: 0
+   bulma_elements_labels_color: '0'
+   bulma_elements_labels_size: '0'
+bulma_tabs:
+   bulma_tabs_position: '0'
+   bulma_tabs_size: '0'
+   bulma_tabs_style: 'is-boxed'
+   bulma_tabs_fullwidth: 0
+bulma_table:
+   bulma_table_bordered: 0
+   bulma_table_striped: 0
+   bulma_table_narrow: 0

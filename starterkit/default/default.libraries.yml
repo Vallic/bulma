@@ -5,9 +5,9 @@ global:
     component:
       assets/font-awesome/css/font-awesome.css: {}
     theme:
-      assets/bulma.style.css: {}
+      assets/BULMA_SUBTHEME_MACHINE_NAME.style.css: {}
   js:
-    assets/js/bulma.js: {}
+    assets/js/BULMA_SUBTHEME_MACHINE_NAME.js: {}
   dependencies:
     - core/jquery
     - core/jquery.once

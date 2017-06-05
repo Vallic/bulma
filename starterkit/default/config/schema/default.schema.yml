@@ -1,0 +1,74 @@
+# Schema for the configuration files of the Bulma theme.
+
+BULMA_SUBTHEME_MACHINE_NAME.settings:
+  type: theme_settings
+  label: 'Bulma settings'
+  mapping:
+    bulma_general:
+      type: mapping
+      label: 'Bulma general settings'
+      mapping:
+        bulma_general_block:
+          type: integer
+          label: 'Bulma block style'
+    bulma_button:
+      type: mapping
+      label: 'Bulma buttons'
+      mapping:
+        bulma_button_colorize:
+          type: integer
+          label: 'Colorize button'
+        bulma_button_size:
+          type: string
+          label: 'Button size'
+        bulma_button_outlined:
+          type: integer
+          label: 'Outlined button'
+        bulma_button_inverted:
+          type: integer
+          label: 'Inverted button'
+    bulma_elements:
+      type: mapping
+      label: 'Bulma form elements'
+      mapping:
+        bulma_elements_labels_inline:
+          type: integer
+          label: 'Horizontal form'
+        bulma_elements_labels_rounded:
+          type: integer
+          label: 'Rounded labels'
+        bulma_elements_labels_color:
+          type: string
+          label: 'Labels style'
+        bulma_elements_labels_size:
+          type: string
+          label: 'Labels size'
+    bulma_tabs:
+      type: mapping
+      label: 'Bulma tabs'
+      mapping:
+        bulma_tabs_position:
+          type: string
+          label: 'Tabs position'
+        bulma_tabs_size:
+          type: string
+          label: 'Tabs size'
+        bulma_tabs_style:
+          type: string
+          label: 'Tabs style'
+        bulma_tabs_fullwidth:
+          type: integer
+          label: 'Tabs fullwidth'
+    bulma_table:
+      type: mapping
+      label: 'Bulma table'
+      mapping:
+        bulma_table_bordered:
+          type: integer
+          label: 'Bordered'
+        bulma_table_striped:
+          type: integer
+          label: 'Striped'
+        bulma_table_narrow:
+          type: integer
+          label: 'Narrow'

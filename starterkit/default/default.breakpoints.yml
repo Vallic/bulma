@@ -1,0 +1,36 @@
+BULMA_SUBTHEME_MACHINE_NAME.all:
+  label: all
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+BULMA_SUBTHEME_MACHINE_NAME.mobile:
+  label: mobile
+  mediaQuery: 'all and (max-width: 768px)'
+  weight: 1
+  multipliers:
+    - 1x
+BULMA_SUBTHEME_MACHINE_NAME.tablet:
+  label: tablet
+  mediaQuery: 'all and (min-width: 769px) and (max-width: 999px)'
+  weight: 2
+  multipliers:
+    - 1x
+BULMA_SUBTHEME_MACHINE_NAME.desktop:
+  label: desktop
+  mediaQuery: 'all and (min-width: 1000px) and (max-width: 1191px)'
+  weight: 3
+  multipliers:
+    - 1x
+BULMA_SUBTHEME_MACHINE_NAME.widescreen:
+  label: widescreen
+  mediaQuery: 'all and (min-width: 1192px) and (max-width: 1383px)'
+  weight: 3
+  multipliers:
+    - 1x
+BULMA_SUBTHEME_MACHINE_NAME.fullhd:
+  label: fullhd
+  mediaQuery: 'all and (min-width: 1384px)'
+  weight: 3
+  multipliers:
+    - 1x

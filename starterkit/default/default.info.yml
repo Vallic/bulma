@@ -1,8 +1,10 @@
-name: Bulma
-description: 'Built to use Bulma, a modern CSS framework based on Flexbox.'
+name: BULMA_SUBTHEME_NAME
+description: BULMA_SUBTHEME_DESCRIPTION
 type: theme
+base theme: bulma
 package: Core
 core: 8.x
+hidden: true
 
 regions:
   header: 'Header'
@@ -17,16 +19,14 @@ regions:
   content: 'Content'
   sidebar_first: 'Sidebar First'
   sidebar_second: 'Sidebar Second'
-  tile_one: 'Tile 1'
-  tile_two: 'Tile 2'
-  tile_three: 'Tile 3'
-  tile_four: 'Tile 4'
-  tile_five: 'Tile 5'
   bottom: 'Bottom'
   footer: 'Footer'
 
 libraries:
-  - bulma/global
+  - BULMA_SUBTHEME_MACHINE_NAME/global
+
+libraries-override:
+  bulma/global: false
 
 features:
   - logo

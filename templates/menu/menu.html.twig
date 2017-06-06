@@ -33,7 +33,7 @@
     {# 1. #}
     {% set menu_classes = [
     'menu-list',
-    'menu-' ~ menu_name|clean_class,
+    menu_name|clean_class ~ '-menu',
     ] %}
     {# 1. #}
     {% set submenu_classes = [

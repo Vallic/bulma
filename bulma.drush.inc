@@ -161,6 +161,13 @@ function drush_bulma($name = NULL, $machine_name = NULL) {
     drush_op('rename', drush_normalize_path($file_original_path), drush_normalize_path($file_new_path));
   }
 
+  // Templates to rename from default to page.
+  // Page is not used while it overrides main theme page.html.twig
+  $page_template = 'templates/system/{{kit}}.html.twig';
+  $page_original_path = $subtheme_path . '/' . str_replace('{{kit}}', $kit, $page_template);
+  $page_new_path = $subtheme_path . '/' . str_replace('{{kit}}', 'page', $page_template);
+  drush_op('rename', drush_normalize_path($page_original_path), drush_normalize_path($page_new_path));
+
   // Notify user of the newly created theme.
   $message = 'Successfully created the Bulma subtheme "!name" created in: !path using the "!kit" kit';
 

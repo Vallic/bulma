@@ -119,9 +119,37 @@ function bulma_theme_suggestions_input_alter(array &$suggestions, array $variabl
 
   // Add theme suggestions for wrapping buttons.
   // Moved from _preprocess_input for future horizontal form implementation.
-  if (!in_array($variables['element']['#type'], ['hidden', 'token', 'radio', 'checkbox'])) {
-    $suggestions[] = 'input__' . 'bulma';
+  if (!in_array($variables['element']['#type'], [
+    'hidden',
+    'token',
+    'radio',
+    'checkbox',
+  ])
+  ) {
+    $suggestions[] = 'input__bulma';
   }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function bulma_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
+
+  // Get suggestion for menu nav.
+  $suggestions = Bulma::themeSuggest($variables['menu_name'], 'menu', 'bulma_general_menu');
+
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function bulma_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+
+  // Get menu blocks only. But you can use this clean block output anywhere.
+  if ($variables['elements']['#base_plugin_id'] == 'system_menu_block') {
+    $suggestions = Bulma::themeSuggest($variables['elements']['#plugin_id'], 'block', 'bulma_general_menu');
+  }
+
 }
 
 /**

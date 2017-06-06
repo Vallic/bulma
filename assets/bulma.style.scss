@@ -18,3 +18,11 @@
 
   }
 }
+
+// Navigation nav fix.
+header {
+  .nav-right {
+    // Use sam height as defined on bulma nav element.
+    height: 3.25rem;
+  }
+}

@@ -13,6 +13,9 @@ use Drupal\Core\Url;
  */
 function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form_state, $form_id = NULL) {
 
+  // Get all menus from the Drupal.
+  $menus = menu_ui_get_menus(TRUE);
+
   // Bulma general settings.
   $form['bulma_general'] = [
     '#type' => 'details',
@@ -25,6 +28,14 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Block panel style'),
     '#description' => t('Applied only on blocks with title or label visible / enabled. Reason to skip branding,menus etc. similar blocks'),
     '#default_value' => theme_get_setting('bulma_general_block'),
+  ];
+
+  $form['bulma_general']['bulma_general_menu'] = [
+    '#type' => 'select',
+    '#title' => t('Bulma Nav Menu'),
+    '#description' => t('Select which menu will be used as nav menu - horizontal'),
+    '#options' => $menus + ['none' => 'None'],
+    '#default_value' => theme_get_setting('bulma_general_menu'),
   ];
 
   // Bulma buttons settings.

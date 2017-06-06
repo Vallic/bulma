@@ -118,6 +118,51 @@ class Bulma {
   }
 
   /**
+   * Generic function to return template suggestions.
+   *
+   * TODO: Make it more generic.
+   *
+   * @param string $var
+   *   Drupal variable upon check is made.
+   * @param string $type
+   *   Type of the template suggestions alter.
+   * @param string $setting
+   *   Settings which is checked.
+   *
+   * @return array
+   *   Return template suggestions.
+   */
+  public static function themeSuggest($var, $type, $setting) {
+
+    $suggestions = [];
+
+    // Check if any menu is selected to be nav menu.
+    if (self::singleSetting($setting) != 'none') {
+
+      $menu_name = self::singleSetting($setting);
+
+      // Add theme suggestions for nav menu.
+      switch ($type) {
+        case 'menu':
+          if ($var === $menu_name) {
+            $suggestions[] = 'menu__nav_bulma';
+          }
+          break;
+
+        case 'block':
+          if ($var === 'system_menu_block:' . $menu_name) {
+            $suggestions[] = 'block__clean';
+          }
+          break;
+      }
+
+    }
+
+    return $suggestions;
+
+  }
+
+  /**
    * Matches a Bulma class based on a string value.
    *
    * Borrowed from Bootstrap project drupal.org/project/bootstrap.

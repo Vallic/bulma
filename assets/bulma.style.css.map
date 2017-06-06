@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAIE,oCAAsB;EACpB,OAAO,EAAE,IAAI;EAEb,yDAAqB;IACnB,aAAa,EAAE,IAAI;EAKnB,wDAAa;IACX,MAAM,EAAE,CAAC",
+"mappings": "AAIE,oCAAsB;EACpB,OAAO,EAAE,IAAI;EAEb,yDAAqB;IACnB,aAAa,EAAE,IAAI;EAKnB,wDAAa;IACX,MAAM,EAAE,CAAC;;AASf,iBAAW;EAET,MAAM,EAAE,OAAO",
 "sources": ["bulma.style.scss"],
 "names": [],
 "file": "bulma.style.css"

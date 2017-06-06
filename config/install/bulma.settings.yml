@@ -6,6 +6,7 @@ features:
    node_user_picture: true
 bulma_general:
    bulma_general_block: 1
+   bulma_general_menu: 'main'
 bulma_button:
    bulma_button_colorize: 1
    bulma_button_size: '0'

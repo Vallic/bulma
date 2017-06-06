@@ -11,6 +11,9 @@ bulma.settings:
         bulma_general_block:
           type: integer
           label: 'Bulma block style'
+        bulma_general_menu:
+          type: string
+          label: 'Bulma nav menu'
     bulma_button:
       type: mapping
       label: 'Bulma buttons'

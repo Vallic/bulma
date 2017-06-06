@@ -5,4 +5,7 @@
   .vertical-tabs .vertical-tabs__panes .panel .panel-block {
     border: 0; }
 
+header .nav-right {
+  height: 3.25rem; }
+
 /*# sourceMappingURL=bulma.style.css.map */

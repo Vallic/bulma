@@ -45,7 +45,7 @@
  * @ingroup themeable
  */
 #}
-<header role="banner">
+<div id="header">
     {# Top navbar #}
     {% if page.navbar_branding or page.navbar_social or page.primary_menu %}
         <div class="container">
@@ -57,10 +57,10 @@
                     {{ page.navbar_social }}
                 </div>
                 <span id="nav-toggle" class="nav-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-            </span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
                 {{ page.primary_menu }}
             </nav>
         </div>
@@ -96,7 +96,7 @@
         {% endif %}
 
     </section>
-</header>
+</div>
 
 {# Secondary menu #}
 {% if page.secondary_menu %}

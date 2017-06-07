@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - BULMA_SUBTHEME_MACHINE_NAME
+id: BULMA_SUBTHEME_MACHINE_NAME_account_menu
+theme: BULMA_SUBTHEME_MACHINE_NAME
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  provider: system
+  label_display: '1'
+  level: 1
+  depth: 1
+visibility: {  }

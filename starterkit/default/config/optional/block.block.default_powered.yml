@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - BULMA_SUBTHEME_MACHINE_NAME
+id: BULMA_SUBTHEME_MACHINE_NAME_powered
+theme: BULMA_SUBTHEME_MACHINE_NAME
+region: footer
+weight: -10
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

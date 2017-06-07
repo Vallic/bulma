@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - BULMA_SUBTHEME_MACHINE_NAME
+id: BULMA_SUBTHEME_MACHINE_NAME_help
+theme: BULMA_SUBTHEME_MACHINE_NAME
+region: help
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

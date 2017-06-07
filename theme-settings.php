@@ -14,7 +14,7 @@ use Drupal\Core\Url;
 function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form_state, $form_id = NULL) {
 
   // Get all menus from the Drupal.
-  $menus = menu_ui_get_menus(TRUE);
+  $menus = menu_ui_get_menus(FALSE);
 
   // Bulma general settings.
   $form['bulma_general'] = [
@@ -30,11 +30,18 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#default_value' => theme_get_setting('bulma_general_block'),
   ];
 
+  // Define some system menus manual.
+  // If we use dynamic, on install setting defaults will fail.
   $form['bulma_general']['bulma_general_menu'] = [
     '#type' => 'select',
     '#title' => t('Bulma Nav Menu'),
     '#description' => t('Select which menu will be used as nav menu - horizontal'),
-    '#options' => $menus + ['none' => 'None'],
+    '#options' => [
+      'none' => 'None',
+      'main' => 'Main navigation',
+      'footer' => 'Footer',
+      'account' => 'User account menu',
+    ] + $menus,
     '#default_value' => theme_get_setting('bulma_general_menu'),
   ];
 

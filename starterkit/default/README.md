@@ -7,9 +7,9 @@ It has Bulma CSS framework, Sass, and Font Awesome built-in.
 2. Sass and Font Awesome built-in.
 
 ## Links
-* Project Page:   http://bulma.vallic.com
-* Documentation:  http://bulma.vallic.com
-* Demo:           http://bulma.vallic.com
+* Project Page:   http://vallic.com
+* Documentation:  http://vallic.com
+* Demo:           http://vallic.com
 * Support:        https://www.drupal.org/project/issues/bulma
 
 ## License

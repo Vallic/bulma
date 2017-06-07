@@ -1,9 +1,3 @@
-features:
-   comment_user_picture: true
-   favicon: true
-   logo: true
-   name: true
-   node_user_picture: true
 bulma_general:
    bulma_general_block: 1
    bulma_general_menu: 'main'

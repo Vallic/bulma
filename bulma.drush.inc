@@ -154,6 +154,17 @@ function drush_bulma($name = NULL, $machine_name = NULL) {
     'assets/js/{{kit}}.js',
     'config/install/{{kit}}.settings.yml',
     'config/schema/{{kit}}.schema.yml',
+    'config/optional/block.block.{{kit}}_account_menu.yml',
+    'config/optional/block.block.{{kit}}_branding.yml',
+    'config/optional/block.block.{{kit}}_content.yml',
+    'config/optional/block.block.{{kit}}_help.yml',
+    'config/optional/block.block.{{kit}}_local_tasks.yml',
+    'config/optional/block.block.{{kit}}_main_menu.yml',
+    'config/optional/block.block.{{kit}}_messages.yml',
+    'config/optional/block.block.{{kit}}_page_title.yml',
+    'config/optional/block.block.{{kit}}_powered.yml',
+    'config/optional/block.block.{{kit}}_search.yml',
+    'config/optional/block.block.{{kit}}_tools.yml',
   ];
   foreach ($files_to_rename as $file_to_rename_path) {
     $file_original_path = $subtheme_path . '/' . str_replace('{{kit}}', $kit, $file_to_rename_path);
@@ -195,6 +206,17 @@ function bulma_file_str_replace($file_path, $find, $replace) {
 function bulma_get_files_to_make_replacements($kit = 'default') {
   return [
     'config/install/' . $kit . '.settings.yml',
+    'config/optional/block.block.' . $kit . '_account_menu.yml',
+    'config/optional/block.block.' . $kit . '_branding.yml',
+    'config/optional/block.block.' . $kit . '_content.yml',
+    'config/optional/block.block.' . $kit . '_help.yml',
+    'config/optional/block.block.' . $kit . '_local_tasks.yml',
+    'config/optional/block.block.' . $kit . '_main_menu.yml',
+    'config/optional/block.block.' . $kit . '_messages.yml',
+    'config/optional/block.block.' . $kit . '_page_title.yml',
+    'config/optional/block.block.' . $kit . '_powered.yml',
+    'config/optional/block.block.' . $kit . '_search.yml',
+    'config/optional/block.block.' . $kit . '_tools.yml',
     'config/schema/' . $kit . '.schema.yml',
     'assets/' . $kit . '.style.scss',
     'assets/js/' . $kit . '.js',

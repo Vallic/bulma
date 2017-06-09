@@ -3,6 +3,7 @@
 namespace Drupal\bulma;
 
 use Drupal\Component\Utility\Unicode;
+use Drupal\devel\Twig\Extension\Debug;
 
 /**
  * The primary class for the Drupal Bulma base theme.
@@ -118,51 +119,6 @@ class Bulma {
   }
 
   /**
-   * Generic function to return template suggestions.
-   *
-   * TODO: Make it more generic.
-   *
-   * @param string $var
-   *   Drupal variable upon check is made.
-   * @param string $type
-   *   Type of the template suggestions alter.
-   * @param string $setting
-   *   Settings which is checked.
-   *
-   * @return array
-   *   Return template suggestions.
-   */
-  public static function themeSuggest($var, $type, $setting) {
-
-    $suggestions = [];
-
-    // Check if any menu is selected to be nav menu.
-    if (self::singleSetting($setting) != 'none') {
-
-      $menu_name = self::singleSetting($setting);
-
-      // Add theme suggestions for nav menu.
-      switch ($type) {
-        case 'menu':
-          if ($var === $menu_name) {
-            $suggestions[] = 'menu__nav_bulma';
-          }
-          break;
-
-        case 'block':
-          if ($var === 'system_menu_block:' . $menu_name) {
-            $suggestions[] = 'block__clean';
-          }
-          break;
-      }
-
-    }
-
-    return $suggestions;
-
-  }
-
-  /**
    * Matches a Bulma class based on a string value.
    *
    * Borrowed from Bootstrap project drupal.org/project/bootstrap.
@@ -251,6 +207,130 @@ class Bulma {
 
     // Return the default if nothing was matched.
     return $default;
+  }
+
+
+  /**
+   * @param string $name
+   *
+   * @return array
+   */
+  public static function colorizeButton($name) {
+    $button_class = [];
+
+    // Get all button settings.
+    $bulma_button = self::multiSettings('button');
+
+    if (!empty($bulma_button)) {
+      foreach ($bulma_button as $key => $class) {
+
+        // If buttons should be colorized by task/action.
+        if ($key == 'colorize') {
+          // Get string to check.
+          $name = $name->getUntranslatedString();
+
+          // Get class.
+          $color = Bulma::cssClassFromString($name, 'is-primary');
+
+          // Assign color.
+          $button_class[] = $color;
+        }
+
+        else {
+          $button_class[] = $class;
+        }
+      }
+    }
+
+    return $button_class;
+  }
+
+  public static function iconMatch($name, $type) {
+
+    $class = FALSE;
+
+    $icons = [
+      t('Username')->render() => 'user',
+      t('Password')->render() => 'lock',
+      t('timezone')->render() => 'globe',
+      t('Authored by')->render()=> 'user',
+      t('URL alias')->render() => 'road',
+      t('title')->render() => 'pencil',
+      t('Subject')->render() => 'pencil',
+      t('Date')->render() => 'calendar-o',
+      t('Time')->render() => 'clock-o',
+      t('Homepage')->render() => 'globe',
+      t('Files')->render() => 'file',
+      t('Tags')->render() => 'tags',
+      t('Preview')->render() => 'eye',
+      t('Add another item')->render() => 'plus',
+      t('Log in')->render() => 'sign-in',
+      t('Manage')->render()     => 'cog',
+      t('Configure')->render()  => 'cog',
+      t('Settings')->render()   => 'cog',
+      t('Download')->render()   => 'download',
+      t('Export')->render()     => 'download',
+      t('Filter')->render()     => 'filter',
+      t('Import')->render()     => 'upload',
+      t('Save')->render()       => 'check',
+      t('Update')->render()     => 'check',
+      t('Edit')->render()       => 'pencil',
+      t('Uninstall')->render()  => 'trash',
+      t('Install')->render()    => 'plus',
+      t('Write')->render()      => 'plus',
+      t('Cancel')->render()     => 'ban',
+      t('Delete')->render()     => 'trash',
+      t('Remove')->render()     => 'trash',
+      t('Search')->render()     => 'search',
+      t('Upload')->render()     => 'upload',
+    ];
+
+
+    foreach ($icons as $key => $icon) {
+        if (Unicode::strtolower($name) === Unicode::strtolower($key)) {
+          $class = $icon;
+        }
+    }
+
+    if (self::singleSetting('bulma_general_icon_type')) {
+      if (empty($class)) {
+        switch ($type) {
+          case 'file':
+            $class = 'file';
+            break;
+
+          case 'email':
+            $class = 'envelope';
+            break;
+
+          case 'password':
+            $class = 'lock';
+            break;
+
+          case 'url':
+            $class = 'link';
+            break;
+
+          case 'entity_autocomplete':
+            $class = 'tags';
+            break;
+
+          case 'submit':
+            $class = 'check';
+            break;
+
+          case 'textfield':
+            $class = 'pencil';
+            break;
+
+          default:
+            $class = 'keyboard-o';
+            break;
+        }
+      }
+    }
+
+    return $class;
   }
 
 }

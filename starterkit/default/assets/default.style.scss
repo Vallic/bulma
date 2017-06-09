@@ -1,28 +1,3 @@
 @charset "UTF-8";
 
-// Vertical tabs adjustments.
-.vertical-tabs {
-  .vertical-tabs__panes {
-    padding: 1rem;
-
-    .vertical-tabs__pane {
-      padding-right: 1rem;
-    }
-
-    // Fix for fieldsets inside vertical tabs.
-    .panel {
-      .panel-block {
-        border: 0;
-      }
-    }
-
-  }
-}
-
-// Navigation nav fix.
-header {
-  .nav-right {
-    // Use sam height as defined on bulma nav element.
-    height: 3.25rem;
-  }
-}
+// Your theme style.

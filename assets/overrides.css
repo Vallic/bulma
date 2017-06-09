@@ -1,0 +1,28 @@
+.vertical-tabs .vertical-tabs__panes {
+  padding: 1rem; }
+  .vertical-tabs .vertical-tabs__panes .vertical-tabs__pane {
+    padding-right: 1rem; }
+  .vertical-tabs .vertical-tabs__panes .panel .panel-block {
+    border: 0; }
+  .vertical-tabs .vertical-tabs__panes .control {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+
+#header .nav-right nav {
+  -webkit-overflow-scrolling: touch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-shrink: 0;
+  max-width: 100%;
+  overflow: auto; }
+
+@media screen and (max-width: 768px) {
+  #header .nav-menu.nav-right.is-active nav {
+    display: block; } }
+
+/*# sourceMappingURL=overrides.css.map */

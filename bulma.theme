@@ -130,17 +130,75 @@ function bulma_preprocess_table(&$variables) {
  */
 function bulma_theme_suggestions_input_alter(array &$suggestions, array $variables) {
 
-  // Add theme suggestions for wrapping buttons.
-  // Moved from _preprocess_input for future horizontal form implementation.
-  if (!in_array($variables['element']['#type'], [
+  // Define defaults for exclusion for rendering as bulma input.
+  $exclude_input = [
     'hidden',
     'token',
     'radio',
     'checkbox',
-  ])
-  ) {
+    'submit'
+  ];
+
+  // Submit button needs have render as button element.
+  if ($variables['element']['#type'] == 'submit') {
+    $suggestions[] = 'input__button__bulma';
+  }
+
+  // Add theme suggestions for others input elements.
+  if (!in_array($variables['element']['#type'], $exclude_input)) {
+
+    // Default wrapped input.
     $suggestions[] = 'input__bulma';
   }
+
+}
+
+function bulma_preprocess_input__bulma(&$variables) {
+
+  // Field name and type.
+  $type = $variables['element']['#type'];
+  $name = (string) $variables['element']['#title'];
+
+  // Check if we use icons.
+  if (is_string($type) && Bulma::singleSetting('bulma_general_icon')) {
+    $variables['icon'] = Bulma::iconMatch($name, $type);
+  }
+
+  // Size of input buttons
+  $input_size = Bulma::singleSetting('bulma_elements_input_size');
+
+  if ($input_size != 'none') {
+    $variables['attributes']['class'][] = $input_size;
+  }
+
+}
+
+function bulma_preprocess_input__button__bulma(&$variables) {
+
+  // Field name and type.
+  $name = $variables['element']['#value'];
+  $type = $variables['element']['#type'];
+
+  // We need render label inside button tag.
+  $variables['label'] = $variables['element']['#value'];
+
+  // Bulma submit classes.
+  $variables['bulma_button_classes'] = [];
+
+  // Check if button should be colorized.
+  $button_color = Bulma::colorizeButton($name);
+
+  if (!empty($button_color)) {
+    $variables['bulma_button_classes'] = $button_color;
+  }
+
+
+  // Check if we use icons.
+  if (Bulma::singleSetting('bulma_general_icon')) {
+    // Define default if not matched.
+    $variables['icon'] = Bulma::iconMatch($name, $type);
+  }
+
 }
 
 /**
@@ -148,19 +206,14 @@ function bulma_theme_suggestions_input_alter(array &$suggestions, array $variabl
  */
 function bulma_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
 
-  // Get suggestion for menu nav.
-  $suggestions = Bulma::themeSuggest($variables['menu_name'], 'menu', 'bulma_general_menu');
+  // Navbar menu.
+  $bulma_nav = Bulma::singleSetting('bulma_general_menu');
 
-}
-
-/**
- * Implements hook_theme_suggestions_HOOK_alter().
- */
-function bulma_theme_suggestions_block_alter(array &$suggestions, array $variables) {
-
-  // Get menu blocks only. But you can use this clean block output anywhere.
-  if ($variables['elements']['#base_plugin_id'] == 'system_menu_block') {
-    $suggestions = Bulma::themeSuggest($variables['elements']['#plugin_id'], 'block', 'bulma_general_menu');
+  // Check if any menu is selected to be nav menu.
+  if ($bulma_nav != 'none') {
+    if ($variables['menu_name'] === $bulma_nav) {
+      $suggestions[] = 'menu__nav_bulma';
+    }
   }
 
 }
@@ -191,40 +244,6 @@ function bulma_preprocess_form_element_label(&$variables) {
       $variables[$key] = $value;
     }
   }
-}
-
-/**
- * Implements template_preprocess_input().
- */
-function bulma_preprocess_input(&$variables) {
-
-  // Colorize buttons.
-  if ($variables['element']['#type'] == 'submit') {
-    // Get all button settings.
-    $bulma_button = Bulma::multiSettings('button');
-
-    if (!empty($bulma_button)) {
-      foreach ($bulma_button as $key => $class) {
-
-        // If buttons should be colorized by task/action.
-        if ($key == 'colorize') {
-          // Get string to check.
-          $name = $variables['element']['#value']->getUntranslatedString();
-
-          // Get class.
-          $color = Bulma::cssClassFromString($name, 'is-primary');
-
-          // Assign color.
-          $variables['attributes']['class'][] = $color;
-        }
-
-        else {
-          $variables['attributes']['class'][] = $class;
-        }
-      }
-    }
-  }
-
 }
 
 /**

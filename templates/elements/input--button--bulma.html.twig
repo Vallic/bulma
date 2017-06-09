@@ -13,16 +13,16 @@
  */
 #}
   {%
-  set classes = [
-  'input'
-  ]
+  set classes = bulma_button_classes
   %}
 
-<div class="control{{ icon ? ' has-icons-left' }}">
-    <input{{ attributes.addClass(classes) }} />{{ children }}
-    {% if icon %}
-        <span class="icon is-left">
+<div class="control">
+    <button{{ attributes.addClass(classes) }}>
+        {% if icon %}
+            <span class="icon">
             <i class="fa fa-{{ icon }}"></i>
         </span>
-    {% endif %}
+        {% endif %}
+        <span>{{ label }}</span>
+    </button>{{ children }}
 </div>

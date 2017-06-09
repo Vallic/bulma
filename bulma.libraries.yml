@@ -5,6 +5,7 @@ global:
     component:
       assets/font-awesome/css/font-awesome.css: {}
     theme:
+      assets/overrides.css: {}
       assets/bulma.style.css: {}
   js:
     assets/js/bulma.js: {}

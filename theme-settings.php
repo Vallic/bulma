@@ -30,6 +30,20 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#default_value' => theme_get_setting('bulma_general_block'),
   ];
 
+  $form['bulma_general']['bulma_general_icon'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Use icons'),
+    '#description' => t('Use font awesome icons'),
+    '#default_value' => theme_get_setting('bulma_general_icon'),
+  ];
+
+  $form['bulma_general']['bulma_general_icon_type'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Use default field type icons'),
+    '#description' => t('If field label / value is not matched, use also default font awesome icons by Drupal field type'),
+    '#default_value' => theme_get_setting('bulma_general_icon_type'),
+  ];
+
   // Define some system menus manual.
   // If we use dynamic, on install setting defaults will fail.
   $form['bulma_general']['bulma_general_menu'] = [
@@ -110,7 +124,27 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Horizontal form'),
     '#description' => t('Not working currently, lot of precise adjustments needs to be done to implement this'),
     '#default_value' => theme_get_setting('bulma_elements_labels_inline'),
+  ];
+
+  $form['bulma_elements']['bulma_elements_list_form'] = [
+    '#type' => 'textarea',
+    '#title' => t('Horizontal forms'),
+    '#description' => t('List forms which should not be horizontal aligned'),
+    '#default_value' => theme_get_setting('bulma_elements_list_form'),
     '#disabled' => TRUE,
+  ];
+
+  $form['bulma_elements']['bulma_elements_input_size'] = [
+    '#type' => 'select',
+    '#title' => t('Form element size'),
+    '#description' => t('Size of the form elements - inputs, select'),
+    '#options' => [
+      '0' => t('Default'),
+      'is-small' => t('Small'),
+      'is-medium' => t('Medium'),
+      'is-large' => t('Large'),
+    ],
+    '#default_value' => theme_get_setting('bulma_elements_input_size'),
   ];
 
   $form['bulma_elements']['bulma_elements_labels_rounded'] = [

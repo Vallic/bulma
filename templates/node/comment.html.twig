@@ -78,9 +78,11 @@
         <p class="visually-hidden">{{ parent }}</p>
     {% endif %}
 
+  {% if user_picture %}
   <figure class="media-left">
       {{ user_picture }}
   </figure>
+  {% endif %}
 
   <div class="media-content">
     <div class="content">

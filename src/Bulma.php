@@ -3,7 +3,6 @@
 namespace Drupal\bulma;
 
 use Drupal\Component\Utility\Unicode;
-use Drupal\devel\Twig\Extension\Debug;
 
 /**
  * The primary class for the Drupal Bulma base theme.
@@ -209,11 +208,14 @@ class Bulma {
     return $default;
   }
 
-
   /**
+   * Generate CSS classes to apply on submit elements.
+   *
    * @param string $name
+   *   Button value.
    *
    * @return array
+   *   CSS classes for elements.
    */
   public static function colorizeButton($name) {
     $button_class = [];
@@ -245,6 +247,17 @@ class Bulma {
     return $button_class;
   }
 
+  /**
+   * Matching field label or field type with font awesome.
+   *
+   * @param string $name
+   *   Label upon matching to font awesome class is done.
+   * @param string $type
+   *   Field type upon matching to font awesome class is done.
+   *
+   * @return bool|mixed|string
+   *   Return false - no match, string as font awesome css class/value.
+   */
   public static function iconMatch($name, $type) {
 
     $class = FALSE;
@@ -253,7 +266,7 @@ class Bulma {
       t('Username')->render() => 'user',
       t('Password')->render() => 'lock',
       t('timezone')->render() => 'globe',
-      t('Authored by')->render()=> 'user',
+      t('Authored by')->render() => 'user',
       t('URL alias')->render() => 'road',
       t('title')->render() => 'pencil',
       t('Subject')->render() => 'pencil',
@@ -265,33 +278,33 @@ class Bulma {
       t('Preview')->render() => 'eye',
       t('Add another item')->render() => 'plus',
       t('Log in')->render() => 'sign-in',
-      t('Manage')->render()     => 'cog',
-      t('Configure')->render()  => 'cog',
-      t('Settings')->render()   => 'cog',
-      t('Download')->render()   => 'download',
-      t('Export')->render()     => 'download',
-      t('Filter')->render()     => 'filter',
-      t('Import')->render()     => 'upload',
-      t('Save')->render()       => 'check',
-      t('Update')->render()     => 'check',
-      t('Edit')->render()       => 'pencil',
-      t('Uninstall')->render()  => 'trash',
-      t('Install')->render()    => 'plus',
-      t('Write')->render()      => 'plus',
-      t('Cancel')->render()     => 'ban',
-      t('Delete')->render()     => 'trash',
-      t('Remove')->render()     => 'trash',
-      t('Search')->render()     => 'search',
-      t('Upload')->render()     => 'upload',
+      t('Manage')->render() => 'cog',
+      t('Configure')->render() => 'cog',
+      t('Settings')->render() => 'cog',
+      t('Download')->render() => 'download',
+      t('Export')->render() => 'download',
+      t('Filter')->render() => 'filter',
+      t('Import')->render() => 'upload',
+      t('Save')->render() => 'check',
+      t('Update')->render() => 'check',
+      t('Edit')->render() => 'pencil',
+      t('Uninstall')->render() => 'trash',
+      t('Install')->render() => 'plus',
+      t('Write')->render() => 'plus',
+      t('Cancel')->render() => 'ban',
+      t('Delete')->render() => 'trash',
+      t('Remove')->render() => 'trash',
+      t('Search')->render() => 'search',
+      t('Upload')->render() => 'upload',
     ];
 
-
     foreach ($icons as $key => $icon) {
-        if (Unicode::strtolower($name) === Unicode::strtolower($key)) {
-          $class = $icon;
-        }
+      if (Unicode::strtolower($name) === Unicode::strtolower($key)) {
+        $class = $icon;
+      }
     }
 
+    // If default icon is turned on.
     if (self::singleSetting('bulma_general_icon_type')) {
       if (empty($class)) {
         switch ($type) {

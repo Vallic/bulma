@@ -24,5 +24,12 @@
 @media screen and (max-width: 768px) {
   #header .nav-menu.nav-right.is-active nav {
     display: block; } }
+article.content {
+  padding-bottom: 2rem; }
+article section.comment-section article {
+  padding-bottom: 2rem; }
+
+.links.bulma {
+  padding-top: 1rem; }
 
 /*# sourceMappingURL=overrides.css.map */

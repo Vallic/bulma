@@ -6,6 +6,9 @@
  */
 
 use Drupal\bulma\Bulma;
+use Drupal\Core\Template\Attribute;
+use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\Tags;
 
 /**
  * Implements template_preprocess_page().
@@ -128,6 +131,21 @@ function bulma_preprocess_table(&$variables) {
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
+function bulma_theme_suggestions_links_alter(array &$suggestions, array $variables) {
+  $link_type = $variables['theme_hook_original'];
+
+  // We want only affect node and comment links.
+  $target_output = ['links__node', 'links__comment'];
+
+  if (in_array($link_type, $target_output)) {
+    $suggestions[] = 'links__bulma';
+  }
+
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
 function bulma_theme_suggestions_input_alter(array &$suggestions, array $variables) {
 
   // Define defaults for exclusion for rendering as bulma input.
@@ -136,7 +154,7 @@ function bulma_theme_suggestions_input_alter(array &$suggestions, array $variabl
     'token',
     'radio',
     'checkbox',
-    'submit'
+    'submit',
   ];
 
   // Submit button needs have render as button element.
@@ -153,6 +171,9 @@ function bulma_theme_suggestions_input_alter(array &$suggestions, array $variabl
 
 }
 
+/**
+ * Implements template_preprocess_hook().
+ */
 function bulma_preprocess_input__bulma(&$variables) {
 
   // Field name and type.
@@ -164,7 +185,7 @@ function bulma_preprocess_input__bulma(&$variables) {
     $variables['icon'] = Bulma::iconMatch($name, $type);
   }
 
-  // Size of input buttons
+  // Size of input buttons.
   $input_size = Bulma::singleSetting('bulma_elements_input_size');
 
   if ($input_size != 'none') {
@@ -173,6 +194,9 @@ function bulma_preprocess_input__bulma(&$variables) {
 
 }
 
+/**
+ * Implements template_preprocess_hook().
+ */
 function bulma_preprocess_input__button__bulma(&$variables) {
 
   // Field name and type.
@@ -191,7 +215,6 @@ function bulma_preprocess_input__button__bulma(&$variables) {
   if (!empty($button_color)) {
     $variables['bulma_button_classes'] = $button_color;
   }
-
 
   // Check if we use icons.
   if (Bulma::singleSetting('bulma_general_icon')) {
@@ -244,6 +267,7 @@ function bulma_preprocess_form_element_label(&$variables) {
       $variables[$key] = $value;
     }
   }
+
 }
 
 /**

@@ -126,14 +126,6 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#default_value' => theme_get_setting('bulma_elements_labels_inline'),
   ];
 
-  $form['bulma_elements']['bulma_elements_list_form'] = [
-    '#type' => 'textarea',
-    '#title' => t('Horizontal forms'),
-    '#description' => t('List forms which should not be horizontal aligned'),
-    '#default_value' => theme_get_setting('bulma_elements_list_form'),
-    '#disabled' => TRUE,
-  ];
-
   $form['bulma_elements']['bulma_elements_input_size'] = [
     '#type' => 'select',
     '#title' => t('Form element size'),

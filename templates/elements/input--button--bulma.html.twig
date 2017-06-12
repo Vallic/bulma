@@ -23,6 +23,8 @@
             <i class="fa fa-{{ icon }}"></i>
         </span>
         {% endif %}
+        {% if label is not empty %}
         <span>{{ label }}</span>
+        {% endif %}
     </button>{{ children }}
 </div>

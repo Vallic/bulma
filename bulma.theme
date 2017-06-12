@@ -6,9 +6,6 @@
  */
 
 use Drupal\bulma\Bulma;
-use Drupal\Core\Template\Attribute;
-use Drupal\Component\Utility\Html;
-use Drupal\Component\Utility\Tags;
 
 /**
  * Implements template_preprocess_page().
@@ -92,8 +89,69 @@ function bulma_form_alter(&$form, $form_state, $form_id) {
   if (isset($form['actions'])) {
     $form['actions']['#attributes']['class'][] = 'field';
     $form['actions']['#attributes']['class'][] = 'is-grouped';
+
+    // Loop trough array to get link type.
+    // Better approach maybe to use https://www.drupal.org/project/button_link.
+    foreach ($form['actions'] as $key => $action) {
+      if ($action['#type'] == 'link') {
+        $name = (string) $action['#title'];
+
+        // Check if button should be colorized.
+        $button_color = Bulma::colorizeButton($name);
+
+        // Add button class.
+        if (!empty($button_color)) {
+          foreach ($button_color as $class) {
+            $form['actions'][$key]['#attributes']['class'][] = $class;
+          }
+        }
+
+      }
+    }
   }
 
+  switch ($form_id) {
+    case 'node_preview_form_select':
+      $form['backlink']['#options']['attributes']['class'][] = 'button';
+      break;
+  }
+
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function bulma_form_search_form_alter(&$form, $form_state, $form_id) {
+
+  // Remove label.
+  $form['basic']['keys']['#title_display'] = 'invisible';
+
+  // Update the placeholder.
+  $form['basic']['keys']['#placeholder'] = t('Enter your keywords');
+
+  // Wrap class to combine form.
+  $form['basic']['#attributes']['class'] = 'field has-addons';
+
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function bulma_form_search_block_form_alter(&$form, $form_state, $form_id) {
+
+  // Update the placeholder, remove title - prevent double icon.
+  $form['keys']['#title'] = '';
+  $form['keys']['#placeholder'] = t('Search');
+
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function bulma_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  if ($variables['element']['#form_id'] === 'search_block_form') {
+    $suggestions[] = 'form__search_block_form';
+  }
 }
 
 /**
@@ -181,8 +239,9 @@ function bulma_preprocess_input__bulma(&$variables) {
   $name = (string) $variables['element']['#title'];
 
   // Check if we use icons.
-  if (is_string($type) && Bulma::singleSetting('bulma_general_icon')) {
+  if (Bulma::singleSetting('bulma_general_icon')) {
     $variables['icon'] = Bulma::iconMatch($name, $type);
+
   }
 
   // Size of input buttons.
@@ -220,6 +279,11 @@ function bulma_preprocess_input__button__bulma(&$variables) {
   if (Bulma::singleSetting('bulma_general_icon')) {
     // Define default if not matched.
     $variables['icon'] = Bulma::iconMatch($name, $type);
+
+    // Hide label for search button.
+    if ($variables['icon'] == 'search') {
+      $variables['label'] = FALSE;
+    }
   }
 
 }

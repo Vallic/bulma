@@ -228,8 +228,6 @@ class Bulma {
 
         // If buttons should be colorized by task/action.
         if ($key == 'colorize') {
-          // Get string to check.
-          $name = $name->getUntranslatedString();
 
           // Get class.
           $color = Bulma::cssClassFromString($name, 'is-primary');
@@ -334,6 +332,10 @@ class Bulma {
 
           case 'textfield':
             $class = 'pencil';
+            break;
+
+          case 'search':
+            $class = FALSE;
             break;
 
           default:

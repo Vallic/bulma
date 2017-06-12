@@ -92,20 +92,22 @@ function bulma_form_alter(&$form, $form_state, $form_id) {
 
     // Loop trough array to get link type.
     // Better approach maybe to use https://www.drupal.org/project/button_link.
-    foreach ($form['actions'] as $key => $action) {
-      if ($action['#type'] == 'link') {
-        $name = (string) $action['#title'];
+    if (!empty($form['actions'])) {
+      foreach ($form['actions'] as $key => $action) {
+        if ($action['#type'] == 'link') {
+          $name = (string) $action['#title'];
 
-        // Check if button should be colorized.
-        $button_color = Bulma::colorizeButton($name);
+          // Check if button should be colorized.
+          $button_color = Bulma::colorizeButton($name);
 
-        // Add button class.
-        if (!empty($button_color)) {
-          foreach ($button_color as $class) {
-            $form['actions'][$key]['#attributes']['class'][] = $class;
+          // Add button class.
+          if (!empty($button_color)) {
+            foreach ($button_color as $class) {
+              $form['actions'][$key]['#attributes']['class'][] = $class;
+            }
           }
-        }
 
+        }
       }
     }
   }

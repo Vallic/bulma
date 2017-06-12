@@ -51,10 +51,10 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Bulma Nav Menu'),
     '#description' => t('Select which menu will be used as nav menu - horizontal'),
     '#options' => [
-      'none' => 'None',
-      'main' => 'Main navigation',
-      'footer' => 'Footer',
-      'account' => 'User account menu',
+      'none' => t('None'),
+      'main' => t('Main navigation'),
+      'footer' => t('Footer'),
+      'account' => t('User account menu'),
     ] + $menus,
     '#default_value' => theme_get_setting('bulma_general_menu'),
   ];
@@ -142,7 +142,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
   $form['bulma_elements']['bulma_elements_labels_rounded'] = [
     '#type' => 'checkbox',
     '#title' => t('Rounded labels'),
-    '#description' => t('Rounder labels'),
+    '#description' => t('Rounded labels'),
     '#default_value' => theme_get_setting('bulma_elements_labels_rounded'),
   ];
 

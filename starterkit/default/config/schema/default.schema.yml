@@ -11,6 +11,12 @@ BULMA_SUBTHEME_MACHINE_NAME.settings:
         bulma_general_block:
           type: integer
           label: 'Bulma block style'
+        bulma_general_icon:
+          type: integer
+          label: 'Use icons'
+        bulma_general_icon_type:
+          type: integer
+          label: 'Use default field type icons'
         bulma_general_menu:
           type: string
           label: 'Bulma nav menu'
@@ -37,6 +43,9 @@ BULMA_SUBTHEME_MACHINE_NAME.settings:
         bulma_elements_labels_inline:
           type: integer
           label: 'Horizontal form'
+        bulma_elements_input_size:
+          type: string
+          label: 'Form element size'
         bulma_elements_labels_rounded:
           type: integer
           label: 'Rounded labels'

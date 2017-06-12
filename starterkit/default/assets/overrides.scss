@@ -16,6 +16,12 @@
       }
     }
 
+    .control {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+    }
+
   }
 }
 
@@ -48,5 +54,26 @@
         }
       }
     }
+  }
+}
+
+article {
+  &.content {
+    padding-bottom: 2rem;
+  }
+
+  section {
+    &.comment-section {
+      article {
+        padding-bottom: 2rem;
+      }
+    }
+  }
+}
+
+.links {
+
+  &.bulma {
+    padding-top: 1rem;
   }
 }

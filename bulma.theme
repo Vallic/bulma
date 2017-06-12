@@ -92,8 +92,8 @@ function bulma_form_alter(&$form, $form_state, $form_id) {
 
     // Loop trough array to get link type.
     // Better approach maybe to use https://www.drupal.org/project/button_link.
-    if (!empty($form['actions'])) {
-      foreach ($form['actions'] as $key => $action) {
+    foreach ($form['actions'] as $key => $action) {
+      if (isset($action['#type'])) {
         if ($action['#type'] == 'link') {
           $name = (string) $action['#title'];
 
@@ -106,8 +106,8 @@ function bulma_form_alter(&$form, $form_state, $form_id) {
               $form['actions'][$key]['#attributes']['class'][] = $class;
             }
           }
-
         }
+
       }
     }
   }

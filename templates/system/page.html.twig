@@ -171,20 +171,20 @@
 
         <div class="columns">
             {# Main content #}
-            <div class="main-content column is-half">
+            <div class="main-content column">
                 {{ page.content }}
             </div>
 
             {# Sidebar first #}
             {% if page.sidebar_first %}
-                <aside class="sidebar-first column" role="complementary">
+                <aside class="sidebar-first column is-2" role="complementary">
                     {{ page.sidebar_first }}
                 </aside>
             {% endif %}
 
             {# Sidebar second #}
             {% if page.sidebar_second %}
-                <aside class="sidebar-second column" role="complementary">
+                <aside class="sidebar-second column is-2" role="complementary">
                     {{ page.sidebar_second }}
                 </aside>
             {% endif %}

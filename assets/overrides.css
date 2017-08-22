@@ -32,4 +32,10 @@ article section.comment-section article {
 .links.bulma {
   padding-top: 1rem; }
 
+.label.is-pulled-left {
+  margin-bottom: 0;
+  margin-right: 0.5rem; }
+  .label.is-pulled-left::after {
+    content: ':'; }
+
 /*# sourceMappingURL=overrides.css.map */

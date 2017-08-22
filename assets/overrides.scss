@@ -77,3 +77,15 @@ article {
     padding-top: 1rem;
   }
 }
+
+// Customize inline labels.
+// @see templates/field/field.html.twig
+.label {
+  &.is-pulled-left {
+    margin-bottom: 0;
+    margin-right: 0.5rem;
+    &::after {
+      content: ':';
+    }
+  }
+}

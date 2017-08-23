@@ -6,6 +6,7 @@
  */
 
 use Drupal\bulma\Bulma;
+use Drupal\file\Entity\File;
 
 /**
  * Implements template_preprocess_page().
@@ -15,6 +16,16 @@ function bulma_preprocess_page(&$variables) {
   // Site slogan as separate variable.
   $site_config = \Drupal::config('system.site');
   $variables['site_slogan'] = $site_config->get('slogan');
+}
+
+/**
+ * Implements template_preprocess_file_link().
+ */
+function bulma_preprocess_file_link(&$variables) {
+  /** @var \Drupal\Core\Entity\Entity\File $file */
+  $file = ($variables['file'] instanceof File) ? $variables['file'] : File::load($variables['file']->fid);
+
+  $variables['icon'] = Bulma::getFileIcon($file);
 }
 
 /**

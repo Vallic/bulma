@@ -3,6 +3,7 @@
 namespace Drupal\bulma;
 
 use Drupal\Component\Utility\Unicode;
+use Drupal\file\Entity\File;
 
 /**
  * The primary class for the Drupal Bulma base theme.
@@ -346,6 +347,42 @@ class Bulma {
     }
 
     return $class;
+  }
+
+  /**
+   * Find the appropriate fontawesome icon for a given file.
+   *
+   * @param \Drupal\Core\Entity\Entity\File $file
+   *   A file entity.
+   *
+   * @return string
+   *   Fontawesome CSS class/value.
+   */
+  public static function getFileIcon(File $file) {
+    $mime_type = $file->getMimeType();
+
+    // Retrieve the generic mime type from core.
+    $generic_mime_type = file_icon_class($mime_type);
+
+    // Map the generic mime types to an icon.
+    $icon_map = [
+      'application-pdf' => 'file-pdf-o',
+      'application-x-executable' => 'console',
+      'audio' => 'file-audio-o',
+      'image' => 'file-image-o',
+      'package-x-generic' => 'file-archive-o',
+      'text' => 'file-text-o',
+      'text-html' => 'file-text-o',
+      'text-x-script' => 'file-code-o',
+      'video' =>'file-video-o',
+      'x-office-document' => 'file-text-o',
+      // 'general' is the fallback returned by file_icon_class().
+      'general' => 'file-o',
+    ];
+
+    // Retrieve the icon class.
+    $icon = $icon_map[$generic_mime_type];
+    return $icon;
   }
 
 }

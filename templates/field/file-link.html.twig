@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Theme override for a link to a file.
+ *
+ * Available variables:
+ * - attributes: The HTML attributes for the containing element.
+ * - link: A link to the file.
+ * - icon: An icon name.
+ *
+ * @see template_preprocess_file_link()
+ * @see bulma_preprocess_file_link()
+ */
+#}
+<span{{ attributes }}>
+  <span class="icon">
+    <i class="fa fa-{{ icon }}"></i>
+  </span>
+  {{ link }}
+</span>

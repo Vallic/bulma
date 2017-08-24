@@ -13,20 +13,27 @@ use Drupal\Core\Url;
  */
 function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form_state, $form_id = NULL) {
 
-  // Get all menus from the Drupal.
+  // Get all menus.
   $menus = menu_ui_get_menus(FALSE);
+
+  $form['bulma'] = array(
+    '#type' => 'vertical_tabs',
+    '#default_tab' => 'edit-bulma-general',
+    '#weight' => -10,
+  );
 
   // Bulma general settings.
   $form['bulma_general'] = [
     '#type' => 'details',
     '#title' => t('Bulma general settings'),
-    '#description' => t('Contains general settings, blocks, etc..'),
+    '#description' => t('Contains general settings, blocks, etc.'),
+    '#group' => 'bulma',
   ];
 
   $form['bulma_general']['bulma_general_block'] = [
     '#type' => 'checkbox',
     '#title' => t('Block panel style'),
-    '#description' => t('Applied only on blocks with title or label visible / enabled. Reason to skip branding,menus etc. similar blocks'),
+    '#description' => t('Applied only on blocks with title or label visible / enabled so as to skip branding, menus, and similar blocks.'),
     '#default_value' => theme_get_setting('bulma_general_block'),
   ];
 
@@ -40,7 +47,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
   $form['bulma_general']['bulma_general_icon_type'] = [
     '#type' => 'checkbox',
     '#title' => t('Use default field type icons'),
-    '#description' => t('If field label / value is not matched, use also default font awesome icons by Drupal field type'),
+    '#description' => t('If field label / value is not matched, use the default font awesome icons by Drupal field type.'),
     '#default_value' => theme_get_setting('bulma_general_icon_type'),
   ];
 
@@ -49,7 +56,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
   $form['bulma_general']['bulma_general_menu'] = [
     '#type' => 'select',
     '#title' => t('Bulma Nav Menu'),
-    '#description' => t('Select which menu will be used as nav menu - horizontal'),
+    '#description' => t('Select which menu will be used as the nav menu - horizontal.'),
     '#options' => [
       'none' => t('None'),
       'main' => t('Main navigation'),
@@ -68,6 +75,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
         ['attributes' => ['target' => '_blank']])
         ->toString(),
     ]),
+    '#group' => 'bulma',
   ];
 
   $form['bulma_button']['bulma_button_colorize'] = [
@@ -105,7 +113,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
   ];
 
   $form['bulma_button']['notice_button'] = [
-    '#markup' => t('You can combine Outlined and Inverted buttons - the invert color becomes the text and border colors'),
+    '#markup' => t('You can combine Outlined and Inverted buttons - the invert color becomes the text and border colors.'),
   ];
 
   // Bulma elements settings.
@@ -117,6 +125,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
         ['attributes' => ['target' => '_blank']])
         ->toString(),
     ]),
+    '#group' => 'bulma',
   ];
 
   $form['bulma_elements']['bulma_elements_labels_inline'] = [
@@ -186,6 +195,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
         ['attributes' => ['target' => '_blank']])
         ->toString(),
     ]),
+    '#group' => 'bulma',
   ];
 
   $form['bulma_tabs']['bulma_tabs_position'] = [
@@ -241,6 +251,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
         ['attributes' => ['target' => '_blank']])
         ->toString(),
     ]),
+    '#group' => 'bulma',
   ];
 
   $form['bulma_table']['bulma_table_bordered'] = [

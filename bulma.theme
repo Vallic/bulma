@@ -173,7 +173,7 @@ function bulma_theme_suggestions_form_alter(array &$suggestions, array $variable
 function bulma_preprocess_block(&$variables) {
 
   // Block as panel style.
-  if (Bulma::singleSetting('bulma_general_block')) {
+  if (Bulma::singleSetting('general.block')) {
     if ($variables['configuration']['label_display']) {
       $variables['block_panel_style'] = TRUE;
     }
@@ -252,7 +252,7 @@ function bulma_preprocess_input__bulma(&$variables) {
   $name = (string) $variables['element']['#title'];
 
   // Check if we use icons.
-  if (Bulma::singleSetting('bulma_general_icon')) {
+  if (Bulma::singleSetting('general.icon')) {
     $variables['icon'] = Bulma::iconMatch($name, $type);
 
   }
@@ -289,7 +289,7 @@ function bulma_preprocess_input__button__bulma(&$variables) {
   }
 
   // Check if we use icons.
-  if (Bulma::singleSetting('bulma_general_icon')) {
+  if (Bulma::singleSetting('general.icon')) {
     // Define default if not matched.
     $variables['icon'] = Bulma::iconMatch($name, $type);
 
@@ -307,7 +307,7 @@ function bulma_preprocess_input__button__bulma(&$variables) {
 function bulma_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
 
   // Navbar menu.
-  $bulma_nav = Bulma::singleSetting('bulma_general_menu');
+  $bulma_nav = Bulma::singleSetting('general.menu');
 
   // Check if any menu is selected to be nav menu.
   if ($bulma_nav != 'none') {

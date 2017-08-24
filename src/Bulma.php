@@ -304,7 +304,7 @@ class Bulma {
     }
 
     // If default icon is turned on.
-    if (self::singleSetting('bulma_general_icon_type')) {
+    if (self::singleSetting('general.icon_type')) {
       if (empty($class)) {
         switch ($type) {
           case 'file':

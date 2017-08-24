@@ -1,8 +1,8 @@
-bulma_general:
-   bulma_general_block: 1
-   bulma_general_icon: 1
-   bulma_general_icon_type: 1
-   bulma_general_menu: 'main'
+general:
+   general.block: 1
+   general.icon: 1
+   general.icon_type: 1
+   general.menu: 'main'
 bulma_button:
    bulma_button_colorize: 1
    bulma_button_size: '0'

@@ -6,7 +6,6 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
 
 /**
  * Implements hook_form_system_theme_settings_alter().
@@ -70,10 +69,8 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
   $form['bulma_button'] = [
     '#type' => 'details',
     '#title' => t('Bulma Button'),
-    '#description' => t('Contains settings for buttons, see <a href="@docs">documentation</a>', [
-      '@docs' => Url::fromUri('http://bulma.io/documentation/elements/button/',
-        ['attributes' => ['target' => '_blank']])
-        ->toString(),
+    '#description' => t('Contains settings for buttons, see <a href=":docs" target="_blank">documentation</a>', [
+      ':docs' => 'http://bulma.io/documentation/elements/button/',
     ]),
     '#group' => 'bulma',
   ];
@@ -90,11 +87,12 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Button size'),
     '#description' => t('Size of the buttons'),
     '#options' => [
-      '0' => t('Default'),
       'is-small' => t('Small'),
       'is-medium' => t('Medium'),
       'is-large' => t('Large'),
     ],
+    '#empty_option' => t('Default'),
+    '#empty_value' => '0',
     '#default_value' => theme_get_setting('bulma_button_size'),
   ];
 
@@ -120,10 +118,8 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
   $form['bulma_elements'] = [
     '#type' => 'details',
     '#title' => t('Bulma Form Elements'),
-    '#description' => t('Contains settings for form elements, see <a href="@docs">documentation</a>', [
-      '@docs' => Url::fromUri('http://bulma.io/documentation/elements/form/',
-        ['attributes' => ['target' => '_blank']])
-        ->toString(),
+    '#description' => t('Contains settings for form elements, see <a href=":docs" target="_blank">documentation</a>', [
+      ':docs' => 'http://bulma.io/documentation/elements/form/',
     ]),
     '#group' => 'bulma',
   ];
@@ -140,11 +136,12 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Form element size'),
     '#description' => t('Size of the form elements - inputs, select'),
     '#options' => [
-      '0' => t('Default'),
       'is-small' => t('Small'),
       'is-medium' => t('Medium'),
       'is-large' => t('Large'),
     ],
+    '#empty_option' => t('Default'),
+    '#empty_value' => '0',
     '#default_value' => theme_get_setting('bulma_elements_input_size'),
   ];
 
@@ -160,7 +157,6 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Labels style'),
     '#description' => t('Color/style of the labels'),
     '#options' => [
-      '0' => t('Default'),
       'is-black' => t('Black'),
       'is-dark' => t('Dark'),
       'is-light' => t('Light'),
@@ -171,6 +167,8 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
       'is-warning' => t('Warning'),
       'is-danger' => t('Danger'),
     ],
+    '#empty_option' => t('Default'),
+    '#empty_value' => '0',
     '#default_value' => theme_get_setting('bulma_elements_labels_color'),
   ];
 
@@ -179,10 +177,11 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Labels size'),
     '#description' => t('Size of the labels'),
     '#options' => [
-      '0' => t('Default'),
       'is-medium' => t('Medium'),
       'is-large' => t('Large'),
     ],
+    '#empty_option' => t('Default'),
+    '#empty_value' => '0',
     '#default_value' => theme_get_setting('bulma_elements_labels_size'),
   ];
 
@@ -190,10 +189,8 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
   $form['bulma_tabs'] = [
     '#type' => 'details',
     '#title' => t('Bulma Tabs'),
-    '#description' => t('Contains settings for tabs display, see <a href="@docs">documentation</a>', [
-      '@docs' => Url::fromUri('http://bulma.io/documentation/components/tabs/',
-        ['attributes' => ['target' => '_blank']])
-        ->toString(),
+    '#description' => t('Contains settings for tabs display, see <a href=":docs" target="_blank">documentation</a>', [
+      ':docs' => 'http://bulma.io/documentation/components/tabs/',
     ]),
     '#group' => 'bulma',
   ];
@@ -203,10 +200,11 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Tabs positions'),
     '#description' => t('Position for tabs, default is left'),
     '#options' => [
-      '0' => t('Left'),
       'is-centered' => t('Center'),
       'is-right' => t('Right'),
     ],
+    '#empty_option' => t('Left'),
+    '#empty_value' => '0',
     '#default_value' => theme_get_setting('bulma_tabs_position'),
   ];
 
@@ -215,11 +213,12 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Tabs size'),
     '#description' => t('Size of the tabs'),
     '#options' => [
-      '0' => t('Default'),
       'is-small' => t('Small'),
       'is-medium' => t('Medium'),
       'is-large' => t('Large'),
     ],
+    '#empty_option' => t('Default'),
+    '#empty_value' => '0',
     '#default_value' => theme_get_setting('bulma_tabs_size'),
   ];
 
@@ -228,10 +227,11 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#title' => t('Tabs style'),
     '#description' => t('Look & feel of the tabs.'),
     '#options' => [
-      '0' => t('Default'),
       'is-boxed' => t('Classic with borders'),
       'is-toggle' => t('Mutually exclusive'),
     ],
+    '#empty_option' => t('Default'),
+    '#empty_value' => '0',
     '#default_value' => theme_get_setting('bulma_tabs_style'),
   ];
 
@@ -246,10 +246,8 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
   $form['bulma_table'] = [
     '#type' => 'details',
     '#title' => t('Bulma Table'),
-    '#description' => t('Contains settings for table display see <a href="@docs">documentation</a>', [
-      '@docs' => Url::fromUri('http://bulma.io/documentation/elements/table/',
-        ['attributes' => ['target' => '_blank']])
-        ->toString(),
+    '#description' => t('Contains settings for table display see <a href=":docs" target="_blank">documentation</a>', [
+      ':docs' => 'http://bulma.io/documentation/elements/table/',
     ]),
     '#group' => 'bulma',
   ];

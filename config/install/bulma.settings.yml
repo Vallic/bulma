@@ -1,25 +1,25 @@
-bulma_general:
-   bulma_general_block: 1
-   bulma_general_icon: 1
-   bulma_general_icon_type: 1
-   bulma_general_menu: 'main'
-bulma_button:
-   bulma_button_colorize: 1
-   bulma_button_size: '0'
-   bulma_button_outlined: 0
-   bulma_button_inverted: 0
-bulma_elements:
-   bulma_elements_labels_inline: 0
-   bulma_elements_input_size: '0'
-   bulma_elements_labels_rounded: 0
-   bulma_elements_labels_color: '0'
-   bulma_elements_labels_size: '0'
-bulma_tabs:
-   bulma_tabs_position: '0'
-   bulma_tabs_size: '0'
-   bulma_tabs_style: 'is-boxed'
-   bulma_tabs_fullwidth: 0
-bulma_table:
-   bulma_table_bordered: 0
-   bulma_table_striped: 0
-   bulma_table_narrow: 0
+general:
+   block: 1
+   icon: 1
+   icon_type: 1
+   menu: 'main'
+button:
+   colorize: 1
+   size: '0'
+   outlined: 0
+   inverted: 0
+elements:
+   labels_inline: 0
+   input_size: '0'
+   labels_rounded: 0
+   labels_color: '0'
+   labels_size: '0'
+tabs:
+   position: '0'
+   size: '0'
+   style: 'is-boxed'
+   fullwidth: 0
+table:
+   bordered: 0
+   striped: 0
+   narrow: 0

@@ -45,120 +45,118 @@
  * @ingroup themeable
  */
 #}
-<div id="header">
+<section class="hero is-primary">
     {# Top navbar #}
     {% if page.navbar_branding or page.navbar_social or page.primary_menu %}
-        <div class="container">
-            <nav class="nav">
-                <div class="nav-left">
+    <div class="hero-head">
+        <nav class="main-nav nav">
+            <div class="container">
+                <div class="nav-left is-clipped">
                     {{ page.navbar_branding }}
                 </div>
                 <div class="nav-center">
                     {{ page.navbar_social }}
                 </div>
                 {% if page.primary_menu %}
-                    <span id="nav-toggle" class="nav-toggle">
+                <span id="nav-toggle" class="nav-toggle">
                     <span></span>
                     <span></span>
                     <span></span>
                 </span>
-                    <div id="nav-menu" class="nav-right nav-menu">
-                        {{ page.primary_menu }}
-                    </div>
+                {{ page.primary_menu }}
                 {% endif %}
-            </nav>
-        </div>
+            </div>
+        </nav>
+    </div>
     {% endif %}
 
     {% if page.header or page.header_search %}
-    <section class="hero is-primary">
-        {# Header hero region + search #}
-        <div class="hero-body">
-            <div class="container">
-                <div class="columns is-vcentered">
-                    <div class="column">
-                        {{ page.header }}
-                        {% if is_front %}
-                            <h1 class="title">{{ site_slogan }}</h1>
-                        {% endif %}
-                    </div>
-                    <div class="column is-narrow">
-                        {{ page.header_search }}
-                    </div>
+    {# Header hero region + search #}
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <div class="column">
+                    {{ page.header }}
+                    {% if is_front %}
+                        <h1 class="title">{{ site_slogan }}</h1>
+                    {% endif %}
+                </div>
+                <div class="column is-narrow">
+                    {{ page.header_search }}
                 </div>
             </div>
         </div>
-        {% endif %}
+    </div>
+    {% endif %}
 
-        {# Drupal tabs #}
-        {% if page.header_tabs %}
-            <div class="hero-footer">
-                <div class="container">
-                    {{ page.header_tabs }}
-                </div>
+    {# Drupal tabs #}
+    {% if page.header_tabs %}
+        <div class="hero-footer">
+            <div class="container">
+                {{ page.header_tabs }}
             </div>
-        {% endif %}
+        </div>
+    {% endif %}
 
-    </section>
-</div>
+</section>
 
 {# Secondary menu #}
 {% if page.secondary_menu %}
-    <nav class="nav has-shadow">
-        <div class="container">
-            {{ page.secondary_menu }}
-        </div>
-    </nav>
+<nav class="nav has-shadow">
+    <div class="container">
+        {{ page.secondary_menu }}
+    </div>
+</nav>
 {% endif %}
 
 {# Pinterest blocks style #}
 {% if page.tile_one %}
-    <div class="blocks tiles">
-        <div class="container">
-            <div class="tile is-ancestor">
-                <div class="tile is-vertical is-8">
-                    <div class="tile">
-                        {% if page.tile_one or page.tile_two %}
-                            <div class="tile is-parent is-vertical">
-                                <div class="tile is-child notification is-primary">
-                                    {{ page.tile_one }}
-                                </div>
-                                <div class="tile is-child notification is-warning">
-                                    {{ page.tile_two }}
-                                </div>
+<div class="blocks tiles">
+    <div class="container">
+        <div class="tile is-ancestor">
+            <div class="tile is-vertical is-8">
+                <div class="tile">
+                    {% if page.tile_one or page.tile_two %}
+                        <div class="tile is-parent is-vertical">
+                            <div class="tile is-child notification is-primary">
+                                {{ page.tile_one }}
                             </div>
-                        {% endif %}
-
-                        {% if page.tile_three %}
-                            <div class="tile is-parent">
-                                <div class="tile is-child notification is-info">
-                                    {{ page.tile_three }}
-                                </div>
+                            <div class="tile is-child notification is-warning">
+                                {{ page.tile_two }}
                             </div>
-                        {% endif %}
+                        </div>
+                    {% endif %}
 
-                    </div>
-
-                    {% if page.tile_four %}
+                    {% if page.tile_three %}
                         <div class="tile is-parent">
-                            <div class="tile is-child notification is-danger">
-                                {{ page.tile_four }}
+                            <div class="tile is-child notification is-info">
+                                {{ page.tile_three }}
                             </div>
                         </div>
                     {% endif %}
 
                 </div>
 
-                {% if page.tile_five %}
+                {% if page.tile_four %}
                     <div class="tile is-parent">
-                        <div class="tile is-child notification is-success">
-                            {{ page.tile_five }}
+                        <div class="tile is-child notification is-danger">
+                            {{ page.tile_four }}
                         </div>
                     </div>
                 {% endif %}
+
             </div>
+
+            {% if page.tile_five %}
+                <div class="tile is-parent">
+                    <div class="tile is-child notification is-success">
+                        {{ page.tile_five }}
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
+</div>
 {% endif %}
 
 {# Main section #}
@@ -195,11 +193,11 @@
 
 {# Bottom second colored section #}
 {% if page.bottom %}
-    <section class="hero is-info bsa">
-        <div class="container">
-            {{ page.bottom }}
-        </div>
-    </section>
+<section class="hero is-info bsa">
+    <div class="container">
+        {{ page.bottom }}
+    </div>
+</section>
 {% endif %}
 
 {# Footer #}

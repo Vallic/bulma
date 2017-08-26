@@ -146,6 +146,7 @@ function drush_bulma($name = NULL, $machine_name = NULL) {
 
   // Rename files.
   $files_to_rename = [
+    '{{kit}}.cdn.yml',
     '{{kit}}.info.yml',
     '{{kit}}.libraries.yml',
     '{{kit}}.breakpoints.yml',
@@ -220,6 +221,7 @@ function bulma_get_files_to_make_replacements($kit = 'default') {
     'config/schema/' . $kit . '.schema.yml',
     'assets/' . $kit . '.style.scss',
     'assets/js/' . $kit . '.js',
+    $kit . '.cdn.yml',
     $kit . '.info.yml',
     $kit . '.libraries.yml',
     $kit . '.theme',

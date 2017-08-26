@@ -25,22 +25,10 @@
   }
 }
 
-// Navigation nav fix. Resolved one theme suggestions less for clean blocks.
-#header {
-  .nav-right {
-    nav {
-      -webkit-overflow-scrolling: touch;
-      -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-      align-items: stretch;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      flex-shrink: 0;
-      max-width: 100%;
-      overflow: auto;
-    }
-  }
+// Some bulmaswatch themes set background colors that don't work with our
+// default design.
+.navbar {
+  background-color: transparent;
 }
 
 @media screen and (max-width: 768px) {

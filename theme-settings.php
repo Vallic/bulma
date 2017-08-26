@@ -5,6 +5,8 @@
  * Add custom theme settings to the Bulma base theme.
  */
 
+use Drupal\bulma\Bulma;
+use Drupal\bulma\Bulmaswatch;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -277,4 +279,87 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#description' => t('Make the cells narrower.'),
     '#default_value' => theme_get_setting('table.narrow'),
   ];
+
+  $cdn_data = Bulma::getCdnData();
+
+  // Bulmaswatch settings.
+  $form['cdn'] = [
+    '#type' => 'details',
+    '#title' => t('CDN'),
+    '#group' => 'bulma',
+  ];
+
+  if ($themes = Bulmaswatch::getThemes()) {
+    // Bulmaswatch settings.
+    $form['cdn']['bulmaswatch'] = [
+      '#type' => 'details',
+      '#title' => t('Bulmaswatch'),
+      '#description' => t('Select a custom theme provided by Bulmaswatch; see <a href=":docs" target="_blank">documentation</a>.', [
+        ':docs' => 'https://jenil.github.io/bulmaswatch',
+      ]),
+      '#tree' => TRUE,
+      '#open' => TRUE,
+    ];
+
+    $bulmaswatch_is_local = Bulmaswatch::isLocal();
+    if (!$bulmaswatch_is_local) {
+      $versions = Bulma::getCdnVersions('bulmaswatch');
+      $form['cdn']['bulmaswatch']['version'] = [
+        '#type' => 'select',
+        '#title' => t('Version'),
+        '#description' => t('Select a Bulmaswatch version provided by the CDN <a href=":home" target="_blank">@name</a>.', [
+          ':home' => $cdn_data['home'],
+          '@name' => $cdn_data['name'],
+        ]),
+        '#options' => $versions,
+        '#default_value' => theme_get_setting('bulmaswatch.version'),
+      ];
+      $form['cdn']['bulmaswatch']['theme_message'] = [
+        '#type' => 'item',
+        '#markup' => '<p>' . t('To use a local version of Bulmaswatch, <a href=":download" target="_blank">download</a> a Bulmaswatch release and extract it to <code>libraries/bulmaswatch</code> so that the README.md file is at <code>libraries/bulmaswatch/README.md</code>.', [':download' => 'https://github.com/jenil/bulmaswatch/releases']) . '</p>',
+        '#tree' => FALSE,
+      ];
+    }
+    else {
+      $api_data = Bulmaswatch::getBulmaswatchApiData();
+      $form['cdn']['bulmaswatch']['version'] = [
+        '#type' => 'item',
+        '#title' => t('Version'),
+        '#markup' => t('Using locally installed version %version.', ['%version' => $api_data['version']]),
+      ];
+    }
+    $form['cdn']['bulmaswatch']['theme'] = [
+      '#type' => 'select',
+      '#title' => t('Theme'),
+      '#options' => [],
+      '#empty_option' => t('Default'),
+      '#empty_value' => 'default',
+      '#default_value' => theme_get_setting('bulmaswatch.theme'),
+      '#open' => TRUE,
+    ];
+
+    foreach ($themes as $machine_name => $theme) {
+      $form['cdn']['bulmaswatch']['theme']['#options'][$machine_name] = t('@name: @description', ['@name' => $theme['name'], '@description' => $theme['description']]);
+      $form['cdn']['bulmaswatch']['theme_preview_' . $machine_name] = [
+        '#type' => 'item',
+        '#markup' => '<p>' . t('<a href=":preview" target="_blank">Preview</a> the %name theme.', [':preview' => $theme['preview'], '%name' => $theme['name']]) . '</p>',
+        '#states' => [
+          'visible' => [
+            'select[name="bulmaswatch[theme]"]' => ['value' => $machine_name],
+          ],
+        ],
+        '#tree' => FALSE,
+      ];
+    }
+//    $form['#submit'][] = 'bulma_form_system_theme_settings_submit';
+  }
+
+}
+
+/**
+ * Form submission handler for system_theme_settings form.
+ */
+function bulma_form_system_theme_settings_submit($form, FormStateInterface $form_state) {
+  // Clear cached data so our change will take effect.
+  drupal_flush_all_caches();
 }

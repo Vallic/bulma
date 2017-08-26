@@ -1,0 +1,8 @@
+name: jsdelivr
+home: https://www.jsdelivr.com
+api:
+  bulma:
+    version: https://data.jsdelivr.com/v1/package/npm/bulma
+  bulmaswatch:
+    api: https://cdn.jsdelivr.net/npm/bulmaswatch/api/themes.json
+    version: https://data.jsdelivr.com/v1/package/npm/bulmaswatch

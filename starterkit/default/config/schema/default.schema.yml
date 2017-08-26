@@ -84,3 +84,10 @@ BULMA_SUBTHEME_MACHINE_NAME.settings:
         table.narrow:
           type: integer
           label: 'Narrow'
+    bulmaswatch:
+      type: mapping
+      label: 'Bulmaswatch'
+      mapping:
+        theme:
+          type: string
+          label: 'Theme'

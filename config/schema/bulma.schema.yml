@@ -84,3 +84,10 @@ bulma.settings:
         narrow:
           type: integer
           label: 'Narrow'
+    bulmaswatch:
+      type: mapping
+      label: 'Bulmaswatch'
+      mapping:
+        theme:
+          type: string
+          label: 'Theme'

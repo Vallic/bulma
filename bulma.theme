@@ -6,6 +6,7 @@
  */
 
 use Drupal\bulma\Bulma;
+use Drupal\bulma\Bulmaswatch;
 use Drupal\file\Entity\File;
 
 /**
@@ -179,6 +180,14 @@ function bulma_preprocess_block(&$variables) {
     }
   }
 
+  // Customize the ID and classes of the main menu block.
+  $main_menu = Bulma::singleSetting('general.menu');
+  $plugin_id = 'system_menu_block:' . $main_menu;
+  // Match blocks by plugin ID to support Bulma and any active subtheme.
+  if (!empty($variables['elements']['#plugin_id']) && $variables['elements']['#plugin_id'] == $plugin_id) {
+    $variables['attributes']['id'] = 'navbar-menu';
+    $variables['attributes']['class'][] = 'navbar-end';
+  }
 }
 
 /**
@@ -373,4 +382,22 @@ function bulma_preprocess_views_view_table(&$variables) {
       $variables[str_replace('is-', '', $class)] = TRUE;
     }
   }
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function bulma_library_info_alter(&$libraries, $extension) {
+  // Swap in Bulmaswatch theme's CSS.
+  if ($extension === 'bulma' &&
+    isset($libraries['global']) &&
+    ($themes = Bulmaswatch::getThemes()) &&
+    (($theme = theme_get_setting('bulmaswatch.theme')) !== 'default')
+  ) {
+    $css_file = isset($themes[$theme]['local_css']) ? $themes[$theme]['local_css'] : $themes[$theme]['css'];
+    $libraries['global']['css']['base'] = [
+      $css_file => ['minified' => TRUE],
+    ];
+  }
+
 }

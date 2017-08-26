@@ -45,62 +45,66 @@
  * @ingroup themeable
  */
 #}
-<div id="header">
-    {# Top navbar #}
-    {% if page.navbar_branding or page.navbar_social or page.primary_menu %}
+{% if page.navbar_branding or page.navbar_social or page.primary_menu %}
+{# Top navbar #}
+<div class="container">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            {% if page.navbar_branding %}
+            <div class="navbar-item">
+            {{ page.navbar_branding }}
+            </div>
+            {% endif %}
+            <div class="navbar-burger burger" data-target="navbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar-menu">
+            {% if page.navbar_social %}
+            <div class="navbar-start">
+            {{ page.navbar_social }}
+            </div>
+            {% endif %}
+            {% if page.primary_menu %}
+            {{ page.primary_menu }}
+            {% endif %}
+        </div>
+    </nav>
+</div>
+{% endif %}
+
+<section class="hero is-primary">
+    {% if page.header or page.header_search %}
+    {# Header hero region + search #}
+    <div class="hero-body is-primary">
         <div class="container">
-            <nav class="nav">
-                <div class="nav-left">
-                    {{ page.navbar_branding }}
+            <div class="columns is-vcentered">
+                <div class="column">
+                    {{ page.header }}
+                    {% if is_front %}
+                        <h1 class="title">{{ site_slogan }}</h1>
+                    {% endif %}
                 </div>
-                <div class="nav-center">
-                    {{ page.navbar_social }}
+                <div class="column is-narrow">
+                    {{ page.header_search }}
                 </div>
-                {% if page.primary_menu %}
-                <span id="nav-toggle" class="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-                <div id="nav-menu" class="nav-right nav-menu">
-                    {{ page.primary_menu }}
-                </div>
-                {% endif %}
-            </nav>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {# Drupal tabs #}
+    {% if page.header_tabs %}
+        <div class="hero-footer">
+            <div class="container">
+                {{ page.header_tabs }}
+            </div>
         </div>
     {% endif %}
 
-    {% if page.header or page.header_search %}
-    <section class="hero is-primary">
-        {# Header hero region + search #}
-        <div class="hero-body">
-            <div class="container">
-                <div class="columns is-vcentered">
-                    <div class="column">
-                        {{ page.header }}
-                        {% if is_front %}
-                            <h1 class="title">{{ site_slogan }}</h1>
-                        {% endif %}
-                    </div>
-                    <div class="column is-narrow">
-                        {{ page.header_search }}
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endif %}
-
-        {# Drupal tabs #}
-        {% if page.header_tabs %}
-            <div class="hero-footer">
-                <div class="container">
-                    {{ page.header_tabs }}
-                </div>
-            </div>
-        {% endif %}
-
-    </section>
-</div>
+</section>
 
 {# Secondary menu #}
 {% if page.secondary_menu %}

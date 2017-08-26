@@ -351,7 +351,8 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
         '#tree' => FALSE,
       ];
     }
-//    $form['#submit'][] = 'bulma_form_system_theme_settings_submit';
+
+    $form['#submit'][] = 'bulma_form_system_theme_settings_submit';
   }
 
 }
@@ -360,6 +361,6 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
  * Form submission handler for system_theme_settings form.
  */
 function bulma_form_system_theme_settings_submit($form, FormStateInterface $form_state) {
-  // Clear cached data so our change will take effect.
+  // Clear cached data so a change will take effect.
   drupal_flush_all_caches();
 }

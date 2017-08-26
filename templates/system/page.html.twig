@@ -47,32 +47,30 @@
 #}
 {% if page.navbar_branding or page.navbar_social or page.primary_menu %}
 {# Top navbar #}
-<div class="container">
-    <nav class="navbar">
-        <div class="navbar-brand">
-            {% if page.navbar_branding %}
-            <div class="navbar-item">
-            {{ page.navbar_branding }}
-            </div>
-            {% endif %}
-            <div class="navbar-burger burger" data-target="navbar-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+<nav class="navbar has-shadow">
+    <div class="navbar-brand">
+        {% if page.navbar_branding %}
+        <div class="navbar-item">
+        {{ page.navbar_branding }}
         </div>
-        <div class="navbar-menu">
-            {% if page.navbar_social %}
-            <div class="navbar-start">
-            {{ page.navbar_social }}
-            </div>
-            {% endif %}
-            {% if page.primary_menu %}
-            {{ page.primary_menu }}
-            {% endif %}
+        {% endif %}
+        <div class="navbar-burger burger" data-target="navbar-menu">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-    </nav>
-</div>
+    </div>
+    <div class="navbar-menu">
+        {% if page.navbar_social %}
+        <div class="navbar-start">
+        {{ page.navbar_social }}
+        </div>
+        {% endif %}
+        {% if page.primary_menu %}
+        {{ page.primary_menu }}
+        {% endif %}
+    </div>
+</nav>
 {% endif %}
 
 <section class="hero is-primary">

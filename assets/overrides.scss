@@ -25,12 +25,6 @@
   }
 }
 
-// Some bulmaswatch themes set background colors that don't work with our
-// default design.
-.navbar {
-  background-color: transparent;
-}
-
 @media screen and (max-width: 768px) {
   #header {
     .nav-menu {

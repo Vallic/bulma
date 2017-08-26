@@ -9,9 +9,6 @@
     display: -ms-flexbox;
     display: flex; }
 
-.navbar {
-  background-color: transparent; }
-
 @media screen and (max-width: 768px) {
   #header .nav-menu.nav-right.is-active nav {
     display: block; } }

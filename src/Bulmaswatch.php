@@ -51,16 +51,18 @@ class Bulmaswatch {
     static $api_data;
 
     if (empty($api_data)) {
+      $api_file = '/api/themes.json';
       if (static::isLocal()) {
-        $filename = DRUPAL_ROOT . '/libraries/bulmaswatch/api/themes.json';
+        $filename = DRUPAL_ROOT . '/libraries/bulmaswatch' . $api_file;
         $api_data = Yaml::decode(file_get_contents($filename));
       }
       else {
         $cdn_data = Bulma::getCdnData();
-        $api = $cdn_data['api']['bulmaswatch']['api'];
+        $api = $cdn_data['api']['bulmaswatch']['file_root'] . $api_file;
         $api_data = Bulma::getApiData($api);
       }
     }
+
     return $api_data;
   }
 }

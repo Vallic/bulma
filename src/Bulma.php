@@ -415,12 +415,18 @@ class Bulma {
       $filename = $theme->getPath() . '/' . $theme->getName() . '.cdn.yml';
       if (file_exists($filename)) {
         $cdn_data = Yaml::decode(file_get_contents($filename));
+        // Replace version placeholder.
+        foreach (['bulma', 'bulmaswatch'] as $package) {
+          if (!$version = theme_get_setting($package . '.version')) {
+            $version = 'latest';
+          }
+          $cdn_data['api'][$package]['file_root'] = str_replace('[version]', $version, $cdn_data['api'][$package]['file_root']);
+        }
       }
       else {
         $cdn_data = FALSE;
       }
     }
-
     return $cdn_data;
   }
 

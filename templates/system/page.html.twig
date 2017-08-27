@@ -45,6 +45,7 @@
  * @ingroup themeable
  */
 #}
+{% block navbar %}
 {% if page.navbar_branding or page.navbar_social or page.primary_menu %}
 {# Top navbar #}
 <nav class="navbar has-shadow">
@@ -72,8 +73,10 @@
     </div>
 </nav>
 {% endif %}
-
+{% endblock navbar %}
+{% block header %}
 <section class="hero is-primary">
+    {% block header_and_search %}
     {% if page.header or page.header_search %}
     {# Header hero region + search #}
     <div class="hero-body is-primary">
@@ -92,7 +95,8 @@
         </div>
     </div>
     {% endif %}
-
+    {% endblock header_and_search %}
+    {% block tabs %}
     {# Drupal tabs #}
     {% if page.header_tabs %}
         <div class="hero-footer">
@@ -101,9 +105,10 @@
             </div>
         </div>
     {% endif %}
-
+    {% endblock tabs %}
 </section>
-
+{% endblock header %}
+{% block secondary_menu %}
 {# Secondary menu #}
 {% if page.secondary_menu %}
 <nav class="nav has-shadow">
@@ -112,7 +117,8 @@
     </div>
 </nav>
 {% endif %}
-
+{% endblock secondary_menu %}
+{% block tiles %}
 {# Pinterest blocks style #}
 {% if page.tile_one %}
 <div class="blocks tiles">
@@ -162,7 +168,8 @@
     </div>
 </div>
 {% endif %}
-
+{% endblock tiles %}
+{% block main %}
 {# Main section #}
 <section class="section">
     <main role="main" class="container">
@@ -172,29 +179,34 @@
         {{ page.help }}
 
         <div class="columns">
+            {% block main_content %}
             {# Main content #}
             <div class="main-content column">
                 {{ page.content }}
             </div>
-
+            {% endblock main_content %}
+            {% block sidebar_first %}
             {# Sidebar first #}
             {% if page.sidebar_first %}
                 <aside class="sidebar-first column is-2" role="complementary">
                     {{ page.sidebar_first }}
                 </aside>
             {% endif %}
-
+            {% endblock sidebar_first %}
+            {% block sidebar_second %}
             {# Sidebar second #}
             {% if page.sidebar_second %}
                 <aside class="sidebar-second column is-2" role="complementary">
                     {{ page.sidebar_second }}
                 </aside>
             {% endif %}
+            {% endblock sidebar_second %}
         </div>
 
     </main>
 </section>
-
+{% endblock main %}
+{% block bottom %}
 {# Bottom second colored section #}
 {% if page.bottom %}
 <section class="hero is-info bsa">
@@ -203,8 +215,9 @@
     </div>
 </section>
 {% endif %}
+{% endblock bottom %}
 
-{# Footer #}
+{% block footer %}
 {% if page.footer %}
     <footer role="contentinfo" class="footer">
         <div class="container">
@@ -212,3 +225,4 @@
         </div>
     </footer>
 {% endif %}
+{% endblock footer %}

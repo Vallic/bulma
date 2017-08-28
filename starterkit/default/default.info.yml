@@ -29,6 +29,3 @@ regions:
 
 libraries:
   - BULMA_SUBTHEME_MACHINE_NAME/global
-
-libraries-override:
-  bulma/global: false

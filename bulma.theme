@@ -391,18 +391,34 @@ function bulma_library_info_alter(&$libraries, $extension) {
   // Swap in Bulmaswatch theme's CSS.
   if ($extension === 'bulma' &&
     isset($libraries['global']) &&
-    ($themes = Bulmaswatch::getThemes()) &&
-    (($theme = theme_get_setting('bulmaswatch.theme')) !== 'default')
+    ($theme = theme_get_setting('cdn.bulmaswatch.theme'))
   ) {
+    // If bulmaswatch is configured to use the default theme, use Bulma directly.
     $cdn_data = Bulma::getCdnData();
-    if (isset($themes[$theme]['local_css'])) {
-      $css_file = $themes[$theme]['local_css'];
+    $properties = [];
+    if ($theme === 'default') {
+      $bulma_file = '/css/bulma.css';
+      if (Bulma::isLocal()) {
+        $css_file = DRUPAL_ROOT . '/libraries/bulma' . $bulma_file;
+      }
+      else {
+        $css_file = $cdn_data['api']['bulma']['file_root'] . $bulma_file;
+        $properties['type'] = 'external';
+      }
     }
     else {
-      $css_file = $cdn_data['api']['bulmaswatch']['file_root'] . "/{$theme}/bulmaswatch.min.css";
+      $properties['minified'] = TRUE;
+      $themes = Bulmaswatch::getThemes();
+      if (isset($themes[$theme]['local_css'])) {
+        $css_file = $themes[$theme]['local_css'];
+      }
+      else {
+        $css_file = $cdn_data['api']['bulmaswatch']['file_root'] . "/{$theme}/bulmaswatch.min.css";
+        $properties['type'] = 'external';
+      }
     }
     $libraries['global']['css']['base'] = [
-      $css_file => ['minified' => TRUE],
+      $css_file => $properties,
     ];
   }
 

@@ -23,6 +23,9 @@ table:
    bordered: 0
    striped: 0
    narrow: 0
-bulmaswatch:
-   version: '0.5.0'
-   theme: 'default'
+cdn:
+   bulma:
+      version: '0.5.1'
+   bulmaswatch:
+      version: '0.5.0'
+      theme: 'default'

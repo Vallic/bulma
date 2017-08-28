@@ -417,7 +417,7 @@ class Bulma {
         $cdn_data = Yaml::decode(file_get_contents($filename));
         // Replace version placeholder.
         foreach (['bulma', 'bulmaswatch'] as $package) {
-          if (!$version = theme_get_setting($package . '.version')) {
+          if (!$version = theme_get_setting("cdn.{$package}.version")) {
             $version = 'latest';
           }
           $cdn_data['api'][$package]['file_root'] = str_replace('[version]', $version, $cdn_data['api'][$package]['file_root']);
@@ -475,4 +475,21 @@ class Bulma {
     return FALSE;
   }
 
+  /**
+   * Returns the locally installed Bulma version.
+   *
+   * @return string|FALSE
+   *   A version string, or FALSE on error.
+   */
+  public static function getBulmaLocalVersion() {
+    $filename = DRUPAL_ROOT . '/libraries/bulma/package.json';
+    if (file_exists($filename)) {
+      $json = Json::decode(file_get_contents($filename));
+      if ($json) {
+        return $json['version'];
+      }
+    }
+
+    return FALSE;
+  }
 }

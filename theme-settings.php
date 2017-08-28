@@ -282,12 +282,46 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
 
   $cdn_data = Bulma::getCdnData();
 
-  // Bulmaswatch settings.
+  // CDN settings.
   $form['cdn'] = [
     '#type' => 'details',
     '#title' => t('CDN'),
     '#group' => 'bulma',
+    '#tree' => TRUE,
   ];
+
+  $form['cdn']['bulma'] = [
+    '#type' => 'details',
+    '#title' => t('Bulma'),
+    '#open' => TRUE,
+  ];
+
+  if (!Bulma::isLocal()) {
+    $versions = Bulma::getCdnVersions('bulma');
+    $form['cdn']['bulma']['version'] = [
+      '#type' => 'select',
+      '#title' => t('Version'),
+      '#description' => t('Select a Bulma version provided by the CDN <a href=":home" target="_blank">@name</a>.', [
+        ':home' => $cdn_data['home'],
+        '@name' => $cdn_data['name'],
+      ]),
+      '#options' => $versions,
+      '#default_value' => theme_get_setting('cdn.bulma.version'),
+    ];
+    $form['cdn']['bulma']['theme_message'] = [
+      '#type' => 'item',
+      '#markup' => '<p>' . t('To use a local version of Bulma, <a href=":download" target="_blank">download</a> a Bulma release and extract it to <code>libraries/bulma</code> so that the README.md file is at <code>libraries/bulma/README.md</code>.', [':download' => 'https://github.com/jgthms/bulma/releases']) . '</p>',
+      '#tree' => FALSE,
+    ];
+  }
+  else {
+    $version = Bulma::getBulmaLocalVersion();
+    $form['cdn']['bulma']['version'] = [
+      '#type' => 'item',
+      '#title' => t('Version'),
+      '#markup' => t('Using locally installed version %version.', ['%version' => $version]),
+    ];
+  }
 
   if ($themes = Bulmaswatch::getThemes()) {
     // Bulmaswatch settings.
@@ -297,12 +331,10 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
       '#description' => t('Select a custom theme provided by Bulmaswatch; see <a href=":docs" target="_blank">documentation</a>.', [
         ':docs' => 'https://jenil.github.io/bulmaswatch',
       ]),
-      '#tree' => TRUE,
       '#open' => TRUE,
     ];
 
-    $bulmaswatch_is_local = Bulmaswatch::isLocal();
-    if (!$bulmaswatch_is_local) {
+    if (!Bulmaswatch::isLocal()) {
       $versions = Bulma::getCdnVersions('bulmaswatch');
       $form['cdn']['bulmaswatch']['version'] = [
         '#type' => 'select',
@@ -312,12 +344,13 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
           '@name' => $cdn_data['name'],
         ]),
         '#options' => $versions,
-        '#default_value' => theme_get_setting('bulmaswatch.version'),
+        '#default_value' => theme_get_setting('cdn.bulmaswatch.version'),
       ];
-      $form['cdn']['bulmaswatch']['theme_message'] = [
+      $form['cdn']['bulmaswatch']['message'] = [
         '#type' => 'item',
         '#markup' => '<p>' . t('To use a local version of Bulmaswatch, <a href=":download" target="_blank">download</a> a Bulmaswatch release and extract it to <code>libraries/bulmaswatch</code> so that the README.md file is at <code>libraries/bulmaswatch/README.md</code>.', [':download' => 'https://github.com/jenil/bulmaswatch/releases']) . '</p>',
         '#tree' => FALSE,
+        '#weight' => 10,
       ];
     }
     else {
@@ -334,7 +367,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
       '#options' => [],
       '#empty_option' => t('Default'),
       '#empty_value' => 'default',
-      '#default_value' => theme_get_setting('bulmaswatch.theme'),
+      '#default_value' => theme_get_setting('cdn.bulmaswatch.theme'),
       '#open' => TRUE,
     ];
 
@@ -345,7 +378,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
         '#markup' => '<p>' . t('<a href=":preview" target="_blank">Preview</a> the %name theme.', [':preview' => $theme['preview'], '%name' => $theme['name']]) . '</p>',
         '#states' => [
           'visible' => [
-            'select[name="bulmaswatch[theme]"]' => ['value' => $machine_name],
+            'select[name="cdn[bulmaswatch][theme]"]' => ['value' => $machine_name],
           ],
         ],
         '#tree' => FALSE,

@@ -15,7 +15,7 @@ function BULMA_SUBTHEME_MACHINE_NAME_library_info_alter(&$libraries, $extension)
   if ($extension === 'BULMA_SUBTHEME_MACHINE_NAME' &&
     isset($libraries['global']) &&
     ($themes = Bulmaswatch::getThemes()) &&
-    (($theme = theme_get_setting('bulmaswatch.theme')) !== 'default')
+    (($theme = theme_get_setting('cdn.bulmaswatch.theme')) !== 'default')
   ) {
     $css_file = isset($themes[$theme]['local_css']) ? $themes[$theme]['local_css'] : $themes[$theme]['css'];
     $libraries['global']['css']['base'] = [

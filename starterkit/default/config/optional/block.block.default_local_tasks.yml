@@ -5,7 +5,7 @@ dependencies:
     - BULMA_SUBTHEME_MACHINE_NAME
 id: BULMA_SUBTHEME_MACHINE_NAME_local_tasks
 theme: BULMA_SUBTHEME_MACHINE_NAME
-region: tabs
+region: header_tabs
 weight: -40
 provider: null
 plugin: local_tasks_block

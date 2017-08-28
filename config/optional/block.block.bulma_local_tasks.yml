@@ -5,7 +5,7 @@ dependencies:
     - bulma
 id: bulma_local_tasks
 theme: bulma
-region: tabs
+region: header_tabs
 weight: -40
 provider: null
 plugin: local_tasks_block

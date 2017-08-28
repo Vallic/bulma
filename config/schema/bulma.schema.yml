@@ -84,10 +84,24 @@ bulma.settings:
         narrow:
           type: integer
           label: 'Narrow'
-    bulmaswatch:
+    cdn:
       type: mapping
-      label: 'Bulmaswatch'
+      label: 'CDN'
       mapping:
-        theme:
-          type: string
-          label: 'Theme'
+        bulma:
+          type: mapping
+          label: 'Bulma'
+          mapping:
+            version:
+              type: string
+              label: 'Version'
+        bulmaswatch:
+          type: mapping
+          label: 'Bulmaswatch'
+          mapping:
+            version:
+              type: string
+              label: 'Version'
+            theme:
+              type: string
+              label: 'Theme'

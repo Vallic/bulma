@@ -1,4 +1,4 @@
-# Schema for the configuration files of the Bulma theme.
+# Schema for the configuration files of the BULMA_SUBTHEME_NAME theme.
 
 BULMA_SUBTHEME_MACHINE_NAME.settings:
   type: theme_settings
@@ -8,86 +8,100 @@ BULMA_SUBTHEME_MACHINE_NAME.settings:
       type: mapping
       label: 'Bulma general settings'
       mapping:
-        general.block:
+        block:
           type: integer
           label: 'Bulma block style'
-        general.icon:
+        icon:
           type: integer
           label: 'Use icons'
-        general.icon_type:
+        icon_type:
           type: integer
           label: 'Use default field type icons'
-        general.menu:
+        menu:
           type: string
           label: 'Bulma nav menu'
     button:
       type: mapping
       label: 'Bulma buttons'
       mapping:
-        button.colorize:
+        colorize:
           type: integer
           label: 'Colorize button'
-        button.size:
+        size:
           type: string
           label: 'Button size'
-        button.outlined:
+        outlined:
           type: integer
           label: 'Outlined button'
-        button.inverted:
+        inverted:
           type: integer
           label: 'Inverted button'
     elements:
       type: mapping
       label: 'Bulma form elements'
       mapping:
-        elements.labels_inline:
+        labels_inline:
           type: integer
           label: 'Horizontal form'
-        elements.input_size:
+        input_size:
           type: string
           label: 'Form element size'
-        elements.labels_rounded:
+        labels_rounded:
           type: integer
           label: 'Rounded labels'
-        elements.labels_color:
+        labels_color:
           type: string
           label: 'Labels style'
-        elements.labels_size:
+        labels_size:
           type: string
           label: 'Labels size'
     tabs:
       type: mapping
       label: 'Bulma tabs'
       mapping:
-        tabs.position:
+        position:
           type: string
           label: 'Tabs position'
-        tabs.size:
+        size:
           type: string
           label: 'Tabs size'
-        tabs.style:
+        style:
           type: string
           label: 'Tabs style'
-        tabs.fullwidth:
+        fullwidth:
           type: integer
           label: 'Tabs fullwidth'
     table:
       type: mapping
       label: 'Bulma table'
       mapping:
-        table.bordered:
+        bordered:
           type: integer
           label: 'Bordered'
-        table.striped:
+        striped:
           type: integer
           label: 'Striped'
-        table.narrow:
+        narrow:
           type: integer
           label: 'Narrow'
-    bulmaswatch:
+    cdn:
       type: mapping
-      label: 'Bulmaswatch'
+      label: 'CDN'
       mapping:
-        theme:
-          type: string
-          label: 'Theme'
+        bulma:
+          type: mapping
+          label: 'Bulma'
+          mapping:
+            version:
+              type: string
+              label: 'Version'
+        bulmaswatch:
+          type: mapping
+          label: 'Bulmaswatch'
+          mapping:
+            version:
+              type: string
+              label: 'Version'
+            theme:
+              type: string
+              label: 'Theme'

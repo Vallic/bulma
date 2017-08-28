@@ -190,6 +190,59 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     '#default_value' => theme_get_setting('elements.labels_size'),
   ];
 
+  // Bulma breadcrumbs settings.
+  $form['breadcrumb'] = [
+    '#type' => 'details',
+    '#title' => t('Bulma Breadcrumbs'),
+    '#description' => t('Contains settings for breadcrumbs display, see <a href=":docs" target="_blank">documentation</a>', [
+      ':docs' => 'http://bulma.io/documentation/components/breadcrumb/',
+    ]),
+    '#group' => 'bulma',
+    '#tree' => TRUE,
+  ];
+
+  $form['breadcrumb']['position'] = [
+    '#type' => 'select',
+    '#title' => t('Breadcrumbs position'),
+    '#description' => t('Position for breadcrumbs, default is left'),
+    '#options' => [
+      'is-centered' => t('Center'),
+      'is-right' => t('Right'),
+    ],
+    '#empty_option' => t('Left'),
+    '#empty_value' => '0',
+    '#default_value' => theme_get_setting('breadcrumb.position'),
+  ];
+
+  $form['breadcrumb']['size'] = [
+    '#type' => 'select',
+    '#title' => t('Breadcrumbs size'),
+    '#description' => t('Size of the breadcrumbs'),
+    '#options' => [
+      'is-small' => t('Small'),
+      'is-medium' => t('Medium'),
+      'is-large' => t('Large'),
+    ],
+    '#empty_option' => t('Default'),
+    '#empty_value' => '0',
+    '#default_value' => theme_get_setting('breadcrumb.size'),
+  ];
+
+  $form['breadcrumb']['separator'] = [
+    '#type' => 'select',
+    '#title' => t('Breadcrumbs separator'),
+    '#description' => t('Character used to separate breadcrumbs, default is forward slash (&#x0002f).'),
+    '#options' => [
+      'has-arrow-separator' => t('Arrow (&#x02192)'),
+      'has-bullet-separator' => t('Bullet (&#x02022)'),
+      'has-dot-separator' => t('Dot (&#x000b7)'),
+      'has-succeeds-separator' => t('Succeeds (&#x0227B)'),
+    ],
+    '#empty_option' => t('Default (&#x0002f)'),
+    '#empty_value' => '0',
+    '#default_value' => theme_get_setting('breadcrumb.style'),
+  ];
+
   // Bulma tabs settings.
   $form['tabs'] = [
     '#type' => 'details',

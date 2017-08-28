@@ -37,35 +37,43 @@ class Bulma {
       case 'table':
         $data = [
           'table' => 1,
-          'is-bordered' => theme_get_setting('bulma_table_bordered'),
-          'is-striped' => theme_get_setting('bulma_table_striped'),
-          'is-narrow' => theme_get_setting('bulma_table_narrow'),
+          'is-bordered' => theme_get_setting('table.bordered'),
+          'is-striped' => theme_get_setting('table.striped'),
+          'is-narrow' => theme_get_setting('table.narrow'),
+        ];
+        break;
+
+      case 'breadcrumb':
+        $data = [
+          'position' => theme_get_setting('breadcrumb.position'),
+          'size' => theme_get_setting('breadcrumb.size'),
+          'style' => theme_get_setting('breadcrumb.separator'),
         ];
         break;
 
       case 'tabs':
         $data = [
-          'position' => theme_get_setting('bulma_tabs_position'),
-          'size' => theme_get_setting('bulma_tabs_size'),
-          'style' => theme_get_setting('bulma_tabs_style'),
-          'is-fullwidth' => theme_get_setting('bulma_tabs_fullwidth'),
+          'position' => theme_get_setting('tabs.position'),
+          'size' => theme_get_setting('tabs.size'),
+          'style' => theme_get_setting('tabs.style'),
+          'is-fullwidth' => theme_get_setting('tabs.fullwidth'),
         ];
         break;
 
       case 'label':
         $data = [
-          'tag' => theme_get_setting('bulma_elements_labels_rounded'),
-          'color' => theme_get_setting('bulma_elements_labels_color'),
-          'size' => theme_get_setting('bulma_elements_labels_size'),
+          'tag' => theme_get_setting('elements.labels_rounded'),
+          'color' => theme_get_setting('elements.labels_color'),
+          'size' => theme_get_setting('elements.labels_size'),
         ];
         break;
 
       case 'button':
         $data = [
-          'colorize' => theme_get_setting('bulma_button_colorize'),
-          'size' => theme_get_setting('bulma_button_size'),
-          'is-outlined' => theme_get_setting('bulma_button_outlined'),
-          'is-inverted' => theme_get_setting('bulma_button_inverted'),
+          'colorize' => theme_get_setting('button.colorize'),
+          'size' => theme_get_setting('button.size'),
+          'is-outlined' => theme_get_setting('button.outlined'),
+          'is-inverted' => theme_get_setting('button.inverted'),
         ];
         break;
 

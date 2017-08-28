@@ -75,6 +75,19 @@ function bulma_page_attachments_alter(&$page) {
 }
 
 /**
+ * Implements bulma_preprocess_HOOK() for breadcrumb.
+ */
+function bulma_preprocess_breadcrumb(&$variables) {
+  // Load Bulma class from settings.
+  $classes = array_merge(['breadcrumb'], Bulma::multiSettings('breadcrumb'));
+  foreach ($classes as $class) {
+    $variables['attributes']['class'][] = $class;
+  }
+  $variables['attributes']['role'] = 'navigation';
+  $variables['attributes']['aria-labelledby'] = 'system-breadcrumb';
+}
+
+/**
  * Implements theme_menu_local_tasks().
  */
 function bulma_preprocess_menu_local_tasks(&$variables) {

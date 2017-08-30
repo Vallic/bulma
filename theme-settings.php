@@ -338,7 +338,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
   // CDN settings.
   $form['cdn'] = [
     '#type' => 'details',
-    '#title' => t('CDN'),
+    '#title' => t('Versions and alternative themes/skins'),
     '#group' => 'bulma',
     '#tree' => TRUE,
   ];

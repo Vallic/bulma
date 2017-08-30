@@ -7,9 +7,9 @@
 
   Drupal.behaviors.bulma = {
     attach: function (context) {
-      var $toggle = $('#nav-toggle').once('bulma');
+      var $toggle = $('#js-navbar-burger').once('bulma');
       if ($toggle.length) {
-        var $menu = $('#nav-menu');
+        var $menu = $('#js-navbar-menu');
 
         $toggle.click(function () {
           $(this).toggleClass('is-active');

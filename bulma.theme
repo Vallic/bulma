@@ -268,7 +268,10 @@ function bulma_theme_suggestions_input_alter(array &$suggestions, array $variabl
  * Implements template_preprocess_hook().
  */
 function bulma_preprocess_input__bulma(&$variables) {
-
+  // Make sure we have data to work from.
+  if (empty($variables['element']['#type']) || empty($variables['element']['#title'])) {
+    return;
+  }
   // Field name and type.
   $type = $variables['element']['#type'];
   $name = (string) $variables['element']['#title'];

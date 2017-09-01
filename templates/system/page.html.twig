@@ -49,27 +49,29 @@
 {% if page.navbar_branding or page.navbar_social or page.primary_menu %}
 {# Top navbar #}
 <nav class="navbar has-shadow">
-    <div class="navbar-brand">
-        {% if page.navbar_branding %}
-        <div class="navbar-item">
-        {{ page.navbar_branding }}
+    <div class="container">
+        <div class="navbar-brand">
+            {% if page.navbar_branding %}
+            <div class="navbar-item">
+            {{ page.navbar_branding }}
+            </div>
+            {% endif %}
+            <div id="js-navbar-burger" class="navbar-burger burger" data-target="navbar-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        {% endif %}
-        <div id="js-navbar-burger" class="navbar-burger burger" data-target="navbar-menu">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div id="js-navbar-menu" class="navbar-menu">
+            {% if page.navbar_social %}
+            <div class="navbar-start">
+            {{ page.navbar_social }}
+            </div>
+            {% endif %}
+            {% if page.primary_menu %}
+            {{ page.primary_menu }}
+            {% endif %}
         </div>
-    </div>
-    <div id="js-navbar-menu" class="navbar-menu">
-        {% if page.navbar_social %}
-        <div class="navbar-start">
-        {{ page.navbar_social }}
-        </div>
-        {% endif %}
-        {% if page.primary_menu %}
-        {{ page.primary_menu }}
-        {% endif %}
     </div>
 </nav>
 {% endif %}

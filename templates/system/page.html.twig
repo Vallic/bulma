@@ -39,6 +39,14 @@
  * - page.footer: Items for the footer region.
  * - page.breadcrumb: Items for the breadcrumb region.
  *
+ * Region attributes:
+ * - page.content_attributes: The attributes for the main content region
+ *   wrapper. If not set, defaults will be used.
+ * - page.sidebar_first_attributes: The attributes for the sidebar_first region
+ *   wrapper. If not set, defaults will be used.
+ * - page.sidebar_second_attributes: The attributes for the sidebar_second
+ *   region wrapper. If not set, defaults will be used.
+ *
  * @see template_preprocess_page()
  * @see html.html.twig
  *
@@ -180,17 +188,40 @@
         {{ page.highlighted }}
         {{ page.help }}
 
-        <div class="columns">
+        <div class="columns is-centered">
             {% block main_content %}
+            {# Set attributes for content. #}
+            {% if not page.content_attributes %}
+            {%
+              set page = page|merge({
+                'content_attributes': create_attribute().addClass([
+                  'main-content',
+                  'column',
+                ]),
+              })
+            %}
+            {% endif %}
             {# Main content #}
-            <div class="main-content column">
+            <div{{page.content_attributes}}>
                 {{ page.content }}
             </div>
             {% endblock main_content %}
             {% block sidebar_first %}
             {# Sidebar first #}
             {% if page.sidebar_first %}
-                <aside class="sidebar-first column is-2" role="complementary">
+            {# Set attributes for content. #}
+                {% if not page.sidebar_first_attributes %}
+                {%
+                  set page = page|merge({
+                    'sidebar_first_attributes': create_attribute().addClass([
+                      'sidebar-first',
+                      'column',
+                      'is-2',
+                    ]),
+                  })
+                %}
+                {% endif %}
+                <aside{{page.sidebar_first_attributes|without('role')}} role="complimentary">
                     {{ page.sidebar_first }}
                 </aside>
             {% endif %}
@@ -198,7 +229,18 @@
             {% block sidebar_second %}
             {# Sidebar second #}
             {% if page.sidebar_second %}
-                <aside class="sidebar-second column is-2" role="complementary">
+                {% if not page.sidebar_second_attributes %}
+                {%
+                  set page = page|merge({
+                    'sidebar_second_attributes': create_attribute().addClass([
+                      'sidebar-second',
+                      'column',
+                      'is-2',
+                    ]),
+                  })
+                %}
+                {% endif %}
+                <aside{{page.sidebar_second_attributes|without('role')}} role="complimentary>
                     {{ page.sidebar_second }}
                 </aside>
             {% endif %}

@@ -18,33 +18,35 @@
  * @see template_preprocess_form_element_label()
  */
 #}
-{%- set classes = [
-'label',
-'control-label',
-title_display == 'after' ? 'option',
-title_display == 'invisible' and not (is_checkbox or is_radio) ? 'sr-only',
-required ? 'js-form-required',
-required ? 'form-required',
-tag,
-color,
-size,
-] -%}
+{%-
+  set classes = [
+    'label',
+    'control-label',
+    title_display == 'after' ? 'option',
+    title_display == 'invisible' and not (is_checkbox or is_radio) ? 'sr-only',
+    required ? 'js-form-required',
+    required ? 'form-required',
+    tag,
+    color,
+    size,
+  ]
+-%}
 {% if title is not empty and title_display == 'invisible' and (is_checkbox or is_radio) -%}
-    {#
+  {#
     Clear but preserve label text as attribute (e.g. for screen readers) for
     checkboxes/radio buttons when it actually should be invisible.
-    #}
-    {%- set attributes = attributes.setAttribute('title', title) -%}
-    {%- set title = null -%}
+  #}
+  {%- set attributes = attributes.setAttribute('title', title) -%}
+  {%- set title = null -%}
 {%- endif -%}
 {#
-Labels for single checkboxes/radios contain the element itself and thus have
-always to be rendered regardless of whether they have a title or not.
+  Labels for single checkboxes/radios contain the element itself and thus have
+  always to be rendered regardless of whether they have a title or not.
 #}
 {%- if title is not empty or is_checkbox or is_radio -%}
-    <label{{ attributes.addClass(classes) }}>{{ element }}{{ title }}
-        {%- if description -%}
-            <p class="help-block">{{ description }}</p>
-        {%- endif -%}
-    </label>
+  <label{{ attributes.addClass(classes) }}>{{ element }}{{ title }}
+    {%- if description -%}
+      <p class="help-block">{{ description }}</p>
+    {%- endif -%}
+  </label>
 {%- endif -%}

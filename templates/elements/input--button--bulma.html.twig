@@ -12,19 +12,17 @@
  * @ingroup themeable
  */
 #}
-  {%
-  set classes = bulma_button_classes
-  %}
+{% set classes = bulma_button_classes %}
 
 <div class="control">
-    <button{{ attributes.addClass(classes) }}>
-        {% if icon %}
-            <span class="icon">
-            <i class="fa fa-{{ icon }}"></i>
-        </span>
-        {% endif %}
-        {% if label is not empty %}
-        <span>{{ label }}</span>
-        {% endif %}
-    </button>{{ children }}
+  <button{{ attributes.addClass(classes) }}>
+    {% if icon %}
+      <span class="icon">
+      <i class="fa fa-{{ icon }}"></i>
+    </span>
+    {% endif %}
+    {% if label is not empty %}
+      <span>{{ label }}</span>
+    {% endif %}
+  </button>{{ children }}
 </div>

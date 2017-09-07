@@ -57,74 +57,74 @@
 {% if page.navbar_branding or page.navbar_social or page.primary_menu %}
 {# Top navbar #}
 <nav class="navbar has-shadow">
-    <div class="container">
-        <div class="navbar-brand">
-            {% if page.navbar_branding %}
-            <div class="navbar-item">
-            {{ page.navbar_branding }}
-            </div>
-            {% endif %}
-            <div id="js-navbar-burger" class="navbar-burger burger" data-target="navbar-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div id="js-navbar-menu" class="navbar-menu">
-            {% if page.navbar_social %}
-            <div class="navbar-start">
-            {{ page.navbar_social }}
-            </div>
-            {% endif %}
-            {% if page.primary_menu %}
-            {{ page.primary_menu }}
-            {% endif %}
-        </div>
+  <div class="container">
+    <div class="navbar-brand">
+      {% if page.navbar_branding %}
+      <div class="navbar-item">
+      {{ page.navbar_branding }}
+      </div>
+      {% endif %}
+      <div id="js-navbar-burger" class="navbar-burger burger" data-target="navbar-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
+    <div id="js-navbar-menu" class="navbar-menu">
+      {% if page.navbar_social %}
+      <div class="navbar-start">
+      {{ page.navbar_social }}
+      </div>
+      {% endif %}
+      {% if page.primary_menu %}
+      {{ page.primary_menu }}
+      {% endif %}
+    </div>
+  </div>
 </nav>
 {% endif %}
 {% endblock navbar %}
 {% block header %}
 <section class="hero is-primary">
-    {% block header_and_search %}
-    {% if page.header or page.header_search %}
-    {# Header hero region + search #}
-    <div class="hero-body is-primary">
-        <div class="container">
-            <div class="columns is-vcentered">
-                <div class="column">
-                    {{ page.header }}
-                    {% if is_front %}
-                        <h1 class="title">{{ site_slogan }}</h1>
-                    {% endif %}
-                </div>
-                <div class="column is-narrow">
-                    {{ page.header_search }}
-                </div>
-            </div>
+  {% block header_and_search %}
+  {% if page.header or page.header_search %}
+  {# Header hero region + search #}
+  <div class="hero-body is-primary">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column">
+          {{ page.header }}
+          {% if is_front %}
+            <h1 class="title">{{ site_slogan }}</h1>
+          {% endif %}
         </div>
+        <div class="column is-narrow">
+          {{ page.header_search }}
+        </div>
+      </div>
     </div>
-    {% endif %}
-    {% endblock header_and_search %}
-    {% block tabs %}
-    {# Drupal tabs #}
-    {% if page.header_tabs %}
-        <div class="hero-footer">
-            <div class="container">
-                {{ page.header_tabs }}
-            </div>
-        </div>
-    {% endif %}
-    {% endblock tabs %}
+  </div>
+  {% endif %}
+  {% endblock header_and_search %}
+  {% block tabs %}
+  {# Drupal tabs #}
+  {% if page.header_tabs %}
+    <div class="hero-footer">
+      <div class="container">
+        {{ page.header_tabs }}
+      </div>
+    </div>
+  {% endif %}
+  {% endblock tabs %}
 </section>
 {% endblock header %}
 {% block secondary_menu %}
 {# Secondary menu #}
 {% if page.secondary_menu %}
 <nav class="nav has-shadow">
-    <div class="container">
-        {{ page.secondary_menu }}
-    </div>
+  <div class="container">
+    {{ page.secondary_menu }}
+  </div>
 </nav>
 {% endif %}
 {% endblock secondary_menu %}
@@ -132,141 +132,141 @@
 {# Pinterest blocks style #}
 {% if page.tile_one %}
 <div class="blocks tiles">
-    <div class="container">
-        <div class="tile is-ancestor">
-            <div class="tile is-vertical is-8">
-                <div class="tile">
-                    {% if page.tile_one or page.tile_two %}
-                        <div class="tile is-parent is-vertical">
-                            <div class="tile is-child notification is-primary">
-                                {{ page.tile_one }}
-                            </div>
-                            <div class="tile is-child notification is-warning">
-                                {{ page.tile_two }}
-                            </div>
-                        </div>
-                    {% endif %}
-
-                    {% if page.tile_three %}
-                        <div class="tile is-parent">
-                            <div class="tile is-child notification is-info">
-                                {{ page.tile_three }}
-                            </div>
-                        </div>
-                    {% endif %}
-
-                </div>
-
-                {% if page.tile_four %}
-                    <div class="tile is-parent">
-                        <div class="tile is-child notification is-danger">
-                            {{ page.tile_four }}
-                        </div>
-                    </div>
-                {% endif %}
-
+  <div class="container">
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical is-8">
+        <div class="tile">
+          {% if page.tile_one or page.tile_two %}
+            <div class="tile is-parent is-vertical">
+              <div class="tile is-child notification is-primary">
+                {{ page.tile_one }}
+              </div>
+              <div class="tile is-child notification is-warning">
+                {{ page.tile_two }}
+              </div>
             </div>
+          {% endif %}
 
-            {% if page.tile_five %}
-                <div class="tile is-parent">
-                    <div class="tile is-child notification is-success">
-                        {{ page.tile_five }}
-                    </div>
-                </div>
-            {% endif %}
+          {% if page.tile_three %}
+            <div class="tile is-parent">
+              <div class="tile is-child notification is-info">
+                {{ page.tile_three }}
+              </div>
+            </div>
+          {% endif %}
+
         </div>
+
+        {% if page.tile_four %}
+          <div class="tile is-parent">
+            <div class="tile is-child notification is-danger">
+              {{ page.tile_four }}
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+
+      {% if page.tile_five %}
+        <div class="tile is-parent">
+          <div class="tile is-child notification is-success">
+            {{ page.tile_five }}
+          </div>
+        </div>
+      {% endif %}
     </div>
+  </div>
 </div>
 {% endif %}
 {% endblock tiles %}
 {% block main %}
 {# Main section #}
 <section class="section">
-    <main role="main" class="container">
-        <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+  <main role="main" class="container">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
-        {{ page.highlighted }}
-        {{ page.help }}
+    {{ page.highlighted }}
+    {{ page.help }}
 
-        <div class="columns is-centered">
-            {% block main_content %}
-            {# Set attributes for content. #}
-            {% if not page.content_attributes %}
-            {%
-              set page = page|merge({
-                'content_attributes': create_attribute().addClass([
-                  'main-content',
-                  'column',
-                ]),
-              })
-            %}
-            {% endif %}
-            {# Main content #}
-            <div{{page.content_attributes}}>
-                {{ page.content }}
-            </div>
-            {% endblock main_content %}
-            {% block sidebar_first %}
-            {# Sidebar first #}
-            {% if page.sidebar_first %}
-            {# Set attributes for content. #}
-                {% if not page.sidebar_first_attributes %}
-                {%
-                  set page = page|merge({
-                    'sidebar_first_attributes': create_attribute().addClass([
-                      'sidebar-first',
-                      'column',
-                      'is-2',
-                    ]),
-                  })
-                %}
-                {% endif %}
-                <aside{{page.sidebar_first_attributes|without('role')}} role="complimentary">
-                    {{ page.sidebar_first }}
-                </aside>
-            {% endif %}
-            {% endblock sidebar_first %}
-            {% block sidebar_second %}
-            {# Sidebar second #}
-            {% if page.sidebar_second %}
-                {% if not page.sidebar_second_attributes %}
-                {%
-                  set page = page|merge({
-                    'sidebar_second_attributes': create_attribute().addClass([
-                      'sidebar-second',
-                      'column',
-                      'is-2',
-                    ]),
-                  })
-                %}
-                {% endif %}
-                <aside{{page.sidebar_second_attributes|without('role')}} role="complimentary>
-                    {{ page.sidebar_second }}
-                </aside>
-            {% endif %}
-            {% endblock sidebar_second %}
-        </div>
+    <div class="columns is-centered">
+      {% block main_content %}
+      {# Set attributes for content. #}
+      {% if not page.content_attributes %}
+      {%
+        set page = page|merge({
+          'content_attributes': create_attribute().addClass([
+            'main-content',
+            'column',
+          ]),
+        })
+      %}
+      {% endif %}
+      {# Main content #}
+      <div{{page.content_attributes}}>
+        {{ page.content }}
+      </div>
+      {% endblock main_content %}
+      {% block sidebar_first %}
+      {# Sidebar first #}
+      {% if page.sidebar_first %}
+      {# Set attributes for content. #}
+        {% if not page.sidebar_first_attributes %}
+        {%
+          set page = page|merge({
+            'sidebar_first_attributes': create_attribute().addClass([
+              'sidebar-first',
+              'column',
+              'is-2',
+            ]),
+          })
+        %}
+        {% endif %}
+        <aside{{page.sidebar_first_attributes|without('role')}} role="complimentary">
+          {{ page.sidebar_first }}
+        </aside>
+      {% endif %}
+      {% endblock sidebar_first %}
+      {% block sidebar_second %}
+      {# Sidebar second #}
+      {% if page.sidebar_second %}
+        {% if not page.sidebar_second_attributes %}
+        {%
+          set page = page|merge({
+            'sidebar_second_attributes': create_attribute().addClass([
+              'sidebar-second',
+              'column',
+              'is-2',
+            ]),
+          })
+        %}
+        {% endif %}
+        <aside{{page.sidebar_second_attributes|without('role')}} role="complimentary>
+          {{ page.sidebar_second }}
+        </aside>
+      {% endif %}
+      {% endblock sidebar_second %}
+    </div>
 
-    </main>
+  </main>
 </section>
 {% endblock main %}
 {% block bottom %}
 {# Bottom second colored section #}
 {% if page.bottom %}
 <section class="hero is-info bsa">
-    <div class="container">
-        {{ page.bottom }}
-    </div>
+  <div class="container">
+    {{ page.bottom }}
+  </div>
 </section>
 {% endif %}
 {% endblock bottom %}
 
 {% block footer %}
 {% if page.footer %}
-    <footer role="contentinfo" class="footer">
-        <div class="container">
-            {{ page.footer }}
-        </div>
-    </footer>
+  <footer role="contentinfo" class="footer">
+    <div class="container">
+      {{ page.footer }}
+    </div>
+  </footer>
 {% endif %}
 {% endblock footer %}

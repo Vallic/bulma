@@ -37,21 +37,21 @@ set classes = [
 %}
 <section{{ attributes.addClass(classes) }}>
 
-    {% if block_panel_style %}
+  {% if block_panel_style %}
     <div class="panel">
-        {{ title_prefix }}
-        <h2{{ title_attributes.addClass('panel-heading') }}>{{ label }}</h2>
-        {{ title_suffix }}
-        <div class="panel-block">
-            {% endif %}
+      {{ title_prefix }}
+      <h2{{ title_attributes.addClass('panel-heading') }}>{{ label }}</h2>
+      {{ title_suffix }}
+      <div class="panel-block">
+        {% endif %}
 
-            {% block content %}
-                {{ content }}
-            {% endblock %}
+        {% block content %}
+          {{ content }}
+        {% endblock %}
 
-            {% if block_panel_style %}
-        </div>
+        {% if block_panel_style %}
+      </div>
     </div>
-    {% endif %}
+  {% endif %}
 
 </section>

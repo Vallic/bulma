@@ -80,18 +80,18 @@
 
   {% if user_picture %}
   <figure class="media-left">
-      {{ user_picture }}
+    {{ user_picture }}
   </figure>
   {% endif %}
 
   <div class="media-content">
     <div class="content">
-          {% if title %}
-          {{ title_prefix }}
-      <p{{ title_attributes }}>{{ title }}</p>
-        {{ title_suffix }}
-        {% endif %}
-        {{ content }}
+      {% if title %}
+        {{ title_prefix }}
+        <p{{ title_attributes }}>{{ title }}</p>
+          {{ title_suffix }}
+      {% endif %}
+      {{ content }}
       <small>{{ submitted }}  {{ permalink }}</small>
     </div>
   </div>

@@ -25,27 +25,27 @@
 #}
 
 {% for type, messages in message_list %}
-    {%- set classes = [
-        'message',
-        type == 'error' ? 'is-danger',
-        type == 'status' ? 'is-success',
-        type == 'warning' ? 'is-warning',
-    ] -%}
+  {%- set classes = [
+    'message',
+    type == 'error' ? 'is-danger',
+    type == 'status' ? 'is-success',
+    type == 'warning' ? 'is-warning',
+  ] -%}
   <div {{ attributes.addClass(classes) }} role="contentinfo" aria-label="{{ status_headings[type] }}"{{ attributes|without('role', 'aria-label') }}>
-      <div class="{{ type }}"></div>
-      {% if status_headings[type] %}
-        <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
-      {% endif %}
-      <div class="message-body">
-      {% if messages|length > 1 %}
-        <ul>
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        {{ messages|first }}
-      {% endif %}
-      </div>
+    <div class="{{ type }}"></div>
+    {% if status_headings[type] %}
+      <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
+    {% endif %}
+    <div class="message-body">
+    {% if messages|length > 1 %}
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      {{ messages|first }}
+    {% endif %}
+    </div>
   </div>
 {% endfor %}

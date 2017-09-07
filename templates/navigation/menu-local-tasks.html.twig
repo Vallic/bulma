@@ -19,14 +19,14 @@ style,
 fullwidth,
 ] %}
 {% if primary %}
-    <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
-    <div{{ attributes.addClass(classes) }}>
-        <ul class="primary">{{ primary }}</ul>
-    </div>
+  <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
+  <div{{ attributes.addClass(classes) }}>
+    <ul class="primary">{{ primary }}</ul>
+  </div>
 {% endif %}
 {% if secondary %}
-    <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
-    <div{{ attributes.addClass(classes) }}>
-        <ul class="secondary">{{ secondary }}</ul>
-    </div>
+  <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
+  <div{{ attributes.addClass(classes) }}>
+    <ul class="secondary">{{ secondary }}</ul>
+  </div>
 {% endif %}

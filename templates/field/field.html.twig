@@ -1,4 +1,41 @@
-{% extends "@stable/field/field.html.twig" %}
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ * @see template_preprocess_field()
+ */
+#}
 {#
   Ensures that the visually hidden option for field labels works correctly.
   @todo: Remove when https://www.drupal.org/node/2779919 is resolved.
@@ -11,3 +48,71 @@
   ]
 %}
 {% set title_attributes = title_attributes.addClass(title_classes) %}
+{# Child templates can specify classes to be added to items. #}
+{% set item_classes = item_classes ?? [] %}
+{# Child templates can specify whether items should be wrapped. #}
+{% set use_item_wrapper = use_item_wrapper is defined ? use_item_wrapper : true %}
+
+{% macro render_item(item, item_classes, use_item_wrapper) %}
+  {%
+    set item = item|merge({
+      'attributes': item.attributes.addClass(item_classes)
+    })
+  %}
+  {% if use_item_wrapper %}
+    <div{{ item.attributes }}>{{ item.content }}</div>
+  {% else %}
+    {% if item.content['#options'] %}
+      {% set item_attributes = item.attributes %}
+      {# Merge in existing attributes, if any. #}
+      {% if item.content['#options']['attributes'] is defined %}
+        {% set inner_attributes = item.content['#options']['attributes'] %}
+        {% for attribute, value in inner_attributes %}
+          {% if property == 'class' %}
+            {% set item_attributes = item_attributes.addClass(value) %}
+          {% else %}
+            {% set item_attributes = item_attributes.setAttribute(attribute, value) %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {%
+        set item = item|merge({
+          'content': item.content|merge({
+            '#options': item.content['#options']|merge({
+              'attributes': item_attributes.toArray(),
+            })
+          })
+        })
+      %}
+    {% endif %}
+    {{ item.content }}
+  {% endif %}
+{% endmacro render_item %}
+{% import _self as helpers %}
+
+{% if label_hidden %}
+  {% if multiple %}
+    <div{{ attributes }}>
+      {% for item in items %}
+        {{ helpers.render_item(item, item_classes, use_item_wrapper) }}
+      {% endfor %}
+    </div>
+  {% else %}
+    {% for item in items %}
+      <div{{ attributes }}>{{ helpers.render_item(item, item_classes, use_item_wrapper) }}</div>
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes }}>
+    <div{{ title_attributes }}>{{ label }}</div>
+    {% if multiple and use_item_wrapper %}
+      <div>
+    {% endif %}
+    {% for item in items %}
+      {{ helpers.render_item(item, item_classes, use_item_wrapper) }}
+    {% endfor %}
+    {% if multiple and use_item_wrapper %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

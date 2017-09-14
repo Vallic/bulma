@@ -1,0 +1,25 @@
+{% macro merge_attributes(attributes, item, item_key) %}
+  {# Merge in existing attributes, if any. #}
+  {% if item.content['#options'] %}
+    {% if item[item_key]['#options']['attributes'] is defined %}
+      {% set inner_attributes = item[item_key]['#options']['attributes'] %}
+      {% for attribute, value in inner_attributes %}
+        {% if property == 'class' %}
+          {% set attributes = attributes.addClass(value) %}
+        {% else %}
+          {% set attributes = attributes.setAttribute(attribute, value) %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {%
+      set item = item|merge({
+        (item_key): item[item_key]|merge({
+          '#options': item[item_key]['#options']|merge({
+            'attributes': attributes.toArray(),
+          })
+        })
+      })
+    %}
+  {% endif %}
+  {{ item[item_key] }}
+{% endmacro merge_attributes %}

@@ -44,9 +44,11 @@
   <div{{ attributes.addClass('field is-grouped bulma') }}>
     {%- for item in links -%}
         <div class="control">
-      <div{{ item.attributes.addClass('button') }}>
+      <div{{ item.attributes }}>
         {%- if item.link -%}
-          {{ item.link }}
+          {% set item_attributes = create_attribute().addClass('button') %}
+          {% import "@bulma/macros/renderables.html.twig" as renderables %}
+          {{ renderables.merge_attributes(item_attributes, item, 'link') }}
         {%- elseif item.text_attributes -%}
           <span{{ item.text_attributes }}>{{ item.text }}</span>
         {%- else -%}

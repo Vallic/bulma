@@ -62,30 +62,8 @@
   {% if use_item_wrapper %}
     <div{{ item.attributes }}>{{ item.content }}</div>
   {% else %}
-    {% if item.content['#options'] %}
-      {% set item_attributes = item.attributes %}
-      {# Merge in existing attributes, if any. #}
-      {% if item.content['#options']['attributes'] is defined %}
-        {% set inner_attributes = item.content['#options']['attributes'] %}
-        {% for attribute, value in inner_attributes %}
-          {% if property == 'class' %}
-            {% set item_attributes = item_attributes.addClass(value) %}
-          {% else %}
-            {% set item_attributes = item_attributes.setAttribute(attribute, value) %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-      {%
-        set item = item|merge({
-          'content': item.content|merge({
-            '#options': item.content['#options']|merge({
-              'attributes': item_attributes.toArray(),
-            })
-          })
-        })
-      %}
-    {% endif %}
-    {{ item.content }}
+    {% import "@bulma/macros/renderables.html.twig" as renderables %}
+    {{ renderables.merge_attributes(item.attributes, item, 'content') }}
   {% endif %}
 {% endmacro render_item %}
 {% import _self as helpers %}

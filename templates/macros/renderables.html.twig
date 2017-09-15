@@ -1,6 +1,6 @@
 {% macro merge_attributes(attributes, item, item_key) %}
   {# Merge in existing attributes, if any. #}
-  {% if item.content['#options'] %}
+  {% if item[item_key]['#options'] is defined %}
     {% if item[item_key]['#options']['attributes'] is defined %}
       {% set inner_attributes = item[item_key]['#options']['attributes'] %}
       {% for attribute, value in inner_attributes %}
@@ -12,7 +12,7 @@
       {% endfor %}
     {% endif %}
     {%
-      set item = item|merge({
+      set item = item|without(item_key)|merge({
         (item_key): item[item_key]|merge({
           '#options': item[item_key]['#options']|merge({
             'attributes': attributes.toArray(),

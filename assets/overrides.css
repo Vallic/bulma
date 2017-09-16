@@ -26,4 +26,9 @@ article section.comment-section article {
   .label.is-pulled-left::after {
     content: ':'; }
 
+.navbar > .container > .navbar-brand {
+  margin-left: -1rem; }
+.navbar > .container > .navbar-menu {
+  margin-right: -1rem; }
+
 /*# sourceMappingURL=overrides.css.map */

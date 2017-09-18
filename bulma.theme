@@ -5,6 +5,7 @@
  * The primary PHP file for the Drupal Bulma base theme.
  */
 
+use Drupal\block\Entity\Block;
 use Drupal\bulma\Bulma;
 use Drupal\bulma\Bulmaswatch;
 use Drupal\file\Entity\File;
@@ -201,6 +202,10 @@ function bulma_preprocess_block(&$variables) {
     $variables['attributes']['id'] = 'navbar-menu';
     $variables['attributes']['class'][] = 'navbar-end';
   }
+
+  // Set a region variable for use in templates.
+  $block = Block::load($variables['elements']['#id']);
+  $variables['region'] = $block->getRegion();
 }
 
 /**

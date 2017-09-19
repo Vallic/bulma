@@ -8,6 +8,15 @@
     'clearfix',
   ]
 %}
+{# Footer blocks display in columns. #}
+{% if region == 'footer' %}
+  {%
+    set classes = classes|merge([
+      'column',
+      'is-narrow',
+    ])
+  %}
+{% endif %}
 {% if block_panel_style %}
   {% set classes = classes|merge(['panel']) %}
   {%

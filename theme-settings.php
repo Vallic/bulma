@@ -7,6 +7,7 @@
 
 use Drupal\bulma\Bulma;
 use Drupal\bulma\Bulmaswatch;
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -438,9 +439,47 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
       ];
     }
 
+    $form['#validate'][] = 'bulma_form_system_theme_settings_validate';
     $form['#submit'][] = 'bulma_form_system_theme_settings_submit';
+
   }
 
+}
+
+/**
+ * Form vallidation handler for system_theme_settings form.
+ */
+function bulma_form_system_theme_settings_validate($form, FormStateInterface $form_state) {
+  // Set a flag to indicate whether caches need to be cleared.
+  $flush_caches = FALSE;
+  $settings = [
+    [
+      'cdn',
+      'bulma',
+      'version',
+    ],
+    [
+      'cdn',
+      'bulmaswatch',
+      'version',
+    ],
+    [
+      'cdn',
+      'bulmaswatch',
+      'theme',
+    ],
+  ];
+  foreach ($settings as $setting) {
+    $original_value = NestedArray::getValue($form, array_merge($setting, ['#default_value']), $key_exists);
+    if ($key_exists) {
+      $submitted_value = $form_state->getValue($setting);
+      if ($submitted_value !== $original_value) {
+        $flush_caches = TRUE;
+        break;
+      }
+    }
+  }
+  $form_state->set('flush_caches', $flush_caches);
 }
 
 /**
@@ -448,5 +487,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
  */
 function bulma_form_system_theme_settings_submit($form, FormStateInterface $form_state) {
   // Clear cached data so a change will take effect.
-  drupal_flush_all_caches();
+  if ($form_state->get('flush_caches')) {
+    drupal_flush_all_caches();
+  }
 }

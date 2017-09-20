@@ -362,10 +362,9 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
       '#options' => $versions,
       '#default_value' => theme_get_setting('cdn.bulma.version'),
     ];
-    $form['cdn']['bulma']['theme_message'] = [
+    $form['cdn']['bulma']['message'] = [
       '#type' => 'item',
       '#markup' => '<p>' . t('To use a local version of Bulma, <a href=":download" target="_blank">download</a> a Bulma release and extract it to <code>libraries/bulma</code> so that the README.md file is at <code>libraries/bulma/README.md</code>.', [':download' => 'https://github.com/jgthms/bulma/releases']) . '</p>',
-      '#tree' => FALSE,
     ];
   }
   else {
@@ -403,7 +402,6 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
       $form['cdn']['bulmaswatch']['message'] = [
         '#type' => 'item',
         '#markup' => '<p>' . t('To use a local version of Bulmaswatch, <a href=":download" target="_blank">download</a> a Bulmaswatch release and extract it to <code>libraries/bulmaswatch</code> so that the README.md file is at <code>libraries/bulmaswatch/README.md</code>.', [':download' => 'https://github.com/jenil/bulmaswatch/releases']) . '</p>',
-        '#tree' => FALSE,
         '#weight' => 10,
       ];
     }
@@ -435,7 +433,6 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
             'select[name="cdn[bulmaswatch][theme]"]' => ['value' => $machine_name],
           ],
         ],
-        '#tree' => FALSE,
       ];
     }
 
@@ -480,6 +477,29 @@ function bulma_form_system_theme_settings_validate($form, FormStateInterface $fo
     }
   }
   $form_state->set('flush_caches', $flush_caches);
+
+  // Unset form values that don't need to be saved.
+  // Unset bulma keys.
+  $bulma_parent_keys = [
+    'cdn',
+    'bulma',
+  ];
+  $bulma_value = $form_state->getValue($bulma_parent_keys);
+  unset($bulma_value['message']);
+  $form_state->setValue($bulma_parent_keys, $bulma_value);
+  // Unset bulmaswatch keys.
+  $bulmaswatch_parent_keys = [
+    'cdn',
+    'bulmaswatch',
+  ];
+  $bulmaswatch_value = $form_state->getValue($bulmaswatch_parent_keys);
+  unset($bulmaswatch_value['message']);
+  if ($themes = Bulmaswatch::getThemes()) {
+    foreach (array_keys($themes) as $machine_name) {
+      unset($bulmaswatch_value['theme_preview_' . $machine_name]);
+    }
+  }
+  $form_state->setValue($bulmaswatch_parent_keys, $bulmaswatch_value);
 }
 
 /**

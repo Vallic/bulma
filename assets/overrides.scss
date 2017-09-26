@@ -83,10 +83,3 @@ article {
     }
   }
 }
-
-// Address left padding issue at beginning of breadcrumbs.
-.container {
-  .breadcrumb {
-    margin-left: -1.1rem;
-  }
-}

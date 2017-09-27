@@ -435,12 +435,10 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
         ],
       ];
     }
-
-    $form['#validate'][] = 'bulma_form_system_theme_settings_validate';
-    $form['#submit'][] = 'bulma_form_system_theme_settings_submit';
-
   }
 
+  $form['#validate'][] = 'bulma_form_system_theme_settings_validate';
+  $form['#submit'][] = 'bulma_form_system_theme_settings_submit';
 }
 
 /**

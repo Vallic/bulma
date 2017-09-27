@@ -442,7 +442,7 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
 }
 
 /**
- * Form vallidation handler for system_theme_settings form.
+ * Form validation handler for system_theme_settings form.
  */
 function bulma_form_system_theme_settings_validate($form, FormStateInterface $form_state) {
   // Set a flag to indicate whether caches need to be cleared.

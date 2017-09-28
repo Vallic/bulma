@@ -83,3 +83,10 @@ article {
     }
   }
 }
+
+// Add margin between logo and site name.
+.block-system-branding-block {
+  > figure {
+    margin-right: 0.5rem
+  }
+}

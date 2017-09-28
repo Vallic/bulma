@@ -31,4 +31,7 @@ article section.comment-section article {
 .navbar > .container > .navbar-menu {
   margin-right: -1rem; }
 
+.block-system-branding-block > figure {
+  margin-right: 0.5rem; }
+
 /*# sourceMappingURL=overrides.css.map */

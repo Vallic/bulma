@@ -73,7 +73,7 @@
     server which comments are new for the user. Rendering the final "new"
     indicator here would break the render cache.
   #}
-  <mark class="hidden" data-comment-timestamp="{{ new_indicator_timestamp }}"></mark>
+  <mark class="hidden tag is-primary" data-comment-timestamp="{{ new_indicator_timestamp }}"></mark>
     {% if parent %}
         <p class="visually-hidden">{{ parent }}</p>
     {% endif %}

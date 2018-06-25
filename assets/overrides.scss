@@ -90,3 +90,13 @@ article {
     margin-right: 0.5rem
   }
 }
+
+// Add padding for left and right aligned images
+.container {
+  img.align-right {
+    padding-left: 10px;
+  }
+  img.align-left {
+    padding-right: 10px;
+  }
+}

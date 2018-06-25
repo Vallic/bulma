@@ -34,4 +34,9 @@ article section.comment-section article {
 .block-system-branding-block > figure {
   margin-right: 0.5rem; }
 
+.container img.align-right {
+  padding-left: 10px; }
+.container img.align-left {
+  padding-right: 10px; }
+
 /*# sourceMappingURL=overrides.css.map */

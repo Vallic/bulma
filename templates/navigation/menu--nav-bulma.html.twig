@@ -31,15 +31,44 @@
 {% macro menu_links(items, attributes, menu_level, link_classes) %}
   {% import _self as menus %}
   {% if items %}
-    {% if menu_level == 0 %}
-      {% for item in items %}
-        {% set link_classes = (link_classes ?? 'navbar-item') %}
-        {{ link(
-          item.title,
-          item.url,
-          item.attributes.addClass(link_classes)
-        ) }}
-      {% endfor %}
-    {% endif %}
+    {% for item in items %}
+      {#
+        A child template can pass in a set of link_classes, which replace the
+        default navbar-item class.
+      #}
+      {%
+       set item_classes = (link_classes ?? [])|merge([
+         item.in_active_trail ? 'is-in-active-trail',
+       ])
+      %}
+      {# Bulma supports only a single level of dropdowns. #}
+      {% if item.below and menu_level == 0 %}
+        <div class="navbar-item has-dropdown is-hoverable">
+        {%
+          set item_classes = item_classes|merge([
+            'navbar-link',
+          ])
+        %}
+      {% else %}
+        {% if not link_classes %}
+          {%
+            set item_classes = item_classes|merge([
+              'navbar-item',
+            ])
+          %}
+        {% endif %}
+      {% endif %}
+      {{ link(
+        item.title,
+        item.url,
+        item.attributes.addClass(item_classes)
+      ) }}
+      {% if item.below and menu_level == 0 %}
+        <div class="navbar-dropdown">
+        {{ menus.menu_links(item.below, attributes, menu_level + 1, link_classes) }}
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
   {% endif %}
 {% endmacro %}

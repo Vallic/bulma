@@ -14,9 +14,13 @@ use Drupal\Core\Form\FormStateInterface;
  * Implements hook_form_system_theme_settings_alter().
  */
 function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form_state, $form_id = NULL) {
-
-  // Get all menus.
-  $menus = menu_ui_get_menus(FALSE);
+  if (\Drupal::moduleHandler()->moduleExists('menu_ui')) {
+    // Get all menus.
+    $menus = menu_ui_get_menus(FALSE);
+  }
+  else {
+    $menus = [];
+  }
 
   $form['bulma'] = array(
     '#type' => 'vertical_tabs',

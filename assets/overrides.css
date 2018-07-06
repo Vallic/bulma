@@ -39,4 +39,31 @@ article section.comment-section article {
 .container img.align-left {
   padding-right: 10px; }
 
+.quickedit-toolbar {
+  width: 100%; }
+
+.quickedit-toolbar-label {
+  position: absolute;
+  left: 30px;
+  font-size: 0.8rem; }
+
+.quickedit-toolgroup.ops {
+  position: absolute;
+  right: 5px; }
+
+.quickedit .icon.icon-only {
+  display: inline-block; }
+
+.quickedit .icon-close:before {
+  top: 6px; }
+
+.quickedit-button.action-save {
+  min-width: 3.5em; }
+
+.quickedit button.icon {
+  font-size: 0.8em; }
+
+.quickedit .icon {
+  min-height: 2em; }
+
 /*# sourceMappingURL=overrides.css.map */

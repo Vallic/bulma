@@ -39,6 +39,13 @@ article section.comment-section article {
 .container img.align-left {
   padding-right: 10px; }
 
+.indented {
+  margin-left: 3em; }
+
+[dir="rtl"] .indented {
+  margin-left: 0;
+  margin-right: 3em; }
+
 .quickedit-toolbar {
   width: 100%; }
 

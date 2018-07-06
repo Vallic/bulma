@@ -101,6 +101,15 @@ article {
   }
 }
 
+// Comment indentation.
+.indented {
+  margin-left: 3em;
+}
+[dir="rtl"] .indented {
+  margin-left: 0;
+  margin-right: 3em;
+}
+
 // Quick edit fixes.
 .quickedit-toolbar {width:100%; }
 .quickedit-toolbar-label { position: absolute; left:30px; font-size:0.8rem; }

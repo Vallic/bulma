@@ -94,7 +94,7 @@
       <div class="columns is-vcentered">
         <div class="column">
           {{ page.header }}
-          {% if is_front %}
+          {% if is_front and site_slogan %}
             <h1 class="title">{{ site_slogan }}</h1>
           {% endif %}
         </div>

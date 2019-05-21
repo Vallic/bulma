@@ -88,7 +88,7 @@ class Bulma {
 
           // Default choice in select or checkbox is not selected.
           case '0':
-            continue;
+            break;
 
           // Cases for checkbox settings.
           case 1:

@@ -15,7 +15,14 @@
  * @ingroup themeable
  */
 #}
-{% set classes = ['navbar-item'] %}
+{% set classes = classes ?? [] %}
+{%
+  set classes = classes|merge([
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'navbar-item',
+  ])
+%}
 {% block content %}
   {% if site_logo %}
     <figure class="image is-pulled-left">

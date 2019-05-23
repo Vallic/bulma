@@ -59,11 +59,13 @@
 <nav class="navbar has-shadow">
   <div class="container">
     <div class="navbar-brand">
+      {% block navbar_branding %}
       {% if page.navbar_branding %}
       <div class="navbar-item">
       {{ page.navbar_branding }}
       </div>
       {% endif %}
+      {% endblock navbar_branding %}
       <div id="js-navbar-burger" class="navbar-burger burger" data-target="navbar-menu">
         <span></span>
         <span></span>
@@ -71,14 +73,18 @@
       </div>
     </div>
     <div id="js-navbar-menu" class="navbar-menu">
+      {% block navbar_social %}
       {% if page.navbar_social %}
       <div class="navbar-start">
       {{ page.navbar_social }}
       </div>
       {% endif %}
+      {% endblock navbar_social %}
+      {% block primary_menu %}
       {% if page.primary_menu %}
       {{ page.primary_menu }}
       {% endif %}
+      {% endblock primary_menu %}
     </div>
   </div>
 </nav>

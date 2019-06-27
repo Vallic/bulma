@@ -214,9 +214,11 @@ function bulma_preprocess_block(&$variables) {
  * Implements template_preprocess_table().
  */
 function bulma_preprocess_table(&$variables) {
-
   // Load existing classes.
-  $existing_class = $variables['attributes']['class'];
+  $existing_class = [];
+  if (isset($variables['attributes']['class'])) {
+    $existing_class = $variables['attributes']['class'];
+  }
 
   // Load Bulma specific table classes from theme settings.
   $bulma_table_class = Bulma::multiSettings('table');

@@ -320,6 +320,11 @@ class Bulma {
     if (self::singleSetting('general.icon_type')) {
       if (empty($class)) {
         switch ($type) {
+
+          case 'phone':
+            $class = 'phone';
+            break;
+
           case 'file':
             $class = 'file';
             break;

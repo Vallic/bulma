@@ -4,7 +4,6 @@ namespace Drupal\bulma;
 
 use Drupal\Component\Serialization\Json;
 use Drupal\Component\Serialization\Yaml;
-use Drupal\Component\Utility\Unicode;
 use Drupal\file\Entity\File;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
@@ -210,7 +209,7 @@ class Bulma {
             break;
 
           case 'contains':
-            if (strpos(Unicode::strtolower($value), Unicode::strtolower($text)) !== FALSE) {
+            if (strpos(mb_strtolower($value), mb_strtolower($text)) !== FALSE) {
               return $class;
             }
             break;
@@ -311,7 +310,7 @@ class Bulma {
     ];
 
     foreach ($icons as $key => $icon) {
-      if (Unicode::strtolower($name) === Unicode::strtolower($key)) {
+      if (mb_strtolower($name) === mb_strtolower($key)) {
         $class = $icon;
       }
     }

@@ -5,7 +5,7 @@ It has Bulma CSS framework, Sass, and Font Awesome built-in.
 ## Features
 1. Components and plugins from Bulma.
 2. Sass and Font Awesome built-in.
-3. Drush integration: drush bulma "My Subtheme".
+3. Drush integration (Drush version 8 only): drush bulma "My Subtheme".
 
 ## Installation
 After installing, you can optionally add the

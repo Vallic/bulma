@@ -257,6 +257,7 @@ function bulma_theme_suggestions_input_alter(array &$suggestions, array $variabl
     'radio',
     'checkbox',
     'submit',
+    'image_button',
   ];
 
   // Submit button needs have render as button element.

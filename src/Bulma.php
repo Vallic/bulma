@@ -320,7 +320,7 @@ class Bulma {
       if (empty($class)) {
         switch ($type) {
 
-          case 'phone':
+          case 'tel':
             $class = 'phone';
             break;
 

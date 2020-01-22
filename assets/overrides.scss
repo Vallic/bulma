@@ -72,18 +72,6 @@ article {
   }
 }
 
-// Address left and right padding issue at beginning and end of navbar.
-.navbar {
-  > .container {
-    > .navbar-brand {
-      margin-left: -1rem;
-    }
-    > .navbar-menu {
-      margin-right: -1rem;
-    }
-  }
-}
-
 // Add margin between logo and site name.
 .block-system-branding-block {
   > figure {

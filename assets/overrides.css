@@ -12,8 +12,10 @@
 @media screen and (max-width: 768px) {
   #header .nav-menu.nav-right.is-active nav {
     display: block; } }
+
 article.content {
   padding-bottom: 2rem; }
+
 article section.comment-section article {
   padding-bottom: 2rem; }
 
@@ -26,16 +28,12 @@ article section.comment-section article {
   .label.is-pulled-left::after {
     content: ':'; }
 
-.navbar > .container > .navbar-brand {
-  margin-left: -1rem; }
-.navbar > .container > .navbar-menu {
-  margin-right: -1rem; }
-
 .block-system-branding-block > figure {
   margin-right: 0.5rem; }
 
 .container img.align-right {
   padding-left: 10px; }
+
 .container img.align-left {
   padding-right: 10px; }
 

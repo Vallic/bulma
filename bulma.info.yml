@@ -1,8 +1,9 @@
 name: Bulma
 description: 'Built to use Bulma, a modern CSS framework based on Flexbox.'
 type: theme
+base theme: stable
+core_version_requirement: ^8.8 || ^9
 package: Core
-core: 8.x
 
 regions:
   header: 'Header'

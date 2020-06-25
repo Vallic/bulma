@@ -12,7 +12,7 @@
  * @ingroup themeable
  */
 #}
-{% spaceless %}
+{% apply spaceless %}
 <div class="control"><span class="select">
   <select{{ attributes }}>
     {% for option in options %}
@@ -28,4 +28,4 @@
     {% endfor %}
   </select>
 </span></div>
-{% endspaceless %}
+{% endapply %}

@@ -6,12 +6,6 @@ It has Bulma CSS framework, Sass, and Font Awesome built-in.
 1. Components and plugins from Bulma.
 2. Sass and Font Awesome built-in.
 
-## Installation
-After installing, you can optionally add the
-[Bulmaswath](https://jenil.github.io/bulmaswatch) themes. To do so,
-[download from GitHub](https://github.com/jenil/bulmaswatch) and extract to
-libraries/bulmaswatch, renaming the extracted directory as necessary.
-
 ## Links
 * Project Page:   http://vallic.com
 * Documentation:  http://vallic.com

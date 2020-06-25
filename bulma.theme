@@ -7,7 +7,6 @@
 
 use Drupal\block\Entity\Block;
 use Drupal\bulma\Bulma;
-use Drupal\bulma\Bulmaswatch;
 use Drupal\file\Entity\File;
 
 /**
@@ -414,12 +413,9 @@ function bulma_preprocess_views_view_table(&$variables) {
  * Implements hook_library_info_alter().
  */
 function bulma_library_info_alter(&$libraries, $extension) {
-  // Swap in Bulmaswatch theme's CSS.
-  if ($extension === 'bulma' &&
-    isset($libraries['global']) &&
-    ($theme = theme_get_setting('cdn.bulmaswatch.theme'))
-  ) {
-    // If bulmaswatch is configured to use the default theme, use Bulma directly.
+  // Add Bulma CSS.
+  if ($extension === 'bulma' && isset($libraries['global'])) {
+    // If configured to use the default theme, use Bulma directly.
     $cdn_data = Bulma::getCdnData();
     $properties = [];
     if ($theme === 'default') {
@@ -429,17 +425,6 @@ function bulma_library_info_alter(&$libraries, $extension) {
       }
       else {
         $css_file = $cdn_data['api']['bulma']['file_root'] . $bulma_file;
-        $properties['type'] = 'external';
-      }
-    }
-    else {
-      $properties['minified'] = TRUE;
-      $themes = Bulmaswatch::getThemes();
-      if (isset($themes[$theme]['local_css'])) {
-        $css_file = $themes[$theme]['local_css'];
-      }
-      else {
-        $css_file = $cdn_data['api']['bulmaswatch']['file_root'] . "/{$theme}/bulmaswatch.min.css";
         $properties['type'] = 'external';
       }
     }

@@ -428,7 +428,7 @@ class Bulma {
       if (file_exists($filename)) {
         $cdn_data = Yaml::decode(file_get_contents($filename));
         // Replace version placeholder.
-        foreach (['bulma', 'bulmaswatch'] as $package) {
+        foreach (['bulma'] as $package) {
           if (!$version = theme_get_setting("cdn.{$package}.version")) {
             $version = 'latest';
           }
@@ -472,7 +472,7 @@ class Bulma {
    *
    * @param string $package
    *   The name of a package to return version data for. Valid values are
-   *  'bulma' and 'bulmaswatch'.
+   *  'bulma'.
    *
    * @return array|FALSE
    *   The available versions keyed by version, or FALSE on error.

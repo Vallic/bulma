@@ -8,8 +8,3 @@ api:
     file_root: https://cdn.jsdelivr.net/npm/bulma@[version]
     # URL of version data request.
     version: https://data.jsdelivr.com/v1/package/npm/bulma
-  bulmaswatch:
-    # Root URL of files, including [version] placeholder for version string.
-    file_root: https://cdn.jsdelivr.net/npm/bulmaswatch@[version]
-    # URL of version data request.
-    version: https://data.jsdelivr.com/v1/package/npm/bulmaswatch

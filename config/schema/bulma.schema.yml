@@ -95,13 +95,3 @@ bulma.settings:
             version:
               type: string
               label: 'Version'
-        bulmaswatch:
-          type: mapping
-          label: 'Bulmaswatch'
-          mapping:
-            version:
-              type: string
-              label: 'Version'
-            theme:
-              type: string
-              label: 'Theme'

@@ -6,7 +6,6 @@
  */
 
 use Drupal\bulma\Bulma;
-use Drupal\bulma\Bulmaswatch;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -380,67 +379,6 @@ function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form
     ];
   }
 
-  if ($themes = Bulmaswatch::getThemes()) {
-    // Bulmaswatch settings.
-    $form['cdn']['bulmaswatch'] = [
-      '#type' => 'details',
-      '#title' => t('Bulmaswatch'),
-      '#description' => t('Select a custom theme provided by Bulmaswatch; see <a href=":docs" target="_blank">documentation</a>.', [
-        ':docs' => 'https://jenil.github.io/bulmaswatch',
-      ]),
-      '#open' => TRUE,
-    ];
-
-    if (!Bulmaswatch::isLocal()) {
-      $versions = Bulma::getCdnVersions('bulmaswatch');
-      $form['cdn']['bulmaswatch']['version'] = [
-        '#type' => 'select',
-        '#title' => t('Version'),
-        '#description' => t('Select a Bulmaswatch version provided by the CDN <a href=":home" target="_blank">@name</a>.', [
-          ':home' => $cdn_data['home'],
-          '@name' => $cdn_data['name'],
-        ]),
-        '#options' => $versions,
-        '#default_value' => theme_get_setting('cdn.bulmaswatch.version'),
-      ];
-      $form['cdn']['bulmaswatch']['message'] = [
-        '#type' => 'item',
-        '#markup' => '<p>' . t('To use a local version of Bulmaswatch, <a href=":download" target="_blank">download</a> a Bulmaswatch release and extract it to <code>libraries/bulmaswatch</code> so that the README.md file is at <code>libraries/bulmaswatch/README.md</code>.', [':download' => 'https://github.com/jenil/bulmaswatch/releases']) . '</p>',
-        '#weight' => 10,
-      ];
-    }
-    else {
-      $api_data = Bulmaswatch::getBulmaswatchApiData();
-      $form['cdn']['bulmaswatch']['version'] = [
-        '#type' => 'item',
-        '#title' => t('Version'),
-        '#markup' => t('Using locally installed version %version.', ['%version' => $api_data['version']]),
-      ];
-    }
-    $form['cdn']['bulmaswatch']['theme'] = [
-      '#type' => 'select',
-      '#title' => t('Theme'),
-      '#options' => [],
-      '#empty_option' => t('Default'),
-      '#empty_value' => 'default',
-      '#default_value' => theme_get_setting('cdn.bulmaswatch.theme'),
-      '#open' => TRUE,
-    ];
-
-    foreach ($themes as $machine_name => $theme) {
-      $form['cdn']['bulmaswatch']['theme']['#options'][$machine_name] = t('@name: @description', ['@name' => $theme['name'], '@description' => $theme['description']]);
-      $form['cdn']['bulmaswatch']['theme_preview_' . $machine_name] = [
-        '#type' => 'item',
-        '#markup' => '<p>' . t('<a href=":preview" target="_blank">Preview</a> the %name theme.', [':preview' => $theme['preview'], '%name' => $theme['name']]) . '</p>',
-        '#states' => [
-          'visible' => [
-            'select[name="cdn[bulmaswatch][theme]"]' => ['value' => $machine_name],
-          ],
-        ],
-      ];
-    }
-  }
-
   $form['#validate'][] = 'bulma_form_system_theme_settings_validate';
   $form['#submit'][] = 'bulma_form_system_theme_settings_submit';
 }
@@ -459,12 +397,10 @@ function bulma_form_system_theme_settings_validate($form, FormStateInterface $fo
     ],
     [
       'cdn',
-      'bulmaswatch',
       'version',
     ],
     [
       'cdn',
-      'bulmaswatch',
       'theme',
     ],
   ];
@@ -489,19 +425,6 @@ function bulma_form_system_theme_settings_validate($form, FormStateInterface $fo
   $bulma_value = $form_state->getValue($bulma_parent_keys);
   unset($bulma_value['message']);
   $form_state->setValue($bulma_parent_keys, $bulma_value);
-  // Unset bulmaswatch keys.
-  $bulmaswatch_parent_keys = [
-    'cdn',
-    'bulmaswatch',
-  ];
-  $bulmaswatch_value = $form_state->getValue($bulmaswatch_parent_keys);
-  unset($bulmaswatch_value['message']);
-  if ($themes = Bulmaswatch::getThemes()) {
-    foreach (array_keys($themes) as $machine_name) {
-      unset($bulmaswatch_value['theme_preview_' . $machine_name]);
-    }
-  }
-  $form_state->setValue($bulmaswatch_parent_keys, $bulmaswatch_value);
 }
 
 /**

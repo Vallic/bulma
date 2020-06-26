@@ -84,14 +84,3 @@ bulma.settings:
         narrow:
           type: integer
           label: 'Narrow'
-    cdn:
-      type: mapping
-      label: 'CDN'
-      mapping:
-        bulma:
-          type: mapping
-          label: 'Bulma'
-          mapping:
-            version:
-              type: string
-              label: 'Version'

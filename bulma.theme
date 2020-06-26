@@ -408,29 +408,3 @@ function bulma_preprocess_views_view_table(&$variables) {
     }
   }
 }
-
-/**
- * Implements hook_library_info_alter().
- */
-function bulma_library_info_alter(&$libraries, $extension) {
-  // Add Bulma CSS.
-  if ($extension === 'bulma' && isset($libraries['global'])) {
-    // If configured to use the default theme, use Bulma directly.
-    $cdn_data = Bulma::getCdnData();
-    $properties = [];
-    if ($theme === 'default') {
-      $bulma_file = '/css/bulma.css';
-      if (Bulma::isLocal()) {
-        $css_file = '/libraries/bulma' . $bulma_file;
-      }
-      else {
-        $css_file = $cdn_data['api']['bulma']['file_root'] . $bulma_file;
-        $properties['type'] = 'external';
-      }
-    }
-    $libraries['global']['css']['base'] = [
-      $css_file => $properties,
-    ];
-  }
-
-}

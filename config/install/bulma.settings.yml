@@ -23,6 +23,3 @@ table:
   bordered: 0
   striped: 0
   narrow: 0
-cdn:
-  bulma:
-    version: '0.8.0'

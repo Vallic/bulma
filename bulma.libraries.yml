@@ -8,8 +8,4 @@ global:
       assets/overrides.css: {}
       assets/bulma.style.css: {}
   js:
-    assets/js/bulma.js: {}
-  dependencies:
-    - core/jquery
-    - core/jquery.once
-    - core/drupal
+    assets/BulmaJS/dist/bulma.js: {}

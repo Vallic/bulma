@@ -7,20 +7,22 @@ dependencies:
   - bulma_components:bulma_components
 
 regions:
-  header: 'Header'
   navbar_branding: 'Branding'
   navbar_social: 'Social'
-  header_search: 'Search'
+  header_first: 'Header first'
+  header_second: 'Header second'
   header_tabs: 'Tabs'
   primary_menu: 'Primary menu'
   secondary_menu: 'Secondary menu'
   highlighted: 'Highlighted'
   help: 'Help'
   content: 'Content'
-  sidebar_first: 'Sidebar First'
-  sidebar_second: 'Sidebar Second'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
   bottom: 'Bottom'
-  footer: 'Footer'
+  footer_menus: 'Footer menus'
+  footer_info: 'Footer info'
+  footer_notice: 'Footer notice'
 
 libraries:
   - bulma/global

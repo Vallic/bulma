@@ -9,7 +9,7 @@ dependencies:
     - bulma
 id: bulma_account_menu
 theme: bulma
-region: sidebar_second
+region: header_user
 weight: 0
 provider: null
 plugin: 'system_menu_block:account'
@@ -17,7 +17,7 @@ settings:
   id: 'system_menu_block:account'
   label: 'User account menu'
   provider: system
-  label_display: '1'
+  label_display: '0'
   level: 1
   depth: 1
 visibility: {  }

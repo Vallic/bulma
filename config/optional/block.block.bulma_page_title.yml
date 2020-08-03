@@ -5,7 +5,7 @@ dependencies:
     - bulma
 id: bulma_page_title
 theme: bulma
-region: header
+region: header_first
 weight: 0
 provider: null
 plugin: page_title_block

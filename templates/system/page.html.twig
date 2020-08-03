@@ -28,7 +28,7 @@
  *   comment/reply/12345).
  *
  * Regions:
- * - page.header: Items for the header region.
+ * - page.header_first: Items for the header region.
  * - page.primary_menu: Items for the primary menu region.
  * - page.secondary_menu: Items for the secondary menu region.
  * - page.highlighted: Items for the highlighted content region.
@@ -53,7 +53,16 @@
  * @ingroup themeable
  */
 #}
+{% block header_user %}
+{% if page.header_user %}
+<div class="container is-flex justify-end">
+  {{ page.header_user }}
+</div>
+{% endif %}
+{% endblock header_user %}
 {% block navbar %}
+{% block navbar_element %}
+{# Top navbar #}
 {% if page.navbar_branding or page.navbar_social or page.primary_menu %}
 {# Top navbar #}
 <nav class="navbar has-shadow">
@@ -87,40 +96,36 @@
   </div>
 </nav>
 {% endif %}
+{% endblock navbar_element %}
 {% endblock navbar %}
 {% block header %}
-<section class="hero is-primary">
-  {% block header_and_search %}
-  {% if page.header or page.header_search %}
-  {# Header hero region + search #}
-  <div class="hero-body is-primary">
-    <div class="container">
-      <div class="columns is-vcentered">
-        <div class="column">
-          {{ page.header }}
-          {% if is_front and site_slogan %}
-            <h1 class="title">{{ site_slogan }}</h1>
-          {% endif %}
-        </div>
-        <div class="column is-narrow">
-          {{ page.header_search }}
-        </div>
+{% block header_first_and_second %}
+{% if page.header_first or page.header_second %}
+<section class="container">
+  <div class="container">
+    <div class="columns is-vcentered">
+      <div class="column">
+        {% if is_front and site_slogan %}
+          <h2{{ site_slogan_attributes }}>{{ site_slogan }}</h1>
+        {% endif %}
+        {{ page.header_first }}
       </div>
+      {% if page.header_second %}
+      <div class="column is-narrow">
+        {{ page.header_second }}
+      </div>
+      {% endif %}
     </div>
   </div>
-  {% endif %}
-  {% endblock header_and_search %}
-  {% block tabs %}
-  {# Drupal tabs #}
-  {% if page.header_tabs %}
-    <div class="hero-footer">
-      <div class="container">
-        {{ page.header_tabs }}
-      </div>
-    </div>
-  {% endif %}
-  {% endblock tabs %}
 </section>
+{% endif %}
+{% endblock header_first_and_second %}
+{% block tabs %}
+{# Drupal tabs #}
+{% if page.header_tabs %}
+  {{ page.header_tabs }}
+{% endif %}
+{% endblock tabs %}
 {% endblock header %}
 {% block secondary_menu %}
 {# Secondary menu #}
@@ -174,7 +179,7 @@
           })
         %}
         {% endif %}
-        <aside{{page.sidebar_first_attributes|without('role')}} role="complementary">
+        <aside{{page.sidebar_first_attributes|without('role')}} role="complimentary">
           {{ page.sidebar_first }}
         </aside>
       {% endif %}
@@ -193,13 +198,13 @@
           })
         %}
         {% endif %}
-        <aside{{page.sidebar_second_attributes|without('role')}} role="complementary">
+        <aside{{page.sidebar_second_attributes|without('role')}} role="complimentary>
           {{ page.sidebar_second }}
         </aside>
       {% endif %}
       {% endblock sidebar_second %}
     </div>
-
+    {{ page.content_bottom }}
   </main>
 </section>
 {% endblock main %}
@@ -213,12 +218,23 @@
 </section>
 {% endif %}
 {% endblock bottom %}
-
 {% block footer %}
-{% if page.footer %}
+{% if page.footer or page.footer_menus or page.footer_info or page.footer_notice%}
   <footer role="contentinfo" class="footer">
     <div class="container">
       {{ page.footer }}
+      <div class="columns">
+        {% if page.footer_menus %}
+          {{ page.footer_menus }}
+        {% endif %}
+        {% if page.footer_info %}
+          <div class="column"></div>
+          {{ page.footer_info }}
+        {% endif %}
+      </div>
+      {% if page.footer_notice %}
+        {{ page.footer_notice }}
+      {% endif %}
     </div>
   </footer>
 {% endif %}

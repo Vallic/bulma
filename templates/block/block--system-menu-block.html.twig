@@ -1,13 +1,5 @@
 {% extends "@stable9/block/block--system-menu-block.html.twig" %}
-{% set classes = classes ?? ['menu'] %}
-{# Footer blocks display in columns. #}
-{% if region == 'footer' %}
-  {%
-    set classes = classes|merge([
-      'column',
-      'is-narrow',
-    ])
-  %}
-{% endif %}
+{% set classes = classes ?? [] %}
+{% set classes = classes|merge(['menu']) %}
 {% set attributes = attributes.addClass(classes) %}
 {% set title_attributes = title_attributes.addClass('menu-label') %}

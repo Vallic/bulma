@@ -24,6 +24,7 @@
   ])
 %}
 {% block content %}
+  {% block logo %}
   {% if site_logo %}
     <figure class="is-pulled-left">
       <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
@@ -31,7 +32,10 @@
       </a>
     </figure>
   {% endif %}
+  {% endblock logo %}
+  {% block site_name %}
   {% if site_name %}
     <a class="title is-size-3-desktop is-size-4-touch" href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
   {% endif %}
+  {% endblock site_name %}
 {% endblock content %}

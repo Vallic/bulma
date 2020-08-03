@@ -1,0 +1,14 @@
+{% extends "page.html.twig" %}
+
+{#
+  Override the main content column so it is 12 units at widescreen and above.
+  @see system/page.html.twig in the Bulma theme.
+#}
+{%
+  set page = page|merge({
+    'content_attributes': create_attribute().addClass([
+      'main-content',
+      'column',
+    ]),
+  })
+%}

@@ -1,0 +1,10 @@
+{% extends 'block--system-menu-block.html.twig' %}
+{# Footer menu blocks display in columns. #}
+{% set classes = classes ?? [] %}
+{%
+  set classes = classes|merge([
+    'column',
+    'is-narrow',
+    'is-hidden-mobile',
+  ])
+%}

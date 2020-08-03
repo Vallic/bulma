@@ -1,0 +1,12 @@
+{% extends 'block--system-menu-block.html.twig' %}
+{# Header user blocks display in columns. #}
+{% set classes = classes ?? [] %}
+{%
+  set classes = classes|merge([
+    'has-padding-top-5',
+    'has-padding-left-10-tablet-only',
+    'has-padding-left-5-mobile',
+    'has-padding-right-10-tablet-only',
+    'has-padding-right-5-mobile'
+  ])
+%}

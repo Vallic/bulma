@@ -73,26 +73,21 @@
     server which comments are new for the user. Rendering the final "new"
     indicator here would break the render cache.
   #}
-  <mark class="hidden tag is-primary" data-comment-timestamp="{{ new_indicator_timestamp }}"></mark>
+  <mark class="hidden tag is-primary comment-indicator" data-comment-timestamp="{{ new_indicator_timestamp }}"></mark>
     {% if parent %}
         <p class="visually-hidden">{{ parent }}</p>
     {% endif %}
 
-  {% if user_picture %}
   <figure class="media-left">
+    <p>{{ author }}</p>
+    <p><small><a href="{{ permalink_url }}" class="permalink" rel="bookmark" title="{% trans %}Permalink{% endtrans %}">{{ created }}</a></small></p>
     {{ user_picture }}
+    {{ content.links }}
   </figure>
-  {% endif %}
 
   <div class="media-content">
     <div class="content">
-      {% if title %}
-        {{ title_prefix }}
-        <p{{ title_attributes }}>{{ title }}</p>
-          {{ title_suffix }}
-      {% endif %}
-      {{ content }}
-      <small>{{ submitted }}  {{ permalink }}</small>
+      {{ content|without('links') }}
     </div>
   </div>
 </article>

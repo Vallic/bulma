@@ -5,7 +5,7 @@ global:
     component:
       assets/fontawesome/css/fontawesome.css: {}
     theme:
+      assets/modifiers.css: {}
       assets/overrides.css: {}
-      assets/bulma.style.css: {}
   js:
     assets/BulmaJS/dist/bulma.js: {}

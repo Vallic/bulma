@@ -1,3 +1,23 @@
+.paragraph {
+  margin-bottom: 1.75rem; }
+
+.navbar-item .is-pulled-left img {
+  max-height: 4rem; }
+
+#block-octavia-branding {
+  flex-shrink: initial; }
+
+input[type="checkbox"], input[type="radio"] {
+  vertical-align: middle;
+  margin-right: 0.333rem; }
+
+.tag.hidden {
+  display: none; }
+
+.comment-indicator {
+  position: absolute;
+  left: -4rem; }
+
 .vertical-tabs .vertical-tabs__panes {
   padding: 1rem; }
   .vertical-tabs .vertical-tabs__panes .vertical-tabs__pane {
@@ -70,5 +90,3 @@ article section.comment-section article {
 
 .quickedit .icon {
   min-height: 2em; }
-
-/*# sourceMappingURL=overrides.css.map */

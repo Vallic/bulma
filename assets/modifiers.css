@@ -1,0 +1,18 @@
+.has-background-image {
+  background: no-repeat center center;
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover; }
+
+.has-text-shadow {
+  text-shadow: 0.04em 0.04em 0.03em #000; }
+
+.card-content-bottom {
+  margin-top: auto; }
+
+.column.is-flex-column {
+  display: flex;
+  flex-direction: column; }
+  .column.is-flex-column > * {
+    flex: 1; }

@@ -1,0 +1,14 @@
+{
+  "name": "octavia",
+  "version": "1.0.0",
+  "scripts": {
+    "scss": "node-sass --watch scss -o assets"
+  },
+  "devDependencies": {
+    "node-sass": "^4.14.1"
+  },
+  "dependencies": {
+    "bulma": "^0.9.0",
+    "bulma-helpers": "^0.3.12"
+  }
+}

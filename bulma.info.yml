@@ -3,7 +3,8 @@ description: 'Built to use Bulma, a modern CSS framework based on Flexbox.'
 type: theme
 base theme: stable9
 core_version_requirement: ^9
-package: Core
+dependencies:
+  - bulma_components:bulma_components
 
 regions:
   header: 'Header'

@@ -8,7 +8,7 @@
   max-height: 4rem;
 }
 
-#block-octavia-branding {
+.block-system-branding-block {
   flex-shrink: initial;
 }
 
@@ -16,8 +16,8 @@
 // See https://gitlab.com/drutopia/octavia/issues/60
 // TODO fix for RTL languages
 input[type="checkbox"], input[type="radio"] {
-    vertical-align: middle;
-    margin-right: 0.333rem;
+  vertical-align: middle;
+  margin-right: 0.333rem;
 }
 
 .tag.hidden {

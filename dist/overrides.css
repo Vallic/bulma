@@ -4,7 +4,7 @@
 .navbar-item .is-pulled-left img {
   max-height: 4rem; }
 
-#block-octavia-branding {
+.block-system-branding-block {
   flex-shrink: initial; }
 
 input[type="checkbox"], input[type="radio"] {

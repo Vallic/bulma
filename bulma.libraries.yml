@@ -1,11 +1,11 @@
 global:
   css:
     base:
-      assets/bulma/css/bulma.css: {}
+      dist/bulma-modified.css: {}
     component:
-      assets/fontawesome/css/fontawesome.css: {}
+      dist/fontawesome/css/fontawesome.css: {}
     theme:
-      assets/modifiers.css: {}
-      assets/overrides.css: {}
+      dist/modifiers.css: {}
+      dist/overrides.css: {}
   js:
-    assets/BulmaJS/dist/bulma.js: {}
+    dist/BulmaJS/dist/bulma.js: {}

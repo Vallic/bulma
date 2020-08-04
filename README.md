@@ -17,6 +17,6 @@ http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 _This command looks at `package.json` and installs all the npm dependencies specified in it._
 
 ### Compile SCSS into CSS
-`npm run scss`
+`npm run build-scss`
 
-_This command "watches" the `scss` directory such that every time a .scss file in that directory is edited it's compiled and written to the `assets` directory.
+_This command builds all SCSS files in the `scss` directory, writing the resulting CSS files to the `dist` directory._

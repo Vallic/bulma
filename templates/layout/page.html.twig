@@ -128,20 +128,29 @@
 {% endif %}
 {% endblock navbar_element %}
 {% endblock navbar %}
+{% block breadcrumb %}
+{% if page.breadcrumb %}
+<section class="container">
+  <div class="container">
+  {{ page.breadcrumb }}
+  </div>
+</section>
+{% endif %}
+{% endblock breadcrumb %}
 {% block header %}
 {% block header_first_and_second %}
 {% if page.header_first or page.header_second %}
 <section class="container">
   <div class="container">
-    <div class="columns is-vcentered">
-      <div class="column">
+    <div>
+      <div>
         {% if is_front and site_slogan %}
           <h2{{ site_slogan_attributes }}>{{ site_slogan }}</h1>
         {% endif %}
         {{ page.header_first }}
       </div>
       {% if page.header_second %}
-      <div class="column is-narrow">
+      <div>
         {{ page.header_second }}
       </div>
       {% endif %}
@@ -178,17 +187,6 @@
 
     <div class="columns is-centered">
       {% block main_content %}
-      {# Set attributes for content. #}
-      {% if not page.content_attributes %}
-      {%
-        set page = page|merge({
-          'content_attributes': create_attribute().addClass([
-            'main-content',
-            'column',
-          ]),
-        })
-      %}
-      {% endif %}
       {# Main content #}
       <div{{page.content_attributes}}>
         {{ page.content }}

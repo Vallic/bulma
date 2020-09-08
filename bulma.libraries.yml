@@ -3,7 +3,7 @@ global:
     base:
       dist/bulma-modified.css: {}
     component:
-      dist/fontawesome/css/fontawesome.css: {}
+      dist/fontawesome/css/all.css: {}
     theme:
       dist/modifiers.css: {}
       dist/overrides.css: {}

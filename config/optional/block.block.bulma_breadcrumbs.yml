@@ -5,8 +5,8 @@ dependencies:
     - system
   theme:
     - bulma
-id: seven_breadcrumbs
-theme: seven
+id: bulma_breadcrumbs
+theme: bulma
 region: breadcrumb
 weight: 0
 provider: null

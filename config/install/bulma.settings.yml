@@ -25,7 +25,7 @@ table:
   narrow: 0
 cdn:
   bulma:
-    version: '0.8.0'
+    version: '0.9.1'
   bulmaswatch:
-    version: '0.7.5'
+    version: '0.8.1'
     theme: 'default'

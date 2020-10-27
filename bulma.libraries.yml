@@ -1,7 +1,5 @@
 global:
   css:
-    base:
-      assets/bulma/css/bulma.css: {}
     component:
       assets/font-awesome/css/font-awesome.css: {}
     theme:

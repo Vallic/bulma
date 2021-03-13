@@ -23,29 +23,96 @@
  * @ingroup themeable
  */
 #}
-
+{%-
+  set type_map = {
+    'error': {
+      'color': 'is-danger',
+      'text-color': 'has-text-danger',
+      'icon': 'fa-ban',
+    },
+    'status': {
+      'color': 'is-success',
+      'text-color': 'has-text-success',
+      'icon': 'fa-info-circle',
+    },
+    'warning': {
+      'color': 'is-warning',
+      'text-color': 'has-text-warning',
+      'icon': 'fa-exclamation',
+    },
+  }
+-%}
+{%
+  set attributes = attributes.setAttribute('role', 'contentinfo')
+%}
+<div data-drupal-messages>
 {% for type, messages in message_list %}
-  {%- set classes = [
-    'message',
-    type == 'error' ? 'is-danger',
-    type == 'status' ? 'is-success',
-    type == 'warning' ? 'is-warning',
-  ] -%}
-  <div {{ attributes.addClass(classes) }} role="contentinfo" aria-label="{{ status_headings[type] }}"{{ attributes|without('role', 'aria-label') }}>
-    <div class="{{ type }}"></div>
-    {% if status_headings[type] %}
-      <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
+  {%
+    set is_message_with_title = status_headings[type]
+  %}
+  {%
+    set is_message_with_icon = type_map[type]
+  %}
+  {%
+    set type_attributes = attributes.setAttribute('aria-labelledby', title_ids[type])
+  %}
+
+  <div>
+    {% if type == 'error' %}
+      <div role="alert">
     {% endif %}
-    <div class="message-body">
-    {% if messages|length > 1 %}
-      <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      {{ messages|first }}
+      {% if is_message_with_title or is_message_with_icon %}
+        {% set header_content %}
+          {% if is_message_with_title %}
+            {% if is_message_with_icon %}
+              {%
+                set icon_text = {
+                  items: [
+                    {
+                      icon: {
+                        icon_set: 'fas',
+                        icon: type_map[type].icon,
+                        text_color: type_map[type].text_color,
+                      },
+                      text: status_headings[type],
+                    },
+                  ],
+                }
+              %}
+              {{ include('@bulma_components/elements/icon_text/icon_text.html.twig', icon_text, with_context = false) }}
+            {% else %}
+              {{ status_headings[type] }}
+            {% endif %}
+          {% endif %}
+        {% endset %}
+      {% endif %}
+      {% set body_content %}
+        {% if messages|length > 1 %}
+          <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          {{ messages|first }}
+        {% endif %}
+      {% endset %}
+      {%
+        set message = {
+          attributes: type_attributes,
+          color: type_map[type].color,
+          header: {
+            attributes: create_attribute({'id': title_ids[type]}),
+            content: header_content,
+          },
+          body: {
+            content: body_content,
+          },
+        }
+      %}
+      {{ include('@bulma_components/components/message/message.html.twig', message, with_context = false) }}
+    {% if type == 'error' %}
+      </div>
     {% endif %}
-    </div>
-  </div>
 {% endfor %}
+</div>

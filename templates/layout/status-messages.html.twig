@@ -106,6 +106,7 @@
             content: header_content,
           },
           body: {
+            attributes: create_attribute((messages|length > 1) ? {'class': 'content'} : []),
             content: body_content,
           },
         }

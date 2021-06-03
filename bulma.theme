@@ -206,7 +206,9 @@ function bulma_preprocess_block(&$variables) {
   // Set a region variable for use in templates.
   if (isset($variables['elements']['#id'])) {
     $block = Block::load($variables['elements']['#id']);
-    $variables['region'] = $block->getRegion();
+    if ($block) {
+      $variables['region'] = $block->getRegion();
+    }
   }
 }
 

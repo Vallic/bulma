@@ -12,9 +12,12 @@
  * @ingroup themeable
  */
 #}
+{% if attributes.multiple == 'multiple' %}
+  {% set is_multiple = ' is-multiple' %}
+{% endif %}
 {% apply spaceless %}
-<div class="control"><span class="select">
-  <select{{ attributes }}>
+<div class="control"><span class="select{{ is_multiple }}">
+  <select{{ attributes.addClass(is_multiple) }}>
     {% for option in options %}
       {% if option.type == 'optgroup' %}
         <optgroup label="{{ option.label }}">

@@ -7,7 +7,7 @@
 
   Drupal.behaviors.bulma = {
     attach: function (context) {
-      var $toggle = $('#js-navbar-burger').once('bulma');
+      var $toggle = $(once('bulma', '#js-navbar-burger'));
       if ($toggle.length) {
         var $menu = $('#js-navbar-menu');
 

@@ -1,0 +1,10 @@
+{
+  "name": "drupal/bulma",
+  "type": "drupal-theme",
+  "description": "Built to use Bulma, a modern CSS framework based on Flexbox.",
+  "keywords": ["Drupal"],
+  "homepage": "http://drupal.org/project/bulma",
+  "support": {
+    "issues": "http://drupal.org/project/issues/bulma"
+  }
+}

@@ -16,7 +16,8 @@ use Drupal\Core\Form\FormStateInterface;
 function bulma_form_system_theme_settings_alter(&$form, FormStateInterface $form_state, $form_id = NULL) {
   if (\Drupal::moduleHandler()->moduleExists('menu_ui')) {
     // Get all menus.
-    $menus = menu_ui_get_menus(FALSE);
+    $menus = array_map(function ($menu) { return $menu->label(); }, \Drupal\system\Entity\Menu::loadMultiple());
+    asort($menus);
   }
   else {
     $menus = [];
